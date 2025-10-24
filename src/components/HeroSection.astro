@@ -1,186 +1,575 @@
 ---
-// Hero Section Component
+// Hero Section - Dieter Rams + Steve Jobs Präzision
+// Reine Astro-Komponente für maximale Performance
+
+import { Image } from 'astro:assets';
+
+export interface Props {
+  title: string;
+  subtitle: string;
+  image: string;
+  imageAlt: string;
+  ctaText: string;
+  ctaHref: string;
+  hasRealReviews?: boolean;
+  reviewCount?: number;
+  reviewRating?: number;
+}
+
+const { 
+  title, 
+  subtitle, 
+  image, 
+  imageAlt, 
+  ctaText, 
+  ctaHref,
+  hasRealReviews = false,
+  reviewCount = 0,
+  reviewRating = 0
+} = Astro.props;
+
+// Hero-Bild direkt verwenden - Astro Image Component
 ---
 
-<section class="relative h-screen w-full overflow-hidden">
-  
-  {/* LAYER 1: Background Image mit Ken Burns Effect */}
-  <div class="absolute inset-0 w-full h-full">
+<section 
+  class="hero-section"
+  aria-label="Hero Section"
+>
+  <!-- Background Image Layer - GPU-optimiert mit Ken Burns Effect -->
+  <div class="hero-background">
     <img
       src="/images/01_aussenansicht_fachwerkhaus_haupteingang.jpg"
-      alt="Historisches Fachwerkhaus Unterm Schloss in der Schloßstraße, Hambach an der Weinstraße"
-      class="hero-image w-full h-full object-cover"
+      alt={imageAlt}
+      class="hero-image ken-burns"
       loading="eager"
       fetchpriority="high"
+      width="1920"
+      height="1280"
     />
-    {/* Gradient Overlay für bessere Lesbarkeit */}
-    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+    <!-- Ehrliches Overlay - nur für Lesbarkeit -->
+    <div class="hero-overlay"></div>
   </div>
 
-  {/* LAYER 2: Content */}
-  <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto text-center text-white space-y-8">
+  <!-- Content Layer - Perfekte Zentrierung -->
+  <div class="hero-content">
+    <div class="hero-container">
       
-      {/* Headline mit Stagger-Animation */}
-      <h1 class="hero-headline font-playfair font-normal leading-tight">
-        <span class="hero-word inline-block opacity-0">Wo</span>{' '}
-        <span class="hero-word inline-block opacity-0">Tradition</span>{' '}
-        <span class="hero-word inline-block opacity-0">auf</span>{' '}
-        <span class="hero-word inline-block opacity-0">Gemütlichkeit</span>{' '}
-        <span class="hero-word inline-block opacity-0">trifft</span>
+      <!-- 1. HEADLINE - Maximum Impact mit Animation -->
+      <h1 class="hero-title fade-in-up">
+        <span class="word-animate">{title.split(' ').slice(0, 2).join(' ')}</span>
+        <span class="word-animate delay-1">{title.split(' ').slice(2).join(' ')}</span>
       </h1>
 
-      {/* Subline */}
-      <p class="hero-subline text-lg sm:text-xl md:text-2xl font-light tracking-wide max-w-2xl mx-auto opacity-0">
-        Liebevoll restaurierte Ferienwohnung in Hambachs historischer Schloßstraße
+      <!-- 2. SUBHEADLINE - Fibonacci Spacing mit verzögerter Animation -->
+      <p class="hero-subtitle fade-in-up delay-2">
+        {subtitle}
       </p>
 
-      {/* Trust Badge */}
-      <div class="hero-trust flex items-center justify-center gap-2 text-sm sm:text-base opacity-0">
-        <div class="flex text-yellow-400">
-          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+      <!-- 3. TRUST-SIGNAL - Nur bei echten Bewertungen -->
+      {hasRealReviews && reviewCount > 0 && (
+        <div class="hero-trust">
+          <span class="hero-trust-stars">★★★★★</span>
+          <span class="hero-trust-rating">{reviewRating}</span>
+          <span class="hero-trust-separator">·</span>
+          <span class="hero-trust-count">{reviewCount} Bewertungen</span>
         </div>
-        <span class="font-medium">4.9</span>
-        <span class="text-white/80">·</span>
-        <span class="text-white/90">47 Bewertungen</span>
-      </div>
+      )}
 
-      {/* CTA Button */}
-      <div class="hero-cta opacity-0">
+      <!-- 4. CTA-BUTTON - Pixel-perfect -->
+      <div class="hero-cta">
+        <!-- Primary CTA - Rams-Prinzip: Klar und funktional mit Animation -->
         <a 
-          href="#kontakt" 
-          class="group relative inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white font-medium px-10 py-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+          href={ctaHref}
+          class="hero-button fade-in-up delay-3 scale-in"
+          aria-label={`${ctaText} - Öffnet Buchungsanfrage`}
         >
-          <span>Verfügbarkeit anfragen</span>
-          <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-          {/* Glow effect */}
-          <div class="absolute inset-0 rounded-full bg-amber-400/20 blur-xl group-hover:bg-amber-400/30 transition-all"></div>
+          <span class="hero-button-text">{ctaText}</span>
+          <!-- Subtle hover glow - Jobs-Prinzip: Details matter -->
+          <div class="hero-button-glow"></div>
         </a>
-        
-        {/* Badge unter Button */}
-        <p class="mt-4 text-sm text-white/80 flex items-center justify-center gap-2">
-          <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-          </svg>
-          <span>Antwort innerhalb von 24 Stunden</span>
+
+        <!-- Badge unter Button - 16px Abstand (Fibonacci) mit Animation -->
+        <p class="hero-badge fade-in delay-4">
+          <span class="hero-badge-icon">✓</span>
+          Antwort innerhalb von 24 Stunden
         </p>
       </div>
-
     </div>
   </div>
 
-  {/* LAYER 3: Scroll Indicator */}
-  <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
-    <div class="flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors cursor-pointer">
-      <span class="text-sm font-light tracking-wider">Scrollen</span>
-      <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-      </svg>
+  <!-- Scroll Indicator - Jobs-Prinzip: Perfekte Animation -->
+  <div class="hero-scroll fade-in delay-5" aria-label="Scroll nach unten">
+    <div class="hero-scroll-container bounce">
+      <div class="hero-scroll-dot"></div>
     </div>
   </div>
-
 </section>
 
 <style>
-  /* Ken Burns Effect - langsamer Zoom über 20s */
+  /* HERO-SECTION PRECISION STYLES */
+  /* Dieter Rams + Steve Jobs Prinzipien: Jedes Pixel zählt */
+
+  .hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    max-height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Background Image Layer */
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
   .hero-image {
-    animation: kenBurns 20s ease-out infinite alternate;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* Ken Burns Effect - subtil und ehrlich */
+    animation: kenBurns 20s linear infinite;
     will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0); /* GPU-Layer */
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    /* Ehrliches Overlay - nur für bessere Lesbarkeit */
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
+  }
+
+  /* Content Layer */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .hero-container {
+    max-width: 80rem; /* 1280px */
+    margin: 0 auto;
+  }
+
+  /* Typografie - Mathematisch präzise */
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400; /* Rams: Nicht Bold, sondern elegant */
+    font-size: 2.25rem; /* 36px */
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: white;
+    margin-bottom: 1.5rem; /* 24px */
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    /* Animation */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0 auto 2.5rem auto; /* 40px - Zentriert mit auto margins */
+    max-width: 48rem; /* Optimal für Lesbarkeit: 60-75 Zeichen */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    text-align: center; /* Explizite Zentrierung */
+    /* Animation */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  }
+
+  /* Trust Signal - Nur bei echten Bewertungen */
+  .hero-trust {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 3rem; /* 48px */
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    /* Animation */
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 0.6s forwards;
+  }
+
+  .hero-trust-stars {
+    color: #fbbf24; /* Gold */
+    font-size: 1.125rem;
+  }
+
+  .hero-trust-rating {
+    font-weight: 500;
+  }
+
+  .hero-trust-separator {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .hero-trust-count {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* CTA-Button - Pixel-perfect */
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; /* 16px */
+    /* Animation */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out 0.8s forwards;
+  }
+
+  .hero-button {
+    position: relative;
+    display: inline-block;
+    background: #8b7355; /* Warme, ehrliche Farbe */
+    color: white;
+    border: none;
+    border-radius: 9999px; /* Perfect circle */
+    padding: 1rem 2.5rem; /* 16px × 40px */
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1.125rem; /* 18px */
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+    text-decoration: none;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+    min-height: 44px; /* Touch-friendly */
+    min-width: 44px;
+  }
+
+  .hero-button:hover {
+    background: #7a6548;
+    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+  }
+
+  .hero-button:active {
+    transform: scale(1.0);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .hero-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(139, 115, 85, 0.5);
+  }
+
+  .hero-button-text {
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero-button-glow {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    border-radius: inherit;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hero-button:hover .hero-button-glow {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .hero-badge {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.875rem; /* 14px */
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+  }
+
+  .hero-badge-icon {
+    color: #10b981; /* Green */
+    font-size: 1rem;
+  }
+
+  /* Scroll Indicator */
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  .hero-scroll-container {
+    width: 1.75rem; /* 28px */
+    height: 2.75rem; /* 44px */
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    border-radius: 9999px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0.5rem;
+  }
+
+  .hero-scroll-dot {
+    width: 0.375rem; /* 6px */
+    height: 0.375rem; /* 6px */
+    background: white;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* Responsive Design */
+  @media (min-width: 640px) {
+    .hero-title {
+      font-size: 3rem; /* 48px */
+    }
+    
+    .hero-subtitle {
+      font-size: 1.25rem; /* 20px */
+      margin: 0 auto 2.5rem auto; /* Zentriert auf allen Größen */
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 3.75rem; /* 60px */
+    }
+    
+    .hero-subtitle {
+      font-size: 1.5rem; /* 24px */
+      margin: 0 auto 2.5rem auto; /* Zentriert auf allen Größen */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: 4.5rem; /* 72px */
+    }
+    
+    .hero-subtitle {
+      font-size: 1.875rem; /* 30px */
+      margin: 0 auto 2.5rem auto; /* Zentriert auf allen Größen */
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   @keyframes kenBurns {
     0% {
       transform: scale(1);
     }
+    50% {
+      transform: scale(1.02); /* Sehr subtiler Zoom - nicht übertrieben */
+    }
     100% {
-      transform: scale(1.1);
+      transform: scale(1);
     }
   }
 
-  /* Responsive Typography */
-  .hero-headline {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    40% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+      transform: translateX(-50%) translateY(-5px);
+    }
   }
 
-  /* Scroll Indicator fade-out beim scrollen */
-  @media (min-width: 768px) {
-    .scroll-indicator {
+  @keyframes pulse {
+    0%, 100% {
       opacity: 1;
-      transition: opacity 0.3s ease-out;
+    }
+    50% {
+      opacity: 0.3;
+    }
+  }
+
+  /* Accessibility - Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-image,
+    .hero-scroll,
+    .hero-scroll-dot {
+      animation: none !important;
     }
     
-    body.scrolled .scroll-indicator {
-      opacity: 0;
-      pointer-events: none;
+    .hero-button:hover {
+      transform: none;
+    }
+    
+    .hero-title,
+    .hero-subtitle,
+    .hero-trust,
+    .hero-cta {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
     }
   }
+
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: high) {
+    .hero-title,
+    .hero-subtitle {
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    .hero-button {
+      border: 2px solid white;
+    }
+  }
+
+  /* ANIMATION KEYFRAMES - GPU-accelerated */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes wordFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ANIMATION CLASSES - GPU-accelerated */
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .scale-in {
+    transform: scale(0.95);
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  .bounce {
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  /* Word Animation - Staggered Effect */
+  .word-animate {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: wordFadeIn 0.6s ease-out forwards;
+  }
+
+  .word-animate.delay-1 {
+    animation-delay: 0.2s;
+  }
+
+  /* Animation Delays */
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.3s; }
+  .delay-3 { animation-delay: 0.5s; }
+  .delay-4 { animation-delay: 0.7s; }
+  .delay-5 { animation-delay: 0.9s; }
 
   /* Reduced Motion Support */
   @media (prefers-reduced-motion: reduce) {
-    .hero-image {
-      animation: none;
-    }
-    .scroll-indicator svg {
-      animation: none;
+    .ken-burns,
+    .fade-in-up,
+    .fade-in,
+    .scale-in,
+    .bounce,
+    .word-animate {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
     }
   }
 </style>
-
-<script>
-  // Text Stagger Animation
-  document.addEventListener('DOMContentLoaded', () => {
-    const words = document.querySelectorAll('.hero-word');
-    const subline = document.querySelector('.hero-subline');
-    const trust = document.querySelector('.hero-trust');
-    const cta = document.querySelector('.hero-cta');
-
-    // Stagger words mit 100ms delay
-    words.forEach((word, index) => {
-      setTimeout(() => {
-        word.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-        word.style.transform = 'translateY(0)';
-        word.style.opacity = '1';
-      }, 200 + (index * 100));
-    });
-
-    // Subline nach words
-    setTimeout(() => {
-      if (subline) {
-        subline.style.transition = 'opacity 0.8s ease-out';
-        subline.style.opacity = '1';
-      }
-    }, 200 + (words.length * 100) + 200);
-
-    // Trust badge
-    setTimeout(() => {
-      if (trust) {
-        trust.style.transition = 'opacity 0.6s ease-out';
-        trust.style.opacity = '1';
-      }
-    }, 200 + (words.length * 100) + 400);
-
-    // CTA
-    setTimeout(() => {
-      if (cta) {
-        cta.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
-        cta.style.transform = 'translateY(0)';
-        cta.style.opacity = '1';
-      }
-    }, 200 + (words.length * 100) + 600);
-
-    // Scroll Indicator fade-out
-    let scrolled = false;
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 100 && !scrolled) {
-        document.body.classList.add('scrolled');
-        scrolled = true;
-      } else if (window.scrollY <= 100 && scrolled) {
-        document.body.classList.remove('scrolled');
-        scrolled = false;
-      }
-    });
-  });
-</script>

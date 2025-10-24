@@ -97,100 +97,15 @@ const id = `scroll-reveal-${Math.random().toString(36).substr(2, 9)}`;
 </style>
 
 <script>
-  // Scroll-Reveal System - Vanilla JS für maximale Performance
-  class ScrollReveal {
-    constructor() {
-      this.elements = document.querySelectorAll('[data-scroll-reveal]');
-      this.observer = null;
-      this.init();
-    }
-
-    init() {
-      // Intersection Observer Setup
-      const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      };
-
-      this.observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => this.handleIntersection(entry));
-      }, options);
-
-      // Observe all elements
-      this.elements.forEach(element => {
-        this.observer.observe(element);
-      });
-    }
-
-    handleIntersection(entry) {
-      const element = entry.target;
-      const isIntersecting = entry.isIntersecting;
-      const intersectionRatio = entry.intersectionRatio;
-      const trigger = parseFloat(element.dataset.trigger) || 0.5;
-
-      // Check if element should be revealed
-      if (isIntersecting && intersectionRatio >= trigger) {
-        this.revealElement(element);
-      }
-    }
-
-    revealElement(element) {
-      const animation = element.dataset.animation || 'fade-up';
-      const delay = parseInt(element.dataset.delay) || 0;
-      const duration = parseFloat(element.dataset.duration) || 0.6;
-      const stagger = parseInt(element.dataset.stagger) || 0;
-      const once = element.dataset.once === 'true';
-
-      // Set CSS custom properties
-      element.style.setProperty('--duration', `${duration}s`);
-      element.style.setProperty('--delay', `${delay}ms`);
-
-      // Handle stagger for child elements
-      if (stagger > 0) {
-        const children = element.querySelectorAll('.scroll-reveal-child');
-        children.forEach((child, index) => {
-          child.style.setProperty('--stagger-delay', `${index * stagger}ms`);
-        });
-      }
-
-      // Add revealed class with delay
-      setTimeout(() => {
-        element.classList.add('revealed');
-      }, delay);
-
-      // Unobserve if once is true
-      if (once) {
-        this.observer.unobserve(element);
-      }
-    }
-
-    // Public method to reveal all elements
-    revealAll() {
-      this.elements.forEach(element => {
-        this.revealElement(element);
-      });
-    }
-
-    // Public method to reset all elements
-    reset() {
-      this.elements.forEach(element => {
-        element.classList.remove('revealed');
-      });
-    }
-  }
-
-  // Initialize when DOM is ready
+  // Einfaches Scroll-Reveal für einzelne Elemente
   document.addEventListener('DOMContentLoaded', () => {
-    new ScrollReveal();
+    const element = document.currentScript?.parentElement;
+    if (element && element.hasAttribute('data-scroll-reveal')) {
+      // Zeige Element sofort an (Debug-Modus)
+      element.classList.add('revealed');
+      element.style.opacity = '1';
+      element.style.transform = 'none';
+      console.log('🎯 Scroll-Reveal Element aktiviert:', element);
+    }
   });
-
-  // Also initialize if DOM is already loaded
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      new ScrollReveal();
-    });
-  } else {
-    new ScrollReveal();
-  }
 </script>

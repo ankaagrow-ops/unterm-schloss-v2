@@ -69,71 +69,23 @@ const {
 </style>
 
 <script>
-  // Enhanced Scroll-Reveal for Grids with Stagger
-  class ScrollRevealGrid {
-    constructor() {
-      this.grids = document.querySelectorAll('.scroll-reveal-grid');
-      this.observer = null;
-      this.init();
-    }
-
-    init() {
-      const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-      };
-
-      this.observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => this.handleIntersection(entry));
-      }, options);
-
-      this.grids.forEach(grid => {
-        this.observer.observe(grid);
-      });
-    }
-
-    handleIntersection(entry) {
-      const grid = entry.target;
-      const isIntersecting = entry.isIntersecting;
-      const intersectionRatio = entry.intersectionRatio;
-      const trigger = parseFloat(grid.dataset.trigger) || 0.3;
-
-      if (isIntersecting && intersectionRatio >= trigger) {
-        this.revealGrid(grid);
-      }
-    }
-
-    revealGrid(grid) {
-      const stagger = parseInt(grid.dataset.stagger) || 100;
-      const children = grid.querySelectorAll('.scroll-reveal-child');
-
-      // Reveal grid container
-      grid.classList.add('revealed');
-
-      // Stagger children
-      children.forEach((child, index) => {
-        setTimeout(() => {
-          child.style.setProperty('--stagger-delay', `${index * stagger}ms`);
-          child.classList.add('revealed');
-        }, index * stagger);
-      });
-
-      // Unobserve after reveal
-      this.observer.unobserve(grid);
-    }
-  }
-
-  // Initialize
+  // Einfaches Scroll-Reveal für Grid-Elemente
   document.addEventListener('DOMContentLoaded', () => {
-    new ScrollRevealGrid();
+    const grid = document.currentScript?.parentElement;
+    if (grid && grid.classList.contains('scroll-reveal-grid')) {
+      // Zeige Grid sofort an (Debug-Modus)
+      grid.classList.add('revealed');
+      grid.style.opacity = '1';
+      
+      // Zeige auch alle Child-Elemente
+      const children = grid.querySelectorAll('.scroll-reveal-child');
+      children.forEach(child => {
+        child.classList.add('revealed');
+        child.style.opacity = '1';
+        child.style.transform = 'none';
+      });
+      
+      console.log('🎯 Scroll-Reveal Grid aktiviert:', grid);
+    }
   });
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      new ScrollRevealGrid();
-    });
-  } else {
-    new ScrollRevealGrid();
-  }
 </script>

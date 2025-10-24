@@ -160,6 +160,54 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.url.origin);
       }
     </style>
     
+    <!-- Debug Scroll Reveal System -->
+    <script>
+      // Debug Scroll-Reveal System - Zeigt alle Sections sofort an
+      document.addEventListener('DOMContentLoaded', () => {
+        console.log('🔍 Debug: Scroll-Reveal System gestartet');
+        
+        // Finde alle Scroll-Reveal Elemente
+        const scrollRevealElements = document.querySelectorAll('[data-scroll-reveal]');
+        const scrollRevealGrids = document.querySelectorAll('.scroll-reveal-grid');
+        
+        console.log(`📊 Gefunden: ${scrollRevealElements.length} Scroll-Reveal Elemente`);
+        console.log(`📊 Gefunden: ${scrollRevealGrids.length} Scroll-Reveal Grids`);
+        
+        // Zeige alle Sections sofort an (ohne Animation)
+        scrollRevealElements.forEach((element, index) => {
+          console.log(`🎯 Element ${index + 1}:`, element);
+          element.classList.add('revealed');
+          element.style.opacity = '1';
+          element.style.transform = 'none';
+        });
+        
+        // Zeige alle Grid-Sections sofort an
+        scrollRevealGrids.forEach((grid, index) => {
+          console.log(`🎯 Grid ${index + 1}:`, grid);
+          grid.classList.add('revealed');
+          grid.style.opacity = '1';
+          
+          // Zeige auch alle Child-Elemente
+          const children = grid.querySelectorAll('.scroll-reveal-child');
+          children.forEach(child => {
+            child.classList.add('revealed');
+            child.style.opacity = '1';
+            child.style.transform = 'none';
+          });
+        });
+        
+        // Zusätzlich: Zeige alle Sections mit sichtbaren Borders
+        const sections = document.querySelectorAll('section');
+        sections.forEach((section, index) => {
+          console.log(`📦 Section ${index + 1}:`, section);
+          section.style.border = '2px solid red';
+          section.style.minHeight = '200px';
+        });
+        
+        console.log('✅ Debug: Alle Sections sollten jetzt sichtbar sein');
+      });
+    </script>
+    
     <!-- Lazy Loading Script -->
     <script>
       // Lazy Loading Script for Images

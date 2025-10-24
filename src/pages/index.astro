@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
+import HeroSection from '../components/HeroSection.astro';
 import StorySection from '../components/StorySection.astro';
 import FeaturesGrid from '../components/FeaturesGrid.astro';
 import PillarsSection from '../components/PillarsSection.astro';
@@ -16,8 +16,18 @@ const pageDescription = 'Charmante Ferienwohnung in historischer Schloßstraße 
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <!-- Hero Section - Premium Design mit Ken Burns Effect -->
-  <Hero />
+  <!-- Hero Section - Rams + Jobs Präzision -->
+  <HeroSection
+    title="Wo Tradition auf Gemütlichkeit trifft"
+    subtitle="Liebevoll restaurierte Ferienwohnung in Hambachs historischer Schloßstraße"
+    image="/images/01_aussenansicht_fachwerkhaus_haupteingang.jpg"
+    imageAlt="Ferienwohnung Unterm Schloss - Außenansicht in der historischen Schloßstraße Hambach"
+    ctaText="Verfügbarkeit anfragen"
+    ctaHref="/booking"
+    hasRealReviews={false}
+    reviewCount={0}
+    reviewRating={0}
+  />
 
   <!-- Story -->
   <ScrollReveal animation="fade-up" trigger="0.5">
