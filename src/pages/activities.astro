@@ -1,0 +1,493 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import ActivitiesSection from '../components/ActivitiesSection.astro';
+
+const pageTitle = 'Die Pfalz erleben - Aktivitäten & Region | Unterm Schloss';
+const pageDescription = 'Entdecken Sie die Pfalz: Wein, Wandern, Kultur. Hambach an der Weinstraße bietet unvergessliche Erlebnisse direkt vor der Haustür.';
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- Navigation -->
+  <Navigation currentPath="/activities" />
+  
+  <!-- Hero -->
+  <Hero
+    title="Die Pfalz erleben"
+    subtitle="Wein, Wandern, Kultur – alles vor der Haustür"
+    image="/images/05_innenhof_pfalz_schild_weingarten.jpg"
+    imageAlt="Pfälzer Weinregion rund um Hambach"
+  />
+
+  <!-- Introduction -->
+  <section class="introduction">
+    <div class="container">
+      <div class="intro-content">
+        <h2>Hambach an der Weinstraße</h2>
+        <p>
+          Willkommen in einer der schönsten Regionen Deutschlands! Hambach liegt direkt an der Deutschen Weinstraße und ist umgeben von sanften Hügeln, üppigen Weinbergen und dem majestätischen Pfälzer Wald. Hier, wo Geschichte auf Natur trifft, erwarten Sie unvergessliche Erlebnisse.
+        </p>
+        <p>
+          Das historische Hambacher Schloss, die Wiege der deutschen Demokratie, thront über dem Ort und bietet nicht nur einen atemberaubenden Blick über die Region, sondern auch einen Einblick in die bewegte Geschichte der Pfalz. Die charmanten Weingüter, familiengeführten Restaurants und versteckten Wanderwege machen jeden Tag zu einem neuen Abenteuer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Activities Section -->
+  <ActivitiesSection
+    heading="Aktivitäten in der Region"
+    activities={[
+      {
+        title: "Weinverkostungen",
+        description: "Entdecken Sie die Vielfalt der Pfälzer Weine bei einer Verkostung in den umliegenden Weingütern. Von trockenen Rieslingen bis hin zu fruchtigen Spätburgundern – die Pfalz bietet für jeden Geschmack das Richtige. Besuchen Sie traditionelle Familienweingüter oder moderne Winzerbetriebe und lernen Sie die Kunst des Weinanbaus kennen.",
+        image: "/images/wine.jpg",
+        imageAlt: "Weinverkostung in einem Pfälzer Weingut"
+      },
+      {
+        title: "Wandern im Pfälzer Wald",
+        description: "Der Pfälzer Wald, das größte zusammenhängende Waldgebiet Deutschlands, liegt direkt vor Ihrer Haustür. Entdecken Sie geheimnisvolle Felsformationen, idyllische Bachtäler und atemberaubende Aussichtspunkte. Beliebte Routen führen zur Kalmit, dem höchsten Berg der Pfalz, oder durch das romantische Queichtal. Für jeden Schwierigkeitsgrad ist etwas dabei.",
+        image: "/images/nature.jpg",
+        imageAlt: "Wanderweg durch den Pfälzer Wald"
+      },
+      {
+        title: "Kultur & Geschichte",
+        description: "Das Hambacher Schloss ist nicht nur ein historisches Denkmal, sondern auch ein lebendiger Ort der Kultur. Besuchen Sie die Ausstellungen zur deutschen Demokratiegeschichte oder genießen Sie Konzerte und Veranstaltungen in diesem besonderen Ambiente. Die umliegenden Städte wie Neustadt, Speyer und Worms bieten weitere kulturelle Highlights.",
+        image: "/images/location.jpg",
+        imageAlt: "Hambacher Schloss - Wiege der deutschen Demokratie"
+      },
+      {
+        title: "Kulinarische Entdeckungen",
+        description: "Die Pfalz ist ein Paradies für Genießer! Probieren Sie regionale Spezialitäten wie Saumagen, Leberknödel oder die berühmten Pfälzer Spargel. Besuchen Sie traditionelle Gasthöfe, moderne Restaurants oder genießen Sie ein Picknick zwischen den Weinbergen. Jede Mahlzeit wird zu einem kulinarischen Erlebnis.",
+        image: "/images/comfort.jpg",
+        imageAlt: "Pfälzer Spezialitäten und regionale Küche"
+      }
+    ]}
+  />
+
+  <!-- Restaurant Recommendations -->
+  <section class="restaurants">
+    <div class="container">
+      <h2 class="section-heading">Restaurant-Empfehlungen</h2>
+      <div class="restaurants-grid">
+        <div class="restaurant-card">
+          <div class="restaurant-image">
+            <img src="/images/03_innenhof_durchgang_mit_weinfass.jpg" alt="Restaurant Fassdaube" loading="lazy" />
+          </div>
+          <div class="restaurant-content">
+            <h3>Fassdaube</h3>
+            <p class="distance">2 Min. zu Fuß</p>
+            <p class="specialty">Traditionelle Pfälzer Küche</p>
+            <p class="description">Gemütliches Restaurant mit regionalen Spezialitäten und einer ausgezeichneten Weinauswahl.</p>
+          </div>
+        </div>
+        <div class="restaurant-card">
+          <div class="restaurant-image">
+            <img src="/images/03_innenhof_durchgang_mit_weinfass.jpg" alt="Restaurant Fuxbau" loading="lazy" />
+          </div>
+          <div class="restaurant-content">
+            <h3>Fuxbau</h3>
+            <p class="distance">5 Min. zu Fuß</p>
+            <p class="specialty">Moderne deutsche Küche</p>
+            <p class="description">Kreative Interpretationen klassischer Gerichte in eleganter Atmosphäre.</p>
+          </div>
+        </div>
+        <div class="restaurant-card">
+          <div class="restaurant-image">
+            <img src="/images/03_innenhof_durchgang_mit_weinfass.jpg" alt="Restaurant Mohre Jule" loading="lazy" />
+          </div>
+          <div class="restaurant-content">
+            <h3>Mohre Jule</h3>
+            <p class="distance">8 Min. zu Fuß</p>
+            <p class="specialty">Internationale Küche</p>
+            <p class="description">Vielfältige Speisekarte mit mediterranen und asiatischen Einflüssen.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Local Tips -->
+  <section class="local-tips">
+    <div class="container">
+      <h2 class="section-heading">Eva's Empfehlungen</h2>
+      <div class="tips-content">
+        <div class="tips-intro">
+          <p>Als Hambacherin kenne ich die schönsten Ecken der Region. Hier sind meine persönlichen Tipps für Ihren Aufenthalt:</p>
+        </div>
+        <div class="tips-grid">
+          <div class="tip-item">
+            <div class="tip-icon">🏔️</div>
+            <div class="tip-content">
+              <h3>Bester Aussichtspunkt</h3>
+              <p>Der Kalmit-Gipfel bei Sonnenaufgang – ein unvergesslicher Blick über die gesamte Pfalz bis zum Rhein.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">🍷</div>
+            <div class="tip-content">
+              <h3>Versteckte Weinstube</h3>
+              <p>Die "Alte Kelter" in Neustadt – ein Geheimtipp für authentische Pfälzer Weine und gemütliche Atmosphäre.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">🥾</div>
+            <div class="tip-content">
+              <h3>Lieblings-Wanderung</h3>
+              <p>Der "Weinwanderweg" von Hambach nach Neustadt – 8 km durch Weinberge mit Einkehrmöglichkeiten.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">🛒</div>
+            <div class="tip-content">
+              <h3>Wochenmarkt</h3>
+              <p>Jeden Samstag in Neustadt – frische regionale Produkte, Käse, Wurst und natürlich Pfälzer Wein.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">🏰</div>
+            <div class="tip-content">
+              <h3>Historischer Spaziergang</h3>
+              <p>Der "Demokratieweg" vom Schloss durch Hambach – 2 km Geschichte zum Anfassen.</p>
+            </div>
+          </div>
+          <div class="tip-item">
+            <div class="tip-icon">🌅</div>
+            <div class="tip-content">
+              <h3>Sonnenuntergang-Spot</h3>
+              <p>Die "Weinbergterrasse" hinter dem Schloss – der perfekte Ort für einen romantischen Abend.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="container">
+      <h2 class="section-heading">Lage & Umgebung</h2>
+      <div class="map-content">
+        <div class="map-placeholder">
+          <div class="map-info">
+            <h3>Unterm Schloss</h3>
+            <p>Schloßstraße, Hambach an der Weinstraße</p>
+            <div class="location-points">
+              <div class="point">
+                <span class="point-icon">🏰</span>
+                <span>Hambacher Schloss (2 Min.)</span>
+              </div>
+              <div class="point">
+                <span class="point-icon">🍷</span>
+                <span>Weingüter (5 Min.)</span>
+              </div>
+              <div class="point">
+                <span class="point-icon">🥾</span>
+                <span>Pfälzer Wald (10 Min.)</span>
+              </div>
+              <div class="point">
+                <span class="point-icon">🏪</span>
+                <span>Neustadt (15 Min.)</span>
+              </div>
+            </div>
+          </div>
+          <div class="map-image">
+            <img src="/images/location.jpg" alt="Karte der Umgebung Hambach" loading="lazy" />
+            <div class="map-overlay">
+              <p>Interaktive Karte mit allen wichtigen Orten</p>
+              <button class="map-button">Karte öffnen</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .introduction {
+    padding: 4rem 0;
+    background: #fafaf9;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .intro-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: #2b2419;
+    margin-bottom: 2rem;
+  }
+
+  .intro-content p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #2b2419;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .restaurants {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .restaurants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .restaurant-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .restaurant-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .restaurant-image {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .restaurant-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .restaurant-content {
+    padding: 1.5rem;
+  }
+
+  .restaurant-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2b2419;
+    margin-bottom: 0.5rem;
+  }
+
+  .distance {
+    font-family: 'DM Sans', sans-serif;
+    color: #8b7355;
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .specialty {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    font-family: 'DM Sans', sans-serif;
+    color: #4b5563;
+    line-height: 1.6;
+  }
+
+  .local-tips {
+    padding: 4rem 0;
+    background: #fafaf9;
+  }
+
+  .tips-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .tips-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .tips-intro p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    color: #4b5563;
+    font-style: italic;
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .tip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .tip-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .tip-content h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #2b2419;
+    margin-bottom: 0.5rem;
+  }
+
+  .tip-content p {
+    font-family: 'DM Sans', sans-serif;
+    color: #4b5563;
+    line-height: 1.6;
+    font-size: 0.875rem;
+  }
+
+  .map-section {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .map-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .map-placeholder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .map-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #2b2419;
+    margin-bottom: 1rem;
+  }
+
+  .map-info p {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    margin-bottom: 2rem;
+  }
+
+  .location-points {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .point {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: 'DM Sans', sans-serif;
+    color: #4b5563;
+  }
+
+  .point-icon {
+    font-size: 1.25rem;
+  }
+
+  .map-image {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .map-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+  }
+
+  .map-overlay p {
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 1rem;
+  }
+
+  .map-button {
+    background: #8b7355;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .map-button:hover {
+    background: #7a6548;
+  }
+
+  @media (max-width: 768px) {
+    .restaurants-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tips-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .map-placeholder {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .intro-content h2 {
+      font-size: 2rem;
+    }
+
+    .section-heading {
+      font-size: 2rem;
+    }
+  }
+</style>

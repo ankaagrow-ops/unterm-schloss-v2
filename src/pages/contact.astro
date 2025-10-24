@@ -1,0 +1,716 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+
+const pageTitle = 'Kontakt - Unterm Schloss | Ferienwohnung Hambach';
+const pageDescription = 'Kontaktieren Sie uns für Ihre Ferienwohnung in Hambach. Telefon, E-Mail, WhatsApp oder direkt vor Ort in der Schloßstraße. Wir freuen uns auf Ihre Nachricht.';
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- Navigation -->
+  <Navigation currentPath="/contact" />
+  
+  <!-- Header -->
+  <section class="contact-header">
+    <div class="container">
+      <div class="header-content">
+        <h1>Kontakt</h1>
+        <p>Wir freuen uns auf Ihre Nachricht</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Content -->
+  <section class="contact-content">
+    <div class="container">
+      <div class="contact-layout">
+        <!-- Left Column - Contact Info -->
+        <div class="contact-info">
+          <h2>Kontaktinformationen</h2>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div class="contact-content">
+                <h3>Adresse</h3>
+                <p>Schloßstraße 18<br>67434 Hambach an der Weinstraße<br>Deutschland</p>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div class="contact-content">
+                <h3>Telefon</h3>
+                <p><a href="tel:+491728049269">+49 172 8049269</a></p>
+                <small>Mo-Fr: 9:00-18:00 Uhr</small>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">✉️</div>
+              <div class="contact-content">
+                <h3>E-Mail</h3>
+                <p><a href="mailto:eva.dirion@gmx.net">eva.dirion@gmx.net</a></p>
+                <small>Antwort innerhalb von 24h</small>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <div class="contact-icon">💬</div>
+              <div class="contact-content">
+                <h3>WhatsApp</h3>
+                <p><a href="https://wa.me/491728049269" target="_blank">+49 172 8049269</a></p>
+                <small>Schnelle Nachricht</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-note">
+            <h3>Direkt vor Ort</h3>
+            <p>Sie können uns auch direkt vor Ort in der Schloßstraße 18 besuchen. Bitte vereinbaren Sie vorher einen Termin.</p>
+          </div>
+        </div>
+
+        <!-- Right Column - Contact Form -->
+        <div class="contact-form-section">
+          <h2>Nachricht senden</h2>
+          <form class="contact-form" action="#" method="POST" id="contact-form">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required 
+                placeholder="Ihr vollständiger Name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-Mail *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                placeholder="ihre@email.de"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Betreff</label>
+              <select id="subject" name="subject">
+                <option value="">Bitte wählen</option>
+                <option value="allgemein">Allgemeine Anfrage</option>
+                <option value="buchung">Buchungsanfrage</option>
+                <option value="verfuegbarkeit">Verfügbarkeit</option>
+                <option value="ausstattung">Fragen zur Ausstattung</option>
+                <option value="anreise">Anreise & Check-in</option>
+                <option value="sonstiges">Sonstiges</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Nachricht *</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="5" 
+                required
+                placeholder="Ihre Nachricht an uns..."
+              ></textarea>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="privacy" required />
+                <span class="checkmark"></span>
+                Ich habe die <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu. *
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Nachricht senden
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="container">
+      <h2>So finden Sie uns</h2>
+      <div class="map-container">
+        <div class="map-placeholder">
+          <div class="map-info">
+            <h3>Unterm Schloss</h3>
+            <p>Schloßstraße 18, 67434 Hambach an der Weinstraße</p>
+            <div class="map-details">
+              <div class="detail">
+                <span class="detail-icon">🚗</span>
+                <span>Kostenfreier Parkplatz direkt am Haus</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">🚶</span>
+                <span>2 Min. Fußweg zum Hambacher Schloss</span>
+              </div>
+              <div class="detail">
+                <span class="detail-icon">🍷</span>
+                <span>Direkt an der Deutschen Weinstraße</span>
+              </div>
+            </div>
+            <button class="map-button" onclick="window.open('https://maps.google.com/?q=Schloßstraße+18,+67434+Hambach', '_blank')">
+              In Google Maps öffnen
+            </button>
+          </div>
+          <div class="map-image">
+            <img src="/images/location.jpg" alt="Karte der Umgebung Hambach" loading="lazy" />
+            <div class="map-overlay">
+              <p>Interaktive Karte mit Wegbeschreibung</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <h2>Häufige Fragen</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Wie komme ich an die Schlüssel?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Die Schlüsselübergabe erfolgt direkt vor Ort. Wir treffen uns mit Ihnen zur vereinbarten Check-in-Zeit (15:00 Uhr) an der Ferienwohnung. Bei Bedarf können wir auch eine kontaktlose Übergabe organisieren.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Gibt es Parkplätze?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Ja, direkt vor dem Haus steht Ihnen ein kostenfreier Parkplatz zur Verfügung. Zusätzlich gibt es in der Schloßstraße weitere Parkmöglichkeiten.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Sind Haustiere erlaubt?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Ja, Haustiere sind in unserer Ferienwohnung willkommen. Es fällt eine zusätzliche Gebühr von 10€ pro Tag an. Bitte informieren Sie uns bei der Buchung über Ihr Haustier.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Wie ist die Anreise mit öffentlichen Verkehrsmitteln?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Der nächste Bahnhof ist Neustadt an der Weinstraße (ca. 15 Min. mit dem Auto). Von dort aus können Sie mit dem Bus oder Taxi nach Hambach fahren. Wir empfehlen jedoch die Anreise mit dem Auto für mehr Flexibilität.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Was ist bei der Stornierung zu beachten?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Stornierungen bis 7 Tage vor Anreise sind kostenfrei möglich. Bei kurzfristigeren Stornierungen behalten wir uns vor, eine Ausfallgebühr zu erheben. Details besprechen wir gerne individuell.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            <span>Gibt es WLAN in der Wohnung?</span>
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Ja, die Ferienwohnung verfügt über kostenfreies WLAN. Die Zugangsdaten finden Sie in der Wohnung vor Ort.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-header {
+    background: linear-gradient(135deg, #8b7355 0%, #7a6548 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .header-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .header-content p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    opacity: 0.9;
+  }
+
+  .contact-content {
+    padding: 4rem 0;
+    background: #fafaf9;
+  }
+
+  .contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-info h2,
+  .contact-form-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    color: #2b2419;
+    margin-bottom: 2rem;
+  }
+
+  .contact-details {
+    margin-bottom: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .contact-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .contact-content h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #2b2419;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-content p {
+    font-family: 'DM Sans', sans-serif;
+    color: #4b5563;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-content a {
+    color: #8b7355;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .contact-content a:hover {
+    text-decoration: underline;
+  }
+
+  .contact-content small {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  .contact-note {
+    background: #f8f5f0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid #8b7355;
+  }
+
+  .contact-note h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    color: #2b2419;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-note p {
+    font-family: 'DM Sans', sans-serif;
+    color: #4b5563;
+    margin: 0;
+  }
+
+  .contact-form-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: #2b2419;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #8b7355;
+  }
+
+  .checkbox-group {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .checkbox-label a {
+    color: #8b7355;
+    text-decoration: underline;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .btn-primary {
+    background: #8b7355;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #7a6548;
+    transform: translateY(-2px);
+  }
+
+  .map-section {
+    padding: 4rem 0;
+    background: white;
+  }
+
+  .map-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #2b2419;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .map-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .map-placeholder {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .map-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2b2419;
+    margin-bottom: 1rem;
+  }
+
+  .map-info p {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+  }
+
+  .map-details {
+    margin-bottom: 2rem;
+  }
+
+  .detail {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    color: #4b5563;
+  }
+
+  .detail-icon {
+    font-size: 1.25rem;
+  }
+
+  .map-button {
+    background: #8b7355;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .map-button:hover {
+    background: #7a6548;
+  }
+
+  .map-image {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .map-image img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+  }
+
+  .map-overlay p {
+    font-family: 'DM Sans', sans-serif;
+    margin: 0;
+  }
+
+  .faq-section {
+    padding: 4rem 0;
+    background: #fafaf9;
+  }
+
+  .faq-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: #2b2419;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .faq-question {
+    width: 100%;
+    padding: 1.5rem;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #2b2419;
+    transition: background 0.3s ease;
+  }
+
+  .faq-question:hover {
+    background: #f8f5f0;
+  }
+
+  .faq-icon {
+    font-size: 1.5rem;
+    color: #8b7355;
+    transition: transform 0.3s ease;
+  }
+
+  .faq-item.active .faq-icon {
+    transform: rotate(45deg);
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 200px;
+  }
+
+  .faq-answer p {
+    padding: 0 1.5rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .contact-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .map-placeholder {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .header-content h1 {
+      font-size: 2rem;
+    }
+
+    .contact-info,
+    .contact-form-section {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .contact-header {
+      padding: 2rem 0;
+    }
+
+    .contact-content,
+    .map-section,
+    .faq-section {
+      padding: 2rem 0;
+    }
+
+    .contact-form-section {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      
+      submitBtn.textContent = 'Wird gesendet...';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        alert('Vielen Dank für Ihre Nachricht! Wir melden uns innerhalb von 24 Stunden bei Ihnen.');
+        contactForm.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }, 2000);
+    });
+  });
+
+  // FAQ Toggle Function
+  function toggleFAQ(button) {
+    const faqItem = button.parentElement;
+    const isActive = faqItem.classList.contains('active');
+    
+    // Close all FAQ items
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    // Open clicked item if it wasn't active
+    if (!isActive) {
+      faqItem.classList.add('active');
+    }
+  }
+</script>

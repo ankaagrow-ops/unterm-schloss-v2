@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import StorySection from '../components/StorySection.astro';
+import FeaturesGrid from '../components/FeaturesGrid.astro';
+import PillarsSection from '../components/PillarsSection.astro';
+import ActivitiesSection from '../components/ActivitiesSection.astro';
+import TestimonialQuote from '../components/TestimonialQuote.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Test Page">
+  <div style="padding: 2rem; background: #f0f0f0;">
+    <h1>Komponenten Test</h1>
+    
+    <section style="margin: 2rem 0; padding: 1rem; background: white; border: 1px solid #ccc;">
+      <h2>Hero</h2>
+      <Hero
+        title="Test Hero"
+        subtitle="Test Subtitle"
+        image="/images/hero-house.jpg"
+        imageAlt="Test"
+        ctaPrimary={{ text: "Test", href: "#" }}
+        ctaSecondary={{ text: "Test", href: "#" }}
+      />
+    </section>
+
+    <section style="margin: 2rem 0; padding: 1rem; background: white; border: 1px solid #ccc;">
+      <h2>StorySection</h2>
+      <StorySection
+        heading="Test Story"
+        content="<p>Test content</p>"
+        backgroundImage="/images/vineyard.jpg"
+      />
+    </section>
+
+    <section style="margin: 2rem 0; padding: 1rem; background: white; border: 1px solid #ccc;">
+      <h2>FeaturesGrid</h2>
+      <FeaturesGrid
+        heading="Test Features"
+        features={[
+          { title: "Test 1", image: "/images/kitchen.jpg", imageAlt: "Test" },
+          { title: "Test 2", image: "/images/bathroom.jpg", imageAlt: "Test" },
+          { title: "Test 3", image: "/images/fireplace.jpg", imageAlt: "Test" }
+        ]}
+      />
+    </section>
+
+    <section style="margin: 2rem 0; padding: 1rem; background: white; border: 1px solid #ccc;">
+      <h2>PillarsSection</h2>
+      <PillarsSection
+        heading="Test Pillars"
+        pillars={[
+          { image: "/images/location.jpg", imageAlt: "Test", label: "Test", title: "Test", description: "Test" },
+          { image: "/images/comfort.jpg", imageAlt: "Test", label: "Test", title: "Test", description: "Test" }
+        ]}
+      />
+    </section>
+
+    <section style="margin: 2rem 0; padding: 1rem; background: white; border: 1px solid #ccc;">
+      <h2>ActivitiesSection</h2>
+      <ActivitiesSection
+        heading="Test Activities"
+        activities={[
+          { title: "Test 1", description: "Test description", image: "/images/wine.jpg", imageAlt: "Test" },
+          { title: "Test 2", description: "Test description", image: "/images/nature.jpg", imageAlt: "Test" }
+        ]}
+      />
+    </section>
+
+    <section style="margin: 2rem 0; padding: 1rem; background: white; border: 1px solid #ccc;">
+      <h2>TestimonialQuote</h2>
+      <TestimonialQuote
+        quote="Test testimonial quote"
+        backgroundImage="/images/vineyard.jpg"
+      />
+    </section>
+
+    <section style="margin: 2rem 0; padding: 1rem; background: white; border: 1px solid #ccc;">
+      <h2>ContactSection</h2>
+      <ContactSection
+        heading="Test Contact"
+        backgroundImage="/images/hero-house.jpg"
+        address={{ street: "Test Street", city: "Test City" }}
+        email="test@example.com"
+        phone={["+49 123 456789"]}
+      />
+    </section>
+
+    <section style="margin: 2rem 0; padding: 1rem; background: white; border: 1px solid #ccc;">
+      <h2>Footer</h2>
+      <Footer />
+    </section>
+  </div>
+</Layout>

@@ -1,0 +1,272 @@
+/* HERO-SECTION PRECISION STYLES */
+/* Dieter Rams + Steve Jobs Prinzipien: Jedes Pixel zählt */
+
+/* Typografie-System - Mathematisch präzise */
+:root {
+  /* Font-Families - Klar und funktional */
+  --font-playfair: 'Playfair Display', serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+  
+  /* Font-Weights - Rams-Prinzip: Weniger, aber besser */
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  
+  /* Letter-Spacing - Optical Correction */
+  --letter-tight: -0.02em;    /* Headlines */
+  --letter-normal: 0em;       /* Body */
+  --letter-wide: 0.02em;      /* Subheadlines */
+  --letter-button: 0.01em;     /* Buttons */
+  
+  /* Line-Heights - Mathematisch optimiert */
+  --line-tight: 1.1;          /* Headlines für Impact */
+  --line-relaxed: 1.6;        /* Body für Lesbarkeit */
+  --line-normal: 1.4;         /* Buttons */
+  
+  /* Spacing-System - Fibonacci-inspired */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  
+  /* Button-Anatomie - Pixel-perfect */
+  --button-padding-x: 2.5rem;    /* 40px horizontal */
+  --button-padding-y: 1rem;      /* 16px vertical */
+  --button-padding-x-mobile: 2rem; /* 32px mobile */
+  --button-padding-y-mobile: 0.875rem; /* 14px mobile */
+  --button-min-height: 2.75rem;   /* 44px - Touch-friendly */
+  --button-min-width: 2.75rem;    /* 44px - Touch-friendly */
+  
+  /* Farben - Warm und ehrlich */
+  --brown-700: #8b7355;          /* Primary Button */
+  --brown-800: #7a6548;          /* Button Hover */
+  --brown-500: #a68b6b;          /* Focus Ring */
+  
+  /* Shadows - Subtile Tiefe */
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-3xl: 0 35px 60px -12px rgba(0, 0, 0, 0.3);
+  
+  /* Transitions - Natürlich und flüssig */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Typografie-Klassen - Präzise Kontrolle */
+.hero-title {
+  font-family: var(--font-playfair);
+  font-weight: var(--font-normal); /* Rams: Nicht Bold, sondern elegant */
+  letter-spacing: var(--letter-tight);
+  line-height: var(--line-tight);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+  font-family: var(--font-dm-sans);
+  font-weight: var(--font-light);
+  letter-spacing: var(--letter-wide);
+  line-height: var(--line-relaxed);
+  max-width: 48rem; /* Optimal für Lesbarkeit: 60-75 Zeichen */
+}
+
+.hero-button {
+  font-family: var(--font-dm-sans);
+  font-weight: var(--font-medium);
+  letter-spacing: var(--letter-button);
+  line-height: var(--line-normal);
+  min-height: var(--button-min-height);
+  min-width: var(--button-min-width);
+}
+
+/* Responsive Typografie - Mobile-First */
+@media (max-width: 639px) {
+  .hero-title {
+    font-size: 2.25rem; /* 36px */
+    margin-bottom: var(--space-6); /* 24px */
+  }
+  
+  .hero-subtitle {
+    font-size: 1.125rem; /* 18px */
+    margin-bottom: var(--space-8); /* 32px */
+  }
+  
+  .hero-button {
+    padding: var(--button-padding-y-mobile) var(--button-padding-x-mobile);
+    font-size: 1rem; /* 16px */
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 3rem; /* 48px */
+    margin-bottom: var(--space-6);
+  }
+  
+  .hero-subtitle {
+    font-size: 1.25rem; /* 20px */
+    margin-bottom: var(--space-10); /* 40px */
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.75rem; /* 60px */
+    margin-bottom: var(--space-6);
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem; /* 24px */
+    margin-bottom: var(--space-10);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 4.5rem; /* 72px */
+    margin-bottom: var(--space-6);
+  }
+  
+  .hero-subtitle {
+    font-size: 1.875rem; /* 30px */
+    margin-bottom: var(--space-10);
+  }
+}
+
+/* Button-States - Perfekte Interaktion */
+.hero-button {
+  background: var(--brown-700);
+  color: white;
+  border: none;
+  border-radius: 9999px; /* Perfect circle */
+  padding: var(--button-padding-y) var(--button-padding-x);
+  font-size: 1.125rem; /* 18px */
+  box-shadow: var(--shadow-2xl);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-button:hover {
+  background: var(--brown-800);
+  box-shadow: var(--shadow-3xl);
+  transform: scale(1.05);
+}
+
+.hero-button:active {
+  transform: scale(1.0);
+  transition: var(--transition-bounce);
+}
+
+.hero-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(139, 115, 85, 0.5);
+}
+
+/* Hover Glow Effect - Jobs-Prinzip: Details matter */
+.hero-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0);
+  border-radius: inherit;
+  transition: var(--transition-smooth);
+}
+
+.hero-button:hover::before {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Trust Signal - Nur bei echten Bewertungen */
+.hero-trust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: var(--space-12); /* 48px */
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.hero-trust-stars {
+  color: #fbbf24; /* Gold */
+  font-size: 1.125rem;
+}
+
+/* Scroll Indicator - Perfekte Animation */
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.hero-scroll-container {
+  width: 1.75rem; /* 28px */
+  height: 2.75rem; /* 44px */
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 9999px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0.5rem;
+}
+
+.hero-scroll-dot {
+  width: 0.375rem; /* 6px */
+  height: 0.375rem; /* 6px */
+  background: white;
+  border-radius: 50%;
+}
+
+/* Performance-Optimierungen */
+.hero-image {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0); /* GPU-Layer */
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-button,
+  .hero-image,
+  .hero-scroll {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .hero-button:hover {
+    transform: none;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .hero-title,
+  .hero-subtitle {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  .hero-button {
+    border: 2px solid white;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .hero-scroll {
+    display: none;
+  }
+  
+  .hero-button {
+    background: #000 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+  }
+}

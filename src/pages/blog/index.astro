@@ -1,0 +1,407 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import Hero from '../../components/Hero.astro';
+
+const pageTitle = 'Reisetipps & Geschichten - Blog | Unterm Schloss';
+const pageDescription = 'Entdecken Sie die schönsten Ecken der Pfalz: Weinwanderwege, historische Orte, kulinarische Geheimtipps und mehr. Ihr Reiseführer für Hambach und Umgebung.';
+
+// Placeholder blog posts
+const blogPosts = [
+  {
+    id: 1,
+    title: "Die schönsten Weinwanderwege rund um Hambach",
+    excerpt: "Entdecken Sie die malerischsten Routen durch die Pfälzer Weinberge. Von kurzen Spaziergängen bis hin zu anspruchsvollen Tageswanderungen – hier finden Sie den perfekten Weg für jeden Geschmack.",
+    category: "Wandern",
+    date: "15. Oktober 2024",
+    image: "/images/05_innenhof_pfalz_schild_weingarten.jpg",
+    imageAlt: "Pfälzer Weinregion rund um Hambach",
+    slug: "weinwanderwege-hambach"
+  },
+  {
+    id: 2,
+    title: "Hambacher Schloss: Geschichte zum Anfassen",
+    excerpt: "Das Hambacher Schloss ist nicht nur ein beeindruckendes Bauwerk, sondern auch ein Ort von großer historischer Bedeutung. Erfahren Sie mehr über die Wiege der deutschen Demokratie und ihre bewegte Vergangenheit.",
+    category: "Kultur",
+    date: "8. Oktober 2024",
+    image: "/images/01_aussenansicht_fachwerkhaus_haupteingang.jpg",
+    imageAlt: "Historisches Hambach mit Schloss",
+    slug: "hambacher-schloss-geschichte"
+  },
+  {
+    id: 3,
+    title: "Pfälzer Küche: Unsere Lieblingsgerichte",
+    excerpt: "Von traditionellem Saumagen bis hin zu modernen Interpretationen regionaler Spezialitäten – die Pfalz hat kulinarisch so einiges zu bieten. Lassen Sie sich von unseren kulinarischen Entdeckungen inspirieren.",
+    category: "Essen",
+    date: "1. Oktober 2024",
+    image: "/images/10_kueche_wohnkueche_roter_kuehlschrank.jpg",
+    imageAlt: "Moderne Wohnküche mit rotem Retro-Kühlschrank",
+    slug: "pfaelzer-kueche-lieblingsgerichte"
+  },
+  {
+    id: 4,
+    title: "Geheimtipps für den Herbst in der Pfalz",
+    excerpt: "Wenn die Weinberge in warmen Herbstfarben leuchten und die Luft klar und frisch wird, zeigt sich die Pfalz von ihrer schönsten Seite. Entdecken Sie versteckte Orte und besondere Momente in der goldenen Jahreszeit.",
+    category: "Wein",
+    date: "24. September 2024",
+    image: "/images/02_innenhof_fachwerk_kopfsteinpflaster.jpg",
+    imageAlt: "Authentischer Fachwerkinnenhof mit Kopfsteinpflaster",
+    slug: "herbst-geheimtipps-pfalz"
+  },
+  {
+    id: 5,
+    title: "Weinproben in Hambach: Ein Guide für Anfänger",
+    excerpt: "Sie möchten die Pfälzer Weinkultur kennenlernen, wissen aber nicht, wo Sie anfangen sollen? Unser Guide führt Sie durch die besten Weingüter und erklärt, was Sie bei einer Weinprobe erwartet.",
+    category: "Wein",
+    date: "17. September 2024",
+    image: "/images/03_innenhof_durchgang_mit_weinfass.jpg",
+    imageAlt: "Weinprobe in einem Pfälzer Weingut",
+    slug: "weinproben-hambach-guide"
+  },
+  {
+    id: 6,
+    title: "Wandern mit Kindern: Familienfreundliche Routen",
+    excerpt: "Die Pfalz ist ein Paradies für Familien mit Kindern. Entdecken Sie abwechslungsreiche Wanderwege, die auch für kleine Beine machbar sind, und erleben Sie gemeinsam die Schönheit der Natur.",
+    category: "Wandern",
+    date: "10. September 2024",
+    image: "/images/04_innenhof_sitzecke_terrasse.jpg",
+    imageAlt: "Gemütliche Sitzecke im Innenhof",
+    slug: "wandern-mit-kindern-familienrouten"
+  }
+];
+
+const categories = ["Alle", "Wein", "Wandern", "Kultur", "Essen"];
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- Navigation -->
+  <Navigation currentPath="/blog" />
+  
+  <!-- Hero -->
+  <Hero
+    title="Reisetipps & Geschichten"
+    subtitle="Entdeckungen aus der Pfalz"
+    image="/images/vineyard.jpg"
+    imageAlt="Weinberge der Pfalz im Herbst"
+  />
+
+  <!-- Blog Content -->
+  <section class="blog-content">
+    <div class="container">
+      <!-- Categories Filter -->
+      <div class="categories-filter">
+        <h3>Kategorien</h3>
+        <div class="filter-buttons">
+          {categories.map((category) => (
+            <button 
+              class={`filter-btn ${category === "Alle" ? "active" : ""}`}
+              data-category={category === "Alle" ? "all" : category.toLowerCase()}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Blog Grid -->
+      <div class="blog-grid">
+        {blogPosts.map((post) => (
+          <article class="blog-card" data-category={post.category.toLowerCase()}>
+            <div class="blog-image">
+              <img src={post.image} alt={post.imageAlt} loading="lazy" />
+              <div class="category-tag">{post.category}</div>
+            </div>
+            <div class="blog-content-inner">
+              <div class="blog-meta">
+                <time class="blog-date">{post.date}</time>
+              </div>
+              <h2 class="blog-title">{post.title}</h2>
+              <p class="blog-excerpt">{post.excerpt}</p>
+              <a href={`/blog/${post.slug}`} class="read-more">
+                Weiterlesen
+                <span class="arrow">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Load More Button -->
+      <div class="load-more-section">
+        <button class="load-more-btn">Mehr Artikel laden</button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .blog-content {
+    padding: 4rem 0;
+    background: #fafaf9;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .categories-filter {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .categories-filter h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2b2419;
+    margin-bottom: 1.5rem;
+  }
+
+  .filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    background: white;
+    border: 2px solid #e5e7eb;
+    color: #6b7280;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: #8b7355;
+    border-color: #8b7355;
+    color: white;
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .blog-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .blog-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .blog-card:hover .blog-image img {
+    transform: scale(1.05);
+  }
+
+  .category-tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(139, 115, 85, 0.9);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .blog-content-inner {
+    padding: 1.5rem;
+  }
+
+  .blog-meta {
+    margin-bottom: 1rem;
+  }
+
+  .blog-date {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    color: #8b7355;
+    font-weight: 500;
+  }
+
+  .blog-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2b2419;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+
+  .blog-excerpt {
+    font-family: 'DM Sans', sans-serif;
+    color: #4b5563;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: #8b7355;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .read-more:hover {
+    color: #7a6548;
+  }
+
+  .arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .read-more:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .load-more-section {
+    text-align: center;
+  }
+
+  .load-more-btn {
+    background: #8b7355;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .load-more-btn:hover {
+    background: #7a6548;
+    transform: translateY(-2px);
+  }
+
+  /* Filter Animation */
+  .blog-card.hidden {
+    display: none;
+  }
+
+  .blog-card.fade-in {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .blog-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .filter-buttons {
+      gap: 0.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .blog-title {
+      font-size: 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .blog-content {
+      padding: 2rem 0;
+    }
+
+    .filter-buttons {
+      justify-content: flex-start;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .filter-btn {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const blogCards = document.querySelectorAll('.blog-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        button.classList.add('active');
+
+        const selectedCategory = button.dataset.category;
+
+        blogCards.forEach(card => {
+          const cardCategory = card.dataset.category;
+          
+          if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+            card.classList.remove('hidden');
+            card.classList.add('fade-in');
+          } else {
+            card.classList.add('hidden');
+            card.classList.remove('fade-in');
+          }
+        });
+      });
+    });
+  });
+</script>

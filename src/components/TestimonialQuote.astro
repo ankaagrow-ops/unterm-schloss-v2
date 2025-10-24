@@ -1,0 +1,165 @@
+---
+export interface Props {
+  quote: string;
+  backgroundImage: string;
+}
+
+const { quote, backgroundImage } = Astro.props;
+---
+
+<section class="testimonial-section animate-fadeIn">
+  <!-- Background Layer -->
+  <div class="background-layer">
+    <img 
+      src={backgroundImage} 
+      alt=""
+      loading="lazy"
+    />
+  </div>
+  
+  <!-- Overlay Layer -->
+  <div class="overlay-layer"></div>
+  
+  <!-- Content Layer -->
+  <div class="content-layer">
+    <div class="quote-container">
+      <blockquote class="quote">
+        <span class="quote-mark">"</span>
+        <span class="quote-text">{quote}</span>
+        <span class="quote-mark">"</span>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-section {
+    position: relative;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16) 0;
+    overflow: hidden;
+  }
+
+  .background-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .background-layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .overlay-layer {
+    position: absolute;
+    inset: 0;
+    background: rgba(43, 36, 25, 0.5);
+    z-index: 1;
+  }
+
+  .content-layer {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .quote-container {
+    max-width: 900px;
+    padding: var(--space-4);
+    text-align: center;
+  }
+
+  .quote {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-style: italic;
+    line-height: var(--leading-snug);
+  }
+
+  .quote-text {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    display: block;
+    margin: 0;
+  }
+
+  .quote-mark {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    opacity: 0.8;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0 0.1em;
+  }
+
+  /* Animation Classes */
+  .animate-fadeIn {
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .testimonial-section {
+      min-height: 400px;
+      padding: var(--space-12) 0;
+    }
+
+    .quote-container {
+      padding: var(--space-3);
+    }
+
+    .quote-text {
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+    }
+
+    .quote-mark {
+      font-size: clamp(2rem, 6vw, 3rem);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .testimonial-section {
+      min-height: 350px;
+      padding: var(--space-8) 0;
+    }
+
+    .quote-container {
+      padding: var(--space-2);
+    }
+
+    .quote-text {
+      font-size: clamp(1.2rem, 6vw, 2rem);
+    }
+
+    .quote-mark {
+      font-size: clamp(1.5rem, 7vw, 2.5rem);
+    }
+  }
+
+  /* Disable parallax on mobile for performance */
+  @media (max-width: 768px) {
+    .background-layer img {
+      background-attachment: scroll;
+    }
+  }
+</style>

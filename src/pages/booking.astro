@@ -1,0 +1,600 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+
+const pageTitle = 'Verfügbarkeit anfragen - Buchung | Unterm Schloss';
+const pageDescription = 'Buchen Sie Ihre Ferienwohnung Unterm Schloss in Hambach. Verfügbarkeit anfragen, Preise ab 85€/Nacht, kostenlose Stornierung. Direkt an der Weinstraße.';
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- Navigation -->
+  <Navigation currentPath="/booking" />
+  
+  <!-- Header -->
+  <section class="booking-header">
+    <div class="container">
+      <div class="header-content">
+        <h1>Verfügbarkeit anfragen</h1>
+        <p>Wir melden uns innerhalb von 24 Stunden bei Ihnen zurück</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Content -->
+  <section class="booking-content">
+    <div class="container">
+      <div class="booking-layout">
+        <!-- Left Column - Form -->
+        <div class="form-column">
+          <form class="booking-form" action="#" method="POST" id="booking-form">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required 
+                placeholder="Ihr vollständiger Name"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-Mail *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                placeholder="ihre@email.de"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefon</label>
+              <input 
+                type="tel" 
+                id="phone" 
+                name="phone" 
+                placeholder="+49 123 456789"
+              />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="checkin">Anreise *</label>
+                <input 
+                  type="date" 
+                  id="checkin" 
+                  name="checkin" 
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="checkout">Abreise *</label>
+                <input 
+                  type="date" 
+                  id="checkout" 
+                  name="checkout" 
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="guests">Anzahl Personen *</label>
+              <select id="guests" name="guests" required>
+                <option value="">Bitte wählen</option>
+                <option value="1">1 Person</option>
+                <option value="2">2 Personen</option>
+                <option value="3">3 Personen</option>
+                <option value="4">4 Personen</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Nachricht</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="4" 
+                placeholder="Besondere Wünsche, Fragen oder Anmerkungen..."
+              ></textarea>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="privacy" required />
+                <span class="checkmark"></span>
+                Ich habe die <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu. *
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+              Anfrage senden
+            </button>
+          </form>
+        </div>
+
+        <!-- Right Column - Info -->
+        <div class="info-column">
+          <div class="booking-info">
+            <h3>Buchungsinformationen</h3>
+            
+            <div class="price-info">
+              <div class="price-item">
+                <span class="price-label">Preis ab</span>
+                <span class="price-value">85€/Nacht</span>
+              </div>
+              <div class="price-note">* Je nach Saison und Verfügbarkeit</div>
+            </div>
+
+            <div class="booking-details">
+              <div class="detail-item">
+                <span class="detail-icon">📅</span>
+                <div class="detail-content">
+                  <strong>Mindestaufenthalt</strong>
+                  <p>2 Nächte</p>
+                </div>
+              </div>
+
+              <div class="detail-item">
+                <span class="detail-icon">🕒</span>
+                <div class="detail-content">
+                  <strong>Check-in/out</strong>
+                  <p>Anreise: 15:00 Uhr<br>Abreise: 10:00 Uhr</p>
+                </div>
+              </div>
+
+              <div class="detail-item">
+                <span class="detail-icon">🐕</span>
+                <div class="detail-content">
+                  <strong>Haustiere</strong>
+                  <p>Willkommen (+10€/Tag)</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="trust-elements">
+              <div class="trust-item">
+                <span class="trust-icon">⚡</span>
+                <span>Antwort in 24h</span>
+              </div>
+              <div class="trust-item">
+                <span class="trust-icon">💳</span>
+                <span>Keine Kreditkarte nötig</span>
+              </div>
+              <div class="trust-item">
+                <span class="trust-icon">🔄</span>
+                <span>Kostenlose Stornierung bis 7 Tage vorher</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alternative Booking Options -->
+          <div class="alternative-booking">
+            <h4>Alternative Buchungsmöglichkeiten</h4>
+            
+            <div class="booking-options">
+              <a href="https://booking.com" target="_blank" class="booking-option">
+                <div class="option-icon">🏨</div>
+                <div class="option-content">
+                  <strong>Booking.com</strong>
+                  <p>Sofortige Bestätigung</p>
+                </div>
+              </a>
+
+              <a href="tel:+491728049269" class="booking-option">
+                <div class="option-icon">📞</div>
+                <div class="option-content">
+                  <strong>Direkt anrufen</strong>
+                  <p>+49 172 8049269</p>
+                </div>
+              </a>
+
+              <a href="https://wa.me/491728049269" target="_blank" class="booking-option">
+                <div class="option-icon">💬</div>
+                <div class="option-content">
+                  <strong>WhatsApp</strong>
+                  <p>Schnelle Nachricht</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .booking-header {
+    background: linear-gradient(135deg, #8b7355 0%, #7a6548 100%);
+    color: white;
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .header-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .header-content p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    opacity: 0.9;
+  }
+
+  .booking-content {
+    padding: 4rem 0;
+    background: #fafaf9;
+  }
+
+  .booking-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .form-column {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .form-group label {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: #2b2419;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #8b7355;
+  }
+
+  .checkbox-group {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    cursor: pointer;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .checkbox-label a {
+    color: #8b7355;
+    text-decoration: underline;
+  }
+
+  .btn {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
+
+  .btn-primary {
+    background: #8b7355;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #7a6548;
+    transform: translateY(-2px);
+  }
+
+  .info-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .booking-info {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .booking-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2b2419;
+    margin-bottom: 1.5rem;
+  }
+
+  .price-info {
+    background: #f8f5f0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+  }
+
+  .price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .price-label {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+  }
+
+  .price-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #8b7355;
+  }
+
+  .price-note {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+
+  .booking-details {
+    margin-bottom: 2rem;
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .detail-content strong {
+    font-family: 'DM Sans', sans-serif;
+    color: #2b2419;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .detail-content p {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .trust-elements {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1.5rem;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    color: #4b5563;
+  }
+
+  .trust-icon {
+    font-size: 1rem;
+    color: #8b7355;
+  }
+
+  .alternative-booking {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .alternative-booking h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: #2b2419;
+    margin-bottom: 1.5rem;
+  }
+
+  .booking-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .booking-option {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .booking-option:hover {
+    border-color: #8b7355;
+    transform: translateY(-2px);
+  }
+
+  .option-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .option-content strong {
+    font-family: 'DM Sans', sans-serif;
+    color: #2b2419;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .option-content p {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .booking-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+
+    .header-content h1 {
+      font-size: 2rem;
+    }
+
+    .booking-info,
+    .alternative-booking {
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 1rem;
+    }
+
+    .booking-header {
+      padding: 2rem 0;
+    }
+
+    .booking-content {
+      padding: 2rem 0;
+    }
+
+    .form-column {
+      padding: 1.5rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('booking-form');
+    const checkinInput = document.getElementById('checkin');
+    const checkoutInput = document.getElementById('checkout');
+
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    checkinInput.min = today;
+    checkoutInput.min = today;
+
+    // Update checkout minimum date when checkin changes
+    checkinInput.addEventListener('change', () => {
+      if (checkinInput.value) {
+        const checkinDate = new Date(checkinInput.value);
+        checkinDate.setDate(checkinDate.getDate() + 1);
+        checkoutInput.min = checkinDate.toISOString().split('T')[0];
+      }
+    });
+
+    // Form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Basic validation
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      
+      // Check minimum stay
+      if (data.checkin && data.checkout) {
+        const checkin = new Date(data.checkin);
+        const checkout = new Date(data.checkout);
+        const diffTime = Math.abs(checkout - checkin);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays < 2) {
+          alert('Mindestaufenthalt: 2 Nächte');
+          return;
+        }
+      }
+
+      // Simulate form submission
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      
+      submitBtn.textContent = 'Wird gesendet...';
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        alert('Vielen Dank für Ihre Anfrage! Wir melden uns innerhalb von 24 Stunden bei Ihnen.');
+        form.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+      }, 2000);
+    });
+  });
+</script>

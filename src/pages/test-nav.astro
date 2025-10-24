@@ -1,0 +1,14 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+---
+
+<Layout title="Navigation Test" description="Testing navigation component">
+  <Navigation currentPath="/" />
+  
+  <div style="padding: 200px 20px; text-align: center; background: lightblue;">
+    <h1>Navigation Test Page</h1>
+    <p>Sie sollten eine rote Navigation oben sehen!</p>
+    <p>Falls nicht, gibt es ein Problem mit der Navigation-Komponente.</p>
+  </div>
+</Layout>

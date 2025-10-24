@@ -1,0 +1,269 @@
+---
+// No props needed - static content
+---
+
+<footer class="footer">
+  <!-- Newsletter Section -->
+  <div class="newsletter-section">
+    <div class="newsletter-content">
+      <h2 class="newsletter-heading">Stay in the know</h2>
+      <p class="newsletter-subtitle">Be the first to know about new hotels we've uncovered</p>
+      <form class="newsletter-form">
+        <input 
+          type="email" 
+          placeholder="Email address" 
+          class="newsletter-input"
+          required
+        />
+        <button type="submit" class="newsletter-button">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Navigation Section -->
+  <nav class="navigation-section">
+    <ul class="nav-links">
+      <li><a href="#home" class="nav-link">HOME</a></li>
+      <li><span class="separator">|</span></li>
+      <li><a href="#about" class="nav-link">ABOUT US</a></li>
+      <li><span class="separator">|</span></li>
+      <li><a href="#rooms" class="nav-link">ROOMS</a></li>
+      <li><span class="separator">|</span></li>
+      <li><a href="#experiences" class="nav-link">EXPERIENCES</a></li>
+      <li><span class="separator">|</span></li>
+      <li><a href="#blog" class="nav-link">BLOG</a></li>
+      <li><span class="separator">|</span></li>
+      <li><a href="#reservations" class="nav-link">RESERVATIONS</a></li>
+      <li><span class="separator">|</span></li>
+      <li><a href="#contact" class="nav-link">CONTACT</a></li>
+    </ul>
+  </nav>
+
+  <!-- Bottom Section -->
+  <div class="bottom-section">
+    <p class="copyright">Copyright © 2025 Osäila. All Rights Reserved.</p>
+    <p class="developer">Developed by Framerify</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-dark);
+    color: white;
+  }
+
+  /* Newsletter Section */
+  .newsletter-section {
+    padding: var(--space-12) 0 var(--space-8);
+    text-align: center;
+  }
+
+  .newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+  }
+
+  .newsletter-heading {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: var(--text-xl);
+    font-weight: 400;
+    margin-bottom: var(--space-3);
+    line-height: 1.2;
+  }
+
+  .newsletter-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-6);
+    line-height: 1.5;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: var(--space-2);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .newsletter-input {
+    flex: 1;
+    padding: var(--space-3);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--text-sm);
+    border-radius: var(--radius-sm);
+    transition: border-color 0.3s ease;
+  }
+
+  .newsletter-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .newsletter-input:focus {
+    outline: none;
+    border-color: var(--color-brown-medium);
+  }
+
+  .newsletter-button {
+    padding: var(--space-3) var(--space-6);
+    background-color: var(--color-brown-medium);
+    color: white;
+    border: none;
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .newsletter-button:hover {
+    background-color: var(--color-brown-dark);
+  }
+
+  /* Navigation Section */
+  .navigation-section {
+    padding: var(--space-8) 0;
+    text-align: center;
+  }
+
+  .nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: opacity 0.3s ease;
+    padding: var(--space-1);
+  }
+
+  .nav-link:hover {
+    opacity: 0.8;
+  }
+
+  .separator {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: var(--text-xs);
+    margin: 0 var(--space-1);
+  }
+
+  /* Bottom Section */
+  .bottom-section {
+    text-align: center;
+    padding: var(--space-4) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .copyright {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 var(--space-1) 0;
+  }
+
+  .developer {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .newsletter-section {
+      padding: var(--space-8) 0 var(--space-6);
+    }
+
+    .newsletter-content {
+      padding: 0 var(--space-4);
+    }
+
+    .newsletter-form {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .newsletter-button {
+      width: 100%;
+    }
+
+    .navigation-section {
+      padding: var(--space-6) 0;
+    }
+
+    .nav-links {
+      gap: var(--space-1);
+    }
+
+    .nav-link {
+      font-size: 10px;
+      padding: var(--space-1);
+    }
+
+    .separator {
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .newsletter-section {
+      padding: var(--space-6) 0 var(--space-4);
+    }
+
+    .newsletter-content {
+      padding: 0 var(--space-3);
+    }
+
+    .newsletter-heading {
+      font-size: var(--text-lg);
+    }
+
+    .newsletter-subtitle {
+      font-size: var(--text-xs);
+    }
+
+    .nav-links {
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .separator {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // Newsletter form handling
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.querySelector('.newsletter-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = form.querySelector('.newsletter-input').value;
+        
+        // Simple validation
+        if (email && email.includes('@')) {
+          alert('Thank you for subscribing! You will receive updates soon.');
+          form.reset();
+        } else {
+          alert('Please enter a valid email address.');
+        }
+      });
+    }
+  });
+</script>

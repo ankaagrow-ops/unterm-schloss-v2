@@ -1,0 +1,139 @@
+---
+// Scroll-Reveal Grid Component - Für Cards mit Stagger-Effekt
+// Dieter Rams + Steve Jobs Prinzipien: Perfekte Timing
+
+export interface Props {
+  children: any;
+  stagger?: number; // Verzögerung zwischen Cards (ms)
+  animation?: 'fade-up' | 'fade-in' | 'scale-in';
+  trigger?: number;
+}
+
+const { 
+  children,
+  stagger = 100,
+  animation = 'fade-up',
+  trigger = 0.3
+} = Astro.props;
+---
+
+<div 
+  class="scroll-reveal-grid"
+  data-scroll-reveal
+  data-animation={animation}
+  data-trigger={trigger}
+  data-stagger={stagger}
+>
+  <slot />
+</div>
+
+<style>
+  .scroll-reveal-grid {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+  }
+
+  .scroll-reveal-grid.revealed {
+    opacity: 1;
+  }
+
+  /* Child elements start hidden */
+  .scroll-reveal-grid :global(.scroll-reveal-child) {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+    will-change: transform, opacity;
+  }
+
+  /* Revealed state for children */
+  .scroll-reveal-grid.revealed :global(.scroll-reveal-child) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Performance optimizations */
+  .scroll-reveal-grid :global(.scroll-reveal-child) {
+    backface-visibility: hidden;
+    contain: layout style paint;
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-reveal-grid,
+    .scroll-reveal-grid :global(.scroll-reveal-child) {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Enhanced Scroll-Reveal for Grids with Stagger
+  class ScrollRevealGrid {
+    constructor() {
+      this.grids = document.querySelectorAll('.scroll-reveal-grid');
+      this.observer = null;
+      this.init();
+    }
+
+    init() {
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => this.handleIntersection(entry));
+      }, options);
+
+      this.grids.forEach(grid => {
+        this.observer.observe(grid);
+      });
+    }
+
+    handleIntersection(entry) {
+      const grid = entry.target;
+      const isIntersecting = entry.isIntersecting;
+      const intersectionRatio = entry.intersectionRatio;
+      const trigger = parseFloat(grid.dataset.trigger) || 0.3;
+
+      if (isIntersecting && intersectionRatio >= trigger) {
+        this.revealGrid(grid);
+      }
+    }
+
+    revealGrid(grid) {
+      const stagger = parseInt(grid.dataset.stagger) || 100;
+      const children = grid.querySelectorAll('.scroll-reveal-child');
+
+      // Reveal grid container
+      grid.classList.add('revealed');
+
+      // Stagger children
+      children.forEach((child, index) => {
+        setTimeout(() => {
+          child.style.setProperty('--stagger-delay', `${index * stagger}ms`);
+          child.classList.add('revealed');
+        }, index * stagger);
+      });
+
+      // Unobserve after reveal
+      this.observer.unobserve(grid);
+    }
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    new ScrollRevealGrid();
+  });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new ScrollRevealGrid();
+    });
+  } else {
+    new ScrollRevealGrid();
+  }
+</script>

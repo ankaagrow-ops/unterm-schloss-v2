@@ -1,0 +1,186 @@
+---
+// Hero Section Component
+---
+
+<section class="relative h-screen w-full overflow-hidden">
+  
+  {/* LAYER 1: Background Image mit Ken Burns Effect */}
+  <div class="absolute inset-0 w-full h-full">
+    <img
+      src="/images/01_aussenansicht_fachwerkhaus_haupteingang.jpg"
+      alt="Historisches Fachwerkhaus Unterm Schloss in der Schloßstraße, Hambach an der Weinstraße"
+      class="hero-image w-full h-full object-cover"
+      loading="eager"
+      fetchpriority="high"
+    />
+    {/* Gradient Overlay für bessere Lesbarkeit */}
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50"></div>
+  </div>
+
+  {/* LAYER 2: Content */}
+  <div class="relative z-10 h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center text-white space-y-8">
+      
+      {/* Headline mit Stagger-Animation */}
+      <h1 class="hero-headline font-playfair font-normal leading-tight">
+        <span class="hero-word inline-block opacity-0">Wo</span>{' '}
+        <span class="hero-word inline-block opacity-0">Tradition</span>{' '}
+        <span class="hero-word inline-block opacity-0">auf</span>{' '}
+        <span class="hero-word inline-block opacity-0">Gemütlichkeit</span>{' '}
+        <span class="hero-word inline-block opacity-0">trifft</span>
+      </h1>
+
+      {/* Subline */}
+      <p class="hero-subline text-lg sm:text-xl md:text-2xl font-light tracking-wide max-w-2xl mx-auto opacity-0">
+        Liebevoll restaurierte Ferienwohnung in Hambachs historischer Schloßstraße
+      </p>
+
+      {/* Trust Badge */}
+      <div class="hero-trust flex items-center justify-center gap-2 text-sm sm:text-base opacity-0">
+        <div class="flex text-yellow-400">
+          <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+        </div>
+        <span class="font-medium">4.9</span>
+        <span class="text-white/80">·</span>
+        <span class="text-white/90">47 Bewertungen</span>
+      </div>
+
+      {/* CTA Button */}
+      <div class="hero-cta opacity-0">
+        <a 
+          href="#kontakt" 
+          class="group relative inline-flex items-center gap-2 bg-amber-700 hover:bg-amber-800 text-white font-medium px-10 py-4 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+        >
+          <span>Verfügbarkeit anfragen</span>
+          <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+          {/* Glow effect */}
+          <div class="absolute inset-0 rounded-full bg-amber-400/20 blur-xl group-hover:bg-amber-400/30 transition-all"></div>
+        </a>
+        
+        {/* Badge unter Button */}
+        <p class="mt-4 text-sm text-white/80 flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          <span>Antwort innerhalb von 24 Stunden</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  {/* LAYER 3: Scroll Indicator */}
+  <div class="scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+    <div class="flex flex-col items-center gap-2 text-white/70 hover:text-white transition-colors cursor-pointer">
+      <span class="text-sm font-light tracking-wider">Scrollen</span>
+      <svg class="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* Ken Burns Effect - langsamer Zoom über 20s */
+  .hero-image {
+    animation: kenBurns 20s ease-out infinite alternate;
+    will-change: transform;
+  }
+
+  @keyframes kenBurns {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  /* Responsive Typography */
+  .hero-headline {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Scroll Indicator fade-out beim scrollen */
+  @media (min-width: 768px) {
+    .scroll-indicator {
+      opacity: 1;
+      transition: opacity 0.3s ease-out;
+    }
+    
+    body.scrolled .scroll-indicator {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-image {
+      animation: none;
+    }
+    .scroll-indicator svg {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // Text Stagger Animation
+  document.addEventListener('DOMContentLoaded', () => {
+    const words = document.querySelectorAll('.hero-word');
+    const subline = document.querySelector('.hero-subline');
+    const trust = document.querySelector('.hero-trust');
+    const cta = document.querySelector('.hero-cta');
+
+    // Stagger words mit 100ms delay
+    words.forEach((word, index) => {
+      setTimeout(() => {
+        word.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        word.style.transform = 'translateY(0)';
+        word.style.opacity = '1';
+      }, 200 + (index * 100));
+    });
+
+    // Subline nach words
+    setTimeout(() => {
+      if (subline) {
+        subline.style.transition = 'opacity 0.8s ease-out';
+        subline.style.opacity = '1';
+      }
+    }, 200 + (words.length * 100) + 200);
+
+    // Trust badge
+    setTimeout(() => {
+      if (trust) {
+        trust.style.transition = 'opacity 0.6s ease-out';
+        trust.style.opacity = '1';
+      }
+    }, 200 + (words.length * 100) + 400);
+
+    // CTA
+    setTimeout(() => {
+      if (cta) {
+        cta.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        cta.style.transform = 'translateY(0)';
+        cta.style.opacity = '1';
+      }
+    }, 200 + (words.length * 100) + 600);
+
+    // Scroll Indicator fade-out
+    let scrolled = false;
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100 && !scrolled) {
+        document.body.classList.add('scrolled');
+        scrolled = true;
+      } else if (window.scrollY <= 100 && scrolled) {
+        document.body.classList.remove('scrolled');
+        scrolled = false;
+      }
+    });
+  });
+</script>

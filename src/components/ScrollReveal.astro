@@ -1,0 +1,196 @@
+---
+// Scroll-Reveal Component - Dieter Rams + Steve Jobs Prinzipien
+// Elegante Animationen beim Scrollen
+
+export interface Props {
+  children: any;
+  animation?: 'fade-up' | 'fade-in' | 'slide-left' | 'slide-right' | 'scale-in';
+  delay?: number;
+  duration?: number;
+  trigger?: number; // 0.5 = 50% sichtbar
+  once?: boolean;
+  stagger?: number; // für Cards/Grids
+}
+
+const { 
+  children,
+  animation = 'fade-up',
+  delay = 0,
+  duration = 0.6,
+  trigger = 0.5,
+  once = true,
+  stagger = 0
+} = Astro.props;
+
+// Unique ID für jedes Element
+const id = `scroll-reveal-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div 
+  class={`scroll-reveal scroll-reveal--${animation}`}
+  data-scroll-reveal
+  data-animation={animation}
+  data-delay={delay}
+  data-duration={duration}
+  data-trigger={trigger}
+  data-once={once}
+  data-stagger={stagger}
+  id={id}
+>
+  <slot />
+</div>
+
+<style>
+  /* Base Scroll-Reveal Styles */
+  .scroll-reveal {
+    opacity: 0;
+    transition: all var(--duration, 0.6s) ease-out;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
+
+  /* Animation States */
+  .scroll-reveal--fade-up {
+    transform: translateY(30px);
+  }
+
+  .scroll-reveal--fade-in {
+    transform: none;
+  }
+
+  .scroll-reveal--slide-left {
+    transform: translateX(-50px);
+  }
+
+  .scroll-reveal--slide-right {
+    transform: translateX(50px);
+  }
+
+  .scroll-reveal--scale-in {
+    transform: scale(0.95);
+  }
+
+  /* Revealed State */
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+
+  /* Stagger Support */
+  .scroll-reveal[data-stagger] {
+    transition-delay: calc(var(--stagger-delay, 0s) + var(--delay, 0s));
+  }
+
+  /* Performance Optimizations */
+  .scroll-reveal {
+    contain: layout style paint;
+  }
+
+  /* Reduced Motion Support */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Scroll-Reveal System - Vanilla JS für maximale Performance
+  class ScrollReveal {
+    constructor() {
+      this.elements = document.querySelectorAll('[data-scroll-reveal]');
+      this.observer = null;
+      this.init();
+    }
+
+    init() {
+      // Intersection Observer Setup
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      this.observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => this.handleIntersection(entry));
+      }, options);
+
+      // Observe all elements
+      this.elements.forEach(element => {
+        this.observer.observe(element);
+      });
+    }
+
+    handleIntersection(entry) {
+      const element = entry.target;
+      const isIntersecting = entry.isIntersecting;
+      const intersectionRatio = entry.intersectionRatio;
+      const trigger = parseFloat(element.dataset.trigger) || 0.5;
+
+      // Check if element should be revealed
+      if (isIntersecting && intersectionRatio >= trigger) {
+        this.revealElement(element);
+      }
+    }
+
+    revealElement(element) {
+      const animation = element.dataset.animation || 'fade-up';
+      const delay = parseInt(element.dataset.delay) || 0;
+      const duration = parseFloat(element.dataset.duration) || 0.6;
+      const stagger = parseInt(element.dataset.stagger) || 0;
+      const once = element.dataset.once === 'true';
+
+      // Set CSS custom properties
+      element.style.setProperty('--duration', `${duration}s`);
+      element.style.setProperty('--delay', `${delay}ms`);
+
+      // Handle stagger for child elements
+      if (stagger > 0) {
+        const children = element.querySelectorAll('.scroll-reveal-child');
+        children.forEach((child, index) => {
+          child.style.setProperty('--stagger-delay', `${index * stagger}ms`);
+        });
+      }
+
+      // Add revealed class with delay
+      setTimeout(() => {
+        element.classList.add('revealed');
+      }, delay);
+
+      // Unobserve if once is true
+      if (once) {
+        this.observer.unobserve(element);
+      }
+    }
+
+    // Public method to reveal all elements
+    revealAll() {
+      this.elements.forEach(element => {
+        this.revealElement(element);
+      });
+    }
+
+    // Public method to reset all elements
+    reset() {
+      this.elements.forEach(element => {
+        element.classList.remove('revealed');
+      });
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new ScrollReveal();
+  });
+
+  // Also initialize if DOM is already loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      new ScrollReveal();
+    });
+  } else {
+    new ScrollReveal();
+  }
+</script>

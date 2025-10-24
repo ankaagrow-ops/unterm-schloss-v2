@@ -1,0 +1,214 @@
+---
+export interface Pillar {
+  image: string;
+  imageAlt: string;
+  label: string;
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  pillars: Pillar[];
+}
+
+const { pillars } = Astro.props;
+---
+
+<section class="pillars-section">
+  <div class="pillars-grid">
+    {pillars.map((pillar) => (
+      <div class="pillar-card">
+        <div class="pillar-image">
+          <img 
+            src={pillar.image} 
+            alt={pillar.imageAlt}
+            loading="lazy"
+          />
+        </div>
+        <div class="pillar-overlay"></div>
+        <div class="pillar-badge">
+          {pillar.label}
+        </div>
+        <div class="pillar-content">
+          <h3 class="pillar-title">{pillar.title}</h3>
+          <p class="pillar-description">{pillar.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .pillars-section {
+    background-color: white;
+    padding: 4rem 0;
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .pillar-card {
+    position: relative;
+    min-height: 450px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .pillar-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .pillar-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .pillar-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .pillar-card:hover .pillar-image img {
+    transform: scale(1.05);
+  }
+
+  .pillar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 40%,
+      rgba(43, 36, 25, 0.3) 70%,
+      rgba(43, 36, 25, 0.8) 100%
+    );
+    z-index: 2;
+  }
+
+  .pillar-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: #2b2419;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 3;
+    backdrop-filter: blur(10px);
+  }
+
+  .pillar-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    z-index: 3;
+  }
+
+  .pillar-title {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.3;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .pillar-description {
+    font-family: 'DM Sans', sans-serif;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .pillars-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      padding: 0 1rem;
+    }
+
+    .pillar-card {
+      min-height: 400px;
+    }
+
+    .pillar-title {
+      font-size: 1.125rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .pillars-section {
+      padding: 2rem 0;
+    }
+
+    .pillars-grid {
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
+      padding: 0 0.75rem;
+    }
+
+    .pillar-card {
+      min-height: 350px;
+    }
+
+    .pillar-content {
+      padding: 0.75rem;
+    }
+
+    .pillar-title {
+      font-size: 1rem;
+    }
+
+    .pillar-description {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .pillars-section {
+      padding: 1.5rem 0;
+    }
+
+    .pillars-grid {
+      padding: 0 0.5rem;
+    }
+
+    .pillar-card {
+      min-height: 300px;
+    }
+
+    .pillar-badge {
+      top: 0.75rem;
+      left: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      font-size: 10px;
+    }
+  }
+</style>

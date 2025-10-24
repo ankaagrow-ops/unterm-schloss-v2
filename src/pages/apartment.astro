@@ -1,0 +1,2631 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+
+const pageTitle = 'Die Wohnung - Unterm Schloss | Ferienwohnung Hambach';
+const pageDescription = 'Charmante 85m² Ferienwohnung mit 2 Schlafzimmern, Holzofen und Fußbodenheizung. Direkt unter dem Hambacher Schloss. Ideal für bis zu 4 Personen.';
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- Navigation -->
+  <Navigation currentPath="/apartment" />
+
+  <!-- Breadcrumbs -->
+  <div class="breadcrumbs">
+    <div class="container">
+      <nav class="breadcrumb-nav">
+        <a href="/" class="breadcrumb-link">🏠 Home</a>
+        <span class="breadcrumb-separator">›</span>
+        <span class="breadcrumb-current">Die Wohnung</span>
+      </nav>
+    </div>
+  </div>
+  
+  <!-- Hero -->
+  <Hero
+    title="Die Wohnung"
+    subtitle="Charmant. Lichtdurchflutet. Mit Herz eingerichtet."
+    image="/images/13_wohnzimmer_olivgruenes_sofa_akzentwand.jpg"
+    imageAlt="Stilvolles Wohnzimmer der Ferienwohnung"
+  />
+
+  <!-- Quick Actions Bar -->
+  <div class="quick-actions">
+    <div class="container">
+      <div class="quick-actions-content">
+        <button class="quick-action-btn scroll-to-gallery" onclick="document.querySelector('.photo-gallery').scrollIntoView({behavior: 'smooth'})">
+          📸 Bildergalerie ansehen
+        </button>
+        <button class="quick-action-btn download-infosheet" onclick="downloadInfosheet()">
+          📄 Infosheet herunterladen
+        </button>
+        <div class="share-buttons">
+          <button class="share-btn whatsapp" onclick="shareWhatsApp()" title="Auf WhatsApp teilen">📱</button>
+          <button class="share-btn email" onclick="shareEmail()" title="Per E-Mail teilen">✉️</button>
+          <button class="share-btn copy" onclick="copyLink()" title="Link kopieren">🔗</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unique Features Badges -->
+  <div class="unique-features">
+    <div class="container">
+      <div class="feature-badges">
+        <span class="feature-badge luxury">Luxusbad ⭐</span>
+        <span class="feature-badge historic">Historisches Gebäude 🏛️</span>
+        <span class="feature-badge location">Direkt unter dem Schloss 🏰</span>
+        <span class="feature-badge comfort">Fußbodenheizung 🔥</span>
+        <span class="feature-badge family">Familienfreundlich 👶</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Apartment Details -->
+  <section class="apartment-details">
+    <div class="container">
+      <h2 class="section-heading">Wohnungsdetails</h2>
+      <div class="specs-grid">
+        <div class="spec-item">
+          <div class="spec-icon">🛏️</div>
+          <div class="spec-content">
+            <h3>2 Schlafzimmer</h3>
+            <p>Gemütlich eingerichtet mit hochwertigen Möbeln</p>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">🚿</div>
+          <div class="spec-content">
+            <h3>1 Badezimmer</h3>
+            <p>Mit Fußbodenheizung und modernen Sanitäranlagen</p>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">📐</div>
+          <div class="spec-content">
+            <h3>85m² Wohnfläche</h3>
+            <p>Großzügig und lichtdurchflutet</p>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">👥</div>
+          <div class="spec-content">
+            <h3>Max. 4 Personen</h3>
+            <p>Ideal für Familien oder kleine Gruppen</p>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">🔥</div>
+          <div class="spec-content">
+            <h3>Holzofen</h3>
+            <p>Gemütliche Atmosphäre an kühlen Abenden</p>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">🌡️</div>
+          <div class="spec-content">
+            <h3>Fußbodenheizung</h3>
+            <p>Komfortable Wärme in allen Räumen</p>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">📶</div>
+          <div class="spec-content">
+            <h3>W-Lan</h3>
+            <p>Kostenfreies Internet in der gesamten Wohnung</p>
+          </div>
+        </div>
+        <div class="spec-item">
+          <div class="spec-icon">🚗</div>
+          <div class="spec-content">
+            <h3>Parkplatz</h3>
+            <p>Kostenfreier Parkplatz direkt am Haus</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floor Plan Section -->
+  <section class="floor-plan">
+    <div class="container">
+      <h2 class="section-heading">Grundriss & Aufteilung</h2>
+      <div class="floor-plan-content">
+        <div class="floor-plan-diagram">
+          <svg viewBox="0 0 800 600" class="floor-plan-svg">
+            <!-- Apartment outline -->
+            <rect x="50" y="50" width="700" height="500" fill="#f8f9fa" stroke="#2b2419" stroke-width="2" rx="8"/>
+            
+            <!-- Living Room -->
+            <rect x="70" y="70" width="300" height="200" fill="#e8f4fd" stroke="#2b2419" stroke-width="1" class="room-area" data-room="living"/>
+            <text x="220" y="180" text-anchor="middle" class="room-label">Wohnzimmer</text>
+            <text x="220" y="200" text-anchor="middle" class="room-size">25m²</text>
+            
+            <!-- Kitchen -->
+            <rect x="70" y="290" width="300" height="120" fill="#f0f8e8" stroke="#2b2419" stroke-width="1" class="room-area" data-room="kitchen"/>
+            <text x="220" y="360" text-anchor="middle" class="room-label">Küche</text>
+            <text x="220" y="380" text-anchor="middle" class="room-size">15m²</text>
+            
+            <!-- Bedroom 1 -->
+            <rect x="400" y="70" width="320" height="180" fill="#fdf2e8" stroke="#2b2419" stroke-width="1" class="room-area" data-room="bedroom1"/>
+            <text x="560" y="180" text-anchor="middle" class="room-label">Schlafzimmer 1</text>
+            <text x="560" y="200" text-anchor="middle" class="room-size">18m²</text>
+            
+            <!-- Bedroom 2 -->
+            <rect x="400" y="270" width="320" height="140" fill="#fdf2e8" stroke="#2b2419" stroke-width="1" class="room-area" data-room="bedroom2"/>
+            <text x="560" y="360" text-anchor="middle" class="room-label">Schlafzimmer 2</text>
+            <text x="560" y="380" text-anchor="middle" class="room-size">16m²</text>
+            
+            <!-- Bathroom -->
+            <rect x="70" y="430" width="200" height="100" fill="#e8f4fd" stroke="#2b2419" stroke-width="1" class="room-area" data-room="bathroom"/>
+            <text x="170" y="490" text-anchor="middle" class="room-label">Badezimmer</text>
+            <text x="170" y="510" text-anchor="middle" class="room-size">8m²</text>
+            
+            <!-- Hallway -->
+            <rect x="290" y="430" width="200" height="100" fill="#f5f5f5" stroke="#2b2419" stroke-width="1" class="room-area" data-room="hallway"/>
+            <text x="390" y="490" text-anchor="middle" class="room-label">Flur</text>
+            <text x="390" y="510" text-anchor="middle" class="room-size">3m²</text>
+            
+            <!-- Entry -->
+            <rect x="510" y="430" width="210" height="100" fill="#f5f5f5" stroke="#2b2419" stroke-width="1" class="room-area" data-room="entry"/>
+            <text x="615" y="490" text-anchor="middle" class="room-label">Eingang</text>
+            <text x="615" y="510" text-anchor="middle" class="room-size">3m²</text>
+            
+            <!-- Doors -->
+            <line x1="370" y1="290" x2="370" y2="410" stroke="#2b2419" stroke-width="2"/>
+            <line x1="400" y1="250" x2="400" y2="270" stroke="#2b2419" stroke-width="2"/>
+            <line x1="400" y1="410" x2="400" y2="430" stroke="#2b2419" stroke-width="2"/>
+            <line x1="490" y1="430" x2="510" y2="430" stroke="#2b2419" stroke-width="2"/>
+            <line x1="270" y1="430" x2="290" y2="430" stroke="#2b2419" stroke-width="2"/>
+          </svg>
+        </div>
+        
+        <div class="floor-plan-info">
+          <div class="room-details">
+            <h3>Raumaufteilung</h3>
+            <div class="room-list">
+              <div class="room-item">
+                <span class="room-name">Wohnzimmer</span>
+                <span class="room-size">25m²</span>
+              </div>
+              <div class="room-item">
+                <span class="room-name">Schlafzimmer 1</span>
+                <span class="room-size">18m²</span>
+              </div>
+              <div class="room-item">
+                <span class="room-name">Schlafzimmer 2</span>
+                <span class="room-size">16m²</span>
+              </div>
+              <div class="room-item">
+                <span class="room-name">Küche</span>
+                <span class="room-size">15m²</span>
+              </div>
+              <div class="room-item">
+                <span class="room-name">Badezimmer</span>
+                <span class="room-size">8m²</span>
+              </div>
+              <div class="room-item">
+                <span class="room-name">Flur & Eingang</span>
+                <span class="room-size">6m²</span>
+              </div>
+            </div>
+            <div class="total-area">
+              <strong>Gesamtfläche: 85m²</strong>
+            </div>
+          </div>
+          
+          <div class="layout-description">
+            <h3>Wohnungsbeschreibung</h3>
+            <p>Von der Eingangstür gelangen Sie direkt in den lichtdurchfluteten Flur. Links führt der Weg ins gemütliche Wohnzimmer mit dem charakteristischen Holzofen. Die offene Küche ist direkt an das Wohnzimmer angeschlossen und bietet eine vollständige Ausstattung.</p>
+            <p>Über den Flur erreichen Sie die beiden Schlafzimmer im Obergeschoss sowie das moderne Badezimmer mit Fußbodenheizung. Die Räume sind geschickt angeordnet und bieten viel Privatsphäre.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Gallery -->
+  <section class="photo-gallery">
+    <div class="container">
+      <h2 class="section-heading">Bildergalerie</h2>
+      
+      <!-- Category Tabs -->
+      <div class="gallery-tabs">
+        <button class="tab-button active" data-category="all">Alle</button>
+        <button class="tab-button" data-category="wohnzimmer">Wohnzimmer</button>
+        <button class="tab-button" data-category="küche">Küche</button>
+        <button class="tab-button" data-category="schlafzimmer">Schlafzimmer</button>
+        <button class="tab-button" data-category="badezimmer">Badezimmer</button>
+        <button class="tab-button" data-category="außenbereich">Außenbereich</button>
+      </div>
+
+      <!-- Image Counter -->
+      <div class="gallery-counter">
+        <span id="gallery-counter">12 Bilder verfügbar</span>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid">
+        <div class="gallery-item" data-category="wohnzimmer">
+          <img 
+            src="/images/13_wohnzimmer_olivgruenes_sofa_akzentwand.jpg" 
+            alt="Wohnzimmer Hauptansicht" 
+            loading="lazy"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <div class="gallery-overlay">
+            <span class="category-tag">Wohnzimmer</span>
+          </div>
+          <div class="image-placeholder" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #f0f0f0; display: flex; align-items: center; justify-content: center; color: #666; font-family: 'DM Sans', sans-serif;">
+            <span>Wohnzimmer Bild</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="wohnzimmer">
+          <img src="/images/14_wohnzimmer_kristallleuchter_panorama.jpg" alt="Wohnzimmer Panorama" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Wohnzimmer</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="küche">
+          <img src="/images/10_kueche_wohnkueche_roter_kuehlschrank.jpg" alt="Küche Hauptansicht" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Küche</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="küche">
+          <img src="/images/11_kueche_essbereich_weitwinkel.jpg" alt="Essbereich" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Küche</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="schlafzimmer">
+          <img src="/images/17_schlafzimmer_2_dachbalken_modern.jpg" alt="Schlafzimmer 1" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Schlafzimmer</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="schlafzimmer">
+          <img src="/images/15_schlafzimmer_1_mit_deckenbalken.jpg" alt="Schlafzimmer 2" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Schlafzimmer</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="badezimmer">
+          <img src="/images/20_badezimmer_1_luxusbad_badewanne_podest.jpg" alt="Badezimmer Hauptansicht" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Badezimmer</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="badezimmer">
+          <img src="/images/21_badezimmer_dusche_oberlicht_modern.jpg" alt="Badezimmer Dusche" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Badezimmer</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="außenbereich">
+          <img src="/images/04_innenhof_sitzecke_terrasse.jpg" alt="Außenbereich" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Außenbereich</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="außenbereich">
+          <img src="/images/01_aussenansicht_fachwerkhaus_haupteingang.jpg" alt="Außenansicht Fachwerkhaus" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Außenbereich</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="außenbereich">
+          <img src="/images/02_innenhof_fachwerk_kopfsteinpflaster.jpg" alt="Innenhof Fachwerk" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Außenbereich</span>
+          </div>
+        </div>
+        
+        <div class="gallery-item" data-category="außenbereich">
+          <img src="/images/03_innenhof_durchgang_mit_weinfass.jpg" alt="Innenhof mit Weinfass" loading="lazy" />
+          <div class="gallery-overlay">
+            <span class="category-tag">Außenbereich</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lightbox -->
+      <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+          <button class="lightbox-close" id="lightbox-close">&times;</button>
+          <button class="lightbox-nav lightbox-prev" id="lightbox-prev">‹</button>
+          <button class="lightbox-nav lightbox-next" id="lightbox-next">›</button>
+          <img class="lightbox-image" id="lightbox-image" alt="" />
+          <div class="lightbox-info">
+            <span class="lightbox-category" id="lightbox-category"></span>
+            <span class="lightbox-counter" id="lightbox-counter"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Amenities -->
+  <section class="amenities">
+    <div class="container">
+      <h2 class="section-heading">Ausstattung</h2>
+      <div class="amenities-categories">
+        <div class="amenity-card">
+          <div class="amenity-header">
+            <span class="amenity-icon">🍳</span>
+            <h3 class="amenity-title">Küche & Essen</h3>
+          </div>
+          <div class="amenity-content">
+            <ul class="amenity-list">
+              <li>Voll ausgestattete Küche</li>
+              <li>Ceran-Kochfeld (4 Platten)</li>
+              <li>Backofen</li>
+              <li>Kühlschrank mit Gefrierfach</li>
+              <li>Geschirrspüler</li>
+              <li>Kaffeemaschine (Filter + Kapsel)</li>
+              <li>Wasserkocher</li>
+              <li>Toaster</li>
+              <li>Geschirr & Besteck für 4+ Personen</li>
+              <li>Töpfe, Pfannen, Küchenutensilien</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="amenity-card">
+          <div class="amenity-header">
+            <span class="amenity-icon">🛏️</span>
+            <h3 class="amenity-title">Schlafen & Wohnen</h3>
+          </div>
+          <div class="amenity-content">
+            <ul class="amenity-list">
+              <li>2 Schlafzimmer (Doppelbetten)</li>
+              <li>Hochwertige Matratzen</li>
+              <li>Bettwäsche inklusive</li>
+              <li>Kleiderschränke</li>
+              <li>Nachttische</li>
+              <li>Leselampen</li>
+              <li>Verdunklungsvorhänge</li>
+              <li>Bügeleisen & Bügelbrett</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="amenity-card">
+          <div class="amenity-header">
+            <span class="amenity-icon">🛁</span>
+            <h3 class="amenity-title">Badezimmer</h3>
+          </div>
+          <div class="amenity-content">
+            <ul class="amenity-list">
+              <li>2 Badezimmer</li>
+              <li>Badewanne (freistehend)</li>
+              <li>Dusche mit Oberlicht</li>
+              <li>Fußbodenheizung</li>
+              <li>Handtücher inklusive</li>
+              <li>Föhn</li>
+              <li>Shampoo & Duschgel (Starterset)</li>
+              <li>Waschmaschine</li>
+              <li>Trockner</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="amenity-card">
+          <div class="amenity-header">
+            <span class="amenity-icon">🔥</span>
+            <h3 class="amenity-title">Heizen & Klima</h3>
+          </div>
+          <div class="amenity-content">
+            <ul class="amenity-list">
+              <li>Holzofen (Brennholz vorhanden)</li>
+              <li>Fußbodenheizung (Bad)</li>
+              <li>Heizkörper in allen Räumen</li>
+              <li>Programmierbare Thermostate</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="amenity-card">
+          <div class="amenity-header">
+            <span class="amenity-icon">📺</span>
+            <h3 class="amenity-title">Unterhaltung & Technik</h3>
+          </div>
+          <div class="amenity-content">
+            <ul class="amenity-list">
+              <li>Smart-TV</li>
+              <li>Kostenloses W-Lan (schnell)</li>
+              <li>Bluetooth-Lautsprecher</li>
+              <li>Bücher & Spiele</li>
+              <li>Reiseführer Pfalz</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="amenity-card">
+          <div class="amenity-header">
+            <span class="amenity-icon">👶</span>
+            <h3 class="amenity-title">Familie & Kinder</h3>
+          </div>
+          <div class="amenity-content">
+            <ul class="amenity-list">
+              <li>Babybett (auf Anfrage)</li>
+              <li>Hochstuhl</li>
+              <li>Kindergeschirr</li>
+              <li>Wickelauflage</li>
+              <li>Kindersicherungen</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="amenity-card">
+          <div class="amenity-header">
+            <span class="amenity-icon">🏡</span>
+            <h3 class="amenity-title">Außenbereich & Extras</h3>
+          </div>
+          <div class="amenity-content">
+            <ul class="amenity-list">
+              <li>Innenhof mit Sitzgelegenheit</li>
+              <li>Grill (auf Anfrage)</li>
+              <li>Fahrräder verfügbar (auf Anfrage)</li>
+              <li>Parkplatz direkt am Haus</li>
+              <li>Gepäckaufbewahrung</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- House Rules -->
+  <section class="house-rules">
+    <div class="container">
+      <h2 class="section-heading">Wichtige Informationen</h2>
+      <div class="rules-grid">
+        <div class="rule-item">
+          <div class="rule-icon">🕒</div>
+          <div class="rule-content">
+            <h3>Check-in</h3>
+            <p>15:00 Uhr</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🕙</div>
+          <div class="rule-content">
+            <h3>Check-out</h3>
+            <p>10:00 Uhr</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">📅</div>
+          <div class="rule-content">
+            <h3>Mindestaufenthalt</h3>
+            <p>2 Nächte</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🐕</div>
+          <div class="rule-content">
+            <h3>Haustiere</h3>
+            <p>Ja (€10/Tag)</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🚭</div>
+          <div class="rule-content">
+            <h3>Rauchen</h3>
+            <p>Nichtraucher</p>
+          </div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-icon">🧹</div>
+          <div class="rule-content">
+            <h3>Endreinigung</h3>
+            <p>Inklusive</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guest Reviews Section -->
+  <section class="guest-reviews">
+    <div class="container">
+      <h2 class="section-heading">Was unsere Gäste sagen</h2>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="review-rating">
+            <span class="stars">⭐⭐⭐⭐⭐</span>
+          </div>
+          <blockquote class="review-quote">
+            "Wunderschön eingerichtete Wohnung mit allem Komfort. Die Lage direkt unter dem Schloss ist einmalig. Eva ist eine herzliche Gastgeberin!"
+          </blockquote>
+          <div class="review-author">
+            <div class="author-info">
+              <span class="author-name">Familie Schmidt</span>
+              <span class="review-date">August 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-rating">
+            <span class="stars">⭐⭐⭐⭐⭐</span>
+          </div>
+          <blockquote class="review-quote">
+            "Perfekter Ausgangspunkt für Wanderungen und Weinproben. Die Wohnung ist noch schöner als auf den Fotos. Absolut empfehlenswert!"
+          </blockquote>
+          <div class="review-author">
+            <div class="author-info">
+              <span class="author-name">Petra & Michael</span>
+              <span class="review-date">September 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-rating">
+            <span class="stars">⭐⭐⭐⭐⭐</span>
+          </div>
+          <blockquote class="review-quote">
+            "Sehr sauber, liebevoll eingerichtet, tolle Küche. Wir haben uns sofort wohlgefühlt. Kommen gerne wieder!"
+          </blockquote>
+          <div class="review-author">
+            <div class="author-info">
+              <span class="author-name">Lisa M.</span>
+              <span class="review-date">Juli 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-rating">
+            <span class="stars">⭐⭐⭐⭐⭐</span>
+          </div>
+          <blockquote class="review-quote">
+            "Die Badewanne ist ein Traum! Nach einem Wandertag perfekt zum Entspannen. Sehr ruhige Lage trotz zentraler Position."
+          </blockquote>
+          <div class="review-author">
+            <div class="author-info">
+              <span class="author-name">Andreas & Julia</span>
+              <span class="review-date">Oktober 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Similar Properties -->
+  <section class="similar-properties">
+    <div class="container">
+      <h2 class="section-heading">Weitere Angebote</h2>
+      <div class="similar-grid">
+        <div class="similar-card">
+          <div class="similar-content">
+            <h3>Entdecken Sie Hambach</h3>
+            <p>Erfahren Sie mehr über die Geschichte des Hambacher Schlosses und die schöne Umgebung der Pfalz.</p>
+            <a href="/activities" class="similar-link">Aktivitäten entdecken →</a>
+          </div>
+        </div>
+        <div class="similar-card">
+          <div class="similar-content">
+            <h3>Buchen Sie Ihren Aufenthalt</h3>
+            <p>Direkt und unkompliziert Ihre Ferienwohnung reservieren.</p>
+            <a href="/booking" class="similar-link">Jetzt buchen →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <!-- Related Content -->
+  <section class="related-content">
+    <div class="container">
+      <h2 class="section-heading">Auch interessant</h2>
+      <div class="related-grid">
+        <div class="related-card">
+          <div class="related-icon">🏃‍♂️</div>
+          <h3>Aktivitäten entdecken</h3>
+          <p>Wandern, Weinproben und Kultur in der Pfalz</p>
+          <a href="/activities" class="related-link">Aktivitäten ansehen →</a>
+        </div>
+        <div class="related-card">
+          <div class="related-icon">📝</div>
+          <h3>Blog & Tipps</h3>
+          <p>Insider-Tipps und Geschichten aus Hambach</p>
+          <a href="/blog" class="related-link">Blog lesen →</a>
+        </div>
+        <div class="related-card">
+          <div class="related-icon">📍</div>
+          <h3>Lage & Umgebung</h3>
+          <p>Hambacher Schloss und Deutsche Weinstraße</p>
+          <a href="/activities" class="related-link">Mehr erfahren →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Bereit für Ihren Aufenthalt?</h2>
+        <p>Buchen Sie jetzt Ihre Ferienwohnung Unterm Schloss</p>
+        <div class="cta-buttons">
+          <a href="/booking" class="btn-primary">Verfügbarkeit anfragen</a>
+          <a href="/contact" class="btn-secondary">Fragen stellen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Questions Button -->
+  <div class="floating-questions">
+    <a href="/contact" class="questions-btn" title="Haben Sie Fragen?">
+      <span class="questions-icon">❓</span>
+      <span class="questions-text">Fragen?</span>
+    </a>
+  </div>
+
+  <!-- Sticky Mobile Book Button -->
+  <div class="sticky-book-mobile">
+    <a href="/booking" class="sticky-book-btn">
+      <span class="book-icon">🏠</span>
+      <span class="book-text">Jetzt buchen</span>
+    </a>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <div class="scroll-to-top" id="scroll-to-top">
+    <button class="scroll-top-btn" title="Nach oben scrollen">
+      <span class="scroll-top-icon">↑</span>
+    </button>
+  </div>
+</Layout>
+
+<style>
+  /* Breadcrumbs */
+  .breadcrumbs {
+    background: #f8f9fa;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+  }
+
+  .breadcrumb-link {
+    color: #8b7355;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .breadcrumb-link:hover {
+    color: #2b2419;
+  }
+
+  .breadcrumb-separator {
+    color: #6b7280;
+  }
+
+  .breadcrumb-current {
+    color: #2b2419;
+    font-weight: 500;
+  }
+
+  /* Quick Actions */
+  .quick-actions {
+    background: white;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .quick-actions-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .quick-action-btn {
+    background: #8b7355;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .quick-action-btn:hover {
+    background: #7a6548;
+    transform: translateY(-2px);
+  }
+
+  .share-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+  }
+
+  .share-btn {
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    padding: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+  }
+
+  .share-btn:hover {
+    background: #8b7355;
+    color: white;
+    transform: scale(1.1);
+  }
+
+  /* Unique Features */
+  .unique-features {
+    background: #f8f9fa;
+    padding: 2rem 0;
+  }
+
+  .feature-badges {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .feature-badge {
+    background: white;
+    color: #2b2419;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  .feature-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .feature-badge.luxury {
+    border-color: #ffd700;
+    background: linear-gradient(135deg, #fff9e6, #ffffff);
+  }
+
+  .feature-badge.historic {
+    border-color: #8b7355;
+    background: linear-gradient(135deg, #f5f3f0, #ffffff);
+  }
+
+  .feature-badge.location {
+    border-color: #4a90e2;
+    background: linear-gradient(135deg, #e8f4fd, #ffffff);
+  }
+
+  .feature-badge.comfort {
+    border-color: #ff6b6b;
+    background: linear-gradient(135deg, #ffe8e8, #ffffff);
+  }
+
+  .feature-badge.family {
+    border-color: #4ecdc4;
+    background: linear-gradient(135deg, #e8f8f7, #ffffff);
+  }
+
+  /* Similar Properties */
+  .similar-properties {
+    padding: var(--space-20) 0;
+    background: #fafaf9;
+    position: relative;
+  }
+
+  .similar-properties::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--section-divider);
+  }
+
+  .similar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .similar-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(139, 115, 85, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .similar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b7355, #d4af37, #8b7355);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .similar-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+  }
+
+  .similar-card:hover::before {
+    opacity: 1;
+  }
+
+  .similar-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2b2419;
+    margin-bottom: 1rem;
+  }
+
+  .similar-content p {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .similar-link {
+    color: #8b7355;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  .similar-link:hover {
+    color: #2b2419;
+  }
+
+  /* Floating Questions Button */
+  .floating-questions {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
+  }
+
+  .questions-btn {
+    background: #8b7355;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 20px rgba(139, 115, 85, 0.3);
+    transition: all 0.3s ease;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+  }
+
+  .questions-btn:hover {
+    background: #7a6548;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(139, 115, 85, 0.4);
+  }
+
+  .questions-icon {
+    font-size: 1.2rem;
+  }
+
+  .questions-text {
+    font-size: 0.875rem;
+  }
+
+  /* Sticky Mobile Book Button */
+  .sticky-book-mobile {
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 999;
+    display: none;
+  }
+
+  .sticky-book-btn {
+    background: linear-gradient(135deg, #8b7355, #a68b5b);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 8px 25px rgba(139, 115, 85, 0.4);
+    transition: all 0.3s ease;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    width: 100%;
+  }
+
+  .sticky-book-btn:hover {
+    background: linear-gradient(135deg, #7a6548, #8b7355);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(139, 115, 85, 0.5);
+  }
+
+  .book-icon {
+    font-size: 1.2rem;
+  }
+
+  .book-text {
+    font-size: 1rem;
+  }
+
+  /* Scroll to Top Button */
+  .scroll-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .scroll-top-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #8b7355, #a68b5b);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .scroll-top-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 115, 85, 0.4);
+  }
+
+  .scroll-top-icon {
+    font-weight: bold;
+  }
+
+  /* Scroll Animations */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-in-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .fade-in-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Related Content */
+  .related-content {
+    padding: var(--space-20) 0;
+    background: #fafaf9;
+    position: relative;
+  }
+
+  .related-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--section-divider);
+  }
+
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .related-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(139, 115, 85, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .related-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b7355, #d4af37, #8b7355);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .related-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+  }
+
+  .related-card:hover::before {
+    opacity: 1;
+  }
+
+  .related-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .related-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2b2419;
+    margin-bottom: 1rem;
+  }
+
+  .related-card p {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .related-link {
+    color: #8b7355;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+
+  .related-link:hover {
+    color: #7a6548;
+  }
+
+  /* Enhanced Visual Hierarchy */
+  :root {
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+    --section-divider: linear-gradient(90deg, transparent, #8b7355, transparent);
+    --cream-pattern: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="creamTexture" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="0.5" fill="%23f5f5f0" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23creamTexture)"/></svg>');
+    --brown-accent: #8b7355;
+    --brown-light: #a68b5b;
+    --brown-dark: #7a6548;
+    --section-gap: 6rem;
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Section Dividers */
+  .section-divider {
+    height: 1px;
+    background: var(--section-divider);
+    margin: 2rem 0;
+    opacity: 0.3;
+    position: relative;
+  }
+
+  .section-divider::before {
+    content: '';
+    display: block;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #8b7355, transparent);
+    margin: 0 20%;
+  }
+
+  .section-divider::after {
+    content: '🏛️';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fafaf9;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(139, 115, 85, 0.1);
+  }
+
+  /* Enhanced Section Headings */
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: #2b2419;
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #8b7355, transparent);
+  }
+
+  /* Enhanced Section Spacing */
+  .apartment-details {
+    padding: var(--space-20) 0;
+    background: #fafaf9;
+    background-image: var(--cream-pattern);
+    position: relative;
+  }
+
+  .apartment-details::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--section-divider);
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: #2b2419;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .spec-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(139, 115, 85, 0.1);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .spec-item:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    border-color: var(--brown-accent);
+  }
+
+  .spec-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #8b7355, #d4af37, #8b7355);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .spec-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .spec-item:hover::before {
+    opacity: 1;
+  }
+
+  .spec-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .spec-content h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2b2419;
+    margin-bottom: 0.5rem;
+  }
+
+  .spec-content p {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    line-height: 1.6;
+  }
+
+  .floor-plan {
+    padding: var(--space-20) 0;
+    background: white;
+    position: relative;
+  }
+
+  .floor-plan::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--section-divider);
+  }
+
+  .floor-plan-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .floor-plan-diagram {
+    background: #fafaf9;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .floor-plan-svg {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+  }
+
+  .room-area {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .room-area:hover {
+    fill-opacity: 0.8;
+    stroke-width: 2;
+  }
+
+  .room-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    fill: #2b2419;
+  }
+
+  .room-size {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    fill: #6b7280;
+  }
+
+  .floor-plan-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .room-details h3,
+  .layout-description h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2b2419;
+    margin-bottom: 1rem;
+  }
+
+  .room-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .room-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #8b7355;
+  }
+
+  .room-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: #2b2419;
+  }
+
+  .room-size {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: #8b7355;
+  }
+
+  .total-area {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #2b2419;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .layout-description p {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .photo-gallery {
+    padding: var(--space-20) 0;
+    background: white;
+    position: relative;
+  }
+
+  .photo-gallery::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--section-divider);
+  }
+
+  /* Gallery Styles */
+  .gallery-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .tab-button {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #e5e7eb;
+    background: white;
+    color: #6b7280;
+    border-radius: 50px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tab-button:hover {
+    border-color: #8b7355;
+    color: #8b7355;
+    transform: translateY(-2px);
+  }
+
+  .tab-button.active {
+    background: #8b7355;
+    border-color: #8b7355;
+    color: white;
+    box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+  }
+
+  .gallery-counter {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .gallery-counter span {
+    background: rgba(139, 115, 85, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    display: inline-block;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #f8f9fa;
+    aspect-ratio: 1.2;
+    min-height: 250px;
+    display: block;
+  }
+
+  .gallery-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .gallery-item:hover img {
+    transform: scale(1.1);
+  }
+
+  .gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 60%,
+      rgba(0, 0, 0, 0.7) 100%
+    );
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+
+  .category-tag {
+    background: rgba(255, 255, 255, 0.9);
+    color: #2b2419;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .lightbox.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+  }
+
+  .lightbox.active .lightbox-image {
+    transform: scale(1);
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .lightbox-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+  }
+
+  .lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+
+  .lightbox-prev {
+    left: -80px;
+  }
+
+  .lightbox-next {
+    right: -80px;
+  }
+
+  .lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .lightbox-info {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .lightbox-category {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .lightbox-counter {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .gallery-tabs {
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tab-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    .lightbox-nav {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5rem;
+    }
+
+    .lightbox-prev {
+      left: 10px;
+    }
+
+    .lightbox-next {
+      right: 10px;
+    }
+
+    .lightbox-close {
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      font-size: 1.5rem;
+    }
+
+    .lightbox-info {
+      bottom: 20px;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  .amenities {
+    padding: var(--space-20) 0;
+    background: #fafaf9;
+    background-image: var(--cream-pattern);
+    position: relative;
+  }
+
+  .amenities::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--section-divider);
+  }
+
+  .amenities-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .amenity-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(139, 115, 85, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .amenity-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b7355, #d4af37, #8b7355);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .amenity-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    border-color: var(--brown-accent);
+  }
+
+  .amenity-card:hover::before {
+    opacity: 1;
+  }
+
+  .amenity-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f8f9fa;
+  }
+
+  .amenity-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .amenity-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #2b2419;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .amenity-content {
+    margin-top: 1rem;
+  }
+
+  .amenity-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .amenity-list li {
+    font-family: 'DM Sans', sans-serif;
+    color: #2b2419;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f8f9fa;
+    position: relative;
+    padding-left: 1.5rem;
+    transition: color 0.3s ease;
+  }
+
+  .amenity-list li:last-child {
+    border-bottom: none;
+  }
+
+  .amenity-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #8b7355;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .amenity-list li:hover {
+    color: #8b7355;
+  }
+
+  .house-rules {
+    padding: var(--space-20) 0;
+    background: white;
+    position: relative;
+  }
+
+  .house-rules::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--section-divider);
+  }
+
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .rule-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #fafaf9;
+    border-radius: 12px;
+    text-align: left;
+  }
+
+  .rule-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .rule-content h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #2b2419;
+    margin-bottom: 0.25rem;
+  }
+
+  .rule-content p {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  .guest-reviews {
+    padding: var(--space-20) 0;
+    background: #fafaf9;
+    position: relative;
+  }
+
+  .guest-reviews::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--section-divider);
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .review-card {
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 1px solid rgba(139, 115, 85, 0.1);
+    overflow: hidden;
+  }
+
+  .review-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8b7355, #d4af37, #8b7355);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .review-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.15);
+  }
+
+  .review-card:hover::before {
+    opacity: 1;
+  }
+
+  .review-card::before {
+    content: '"';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    font-size: 4rem;
+    color: #8b7355;
+    font-family: 'Playfair Display', serif;
+    opacity: 0.3;
+  }
+
+  .review-rating {
+    margin-bottom: 1rem;
+  }
+
+  .stars {
+    font-size: 1.2rem;
+    color: #ffc107;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .review-quote {
+    font-family: 'DM Sans', sans-serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #2b2419;
+    margin: 0 0 1.5rem 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .author-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .author-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: #2b2419;
+    font-size: 1rem;
+  }
+
+  .review-date {
+    font-family: 'DM Sans', sans-serif;
+    color: #6b7280;
+    font-size: 0.875rem;
+  }
+
+  .cta-section {
+    padding: var(--space-24) 0;
+    background: linear-gradient(135deg, #2b2419, #3d3428);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.1;
+  }
+
+  .cta-content {
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-content p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 1.25rem 2.5rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--brown-accent), var(--brown-light));
+    color: white;
+    box-shadow: 0 4px 15px rgba(139, 115, 85, 0.3);
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-primary:hover::before {
+    left: 100%;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, var(--brown-dark), var(--brown-accent));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(139, 115, 85, 0.4);
+    border-color: var(--brown-light);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .specs-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .floor-plan-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .floor-plan-diagram {
+      padding: 1rem;
+    }
+
+    .room-label {
+      font-size: 12px;
+    }
+
+    .room-size {
+      font-size: 10px;
+    }
+
+
+    .amenities-categories {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .amenity-card {
+      padding: 1.5rem;
+    }
+
+    .amenity-header {
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .amenity-icon {
+      font-size: 1.5rem;
+    }
+
+    .amenity-title {
+      font-size: 1.25rem;
+    }
+
+    .rules-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .reviews-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      padding: 1.5rem;
+    }
+
+    .review-quote {
+      font-size: 1rem;
+    }
+
+    .quick-actions-content {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 1rem;
+    }
+
+    .share-buttons {
+      margin-left: 0;
+      justify-content: center;
+    }
+
+    .feature-badges {
+      gap: 0.5rem;
+    }
+
+    .feature-badge {
+      font-size: 0.75rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .similar-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .floating-questions {
+      bottom: 1rem;
+      right: 1rem;
+    }
+
+    .questions-btn {
+      padding: 0.75rem 1rem;
+    }
+
+    .questions-text {
+      display: none;
+    }
+
+    .sticky-book-mobile {
+      display: block;
+    }
+
+    .floating-questions {
+      bottom: 5rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+<script>
+  // Interactive floor plan hotspots
+  document.addEventListener('DOMContentLoaded', function() {
+    const roomAreas = document.querySelectorAll('.room-area');
+    
+    roomAreas.forEach(area => {
+      area.addEventListener('click', function() {
+        const room = this.getAttribute('data-room');
+        const roomNames = {
+          'living': 'Wohnzimmer',
+          'kitchen': 'Küche', 
+          'bedroom1': 'Schlafzimmer 1',
+          'bedroom2': 'Schlafzimmer 2',
+          'bathroom': 'Badezimmer',
+          'hallway': 'Flur',
+          'entry': 'Eingang'
+        };
+        
+        // Scroll to gallery section
+        const gallery = document.querySelector('.photo-gallery');
+        if (gallery) {
+          gallery.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Optional: Highlight corresponding gallery images
+        console.log(`Clicked on ${roomNames[room] || room}`);
+      });
+      
+      area.addEventListener('mouseenter', function() {
+        this.style.fillOpacity = '0.9';
+        this.style.strokeWidth = '3';
+      });
+      
+      area.addEventListener('mouseleave', function() {
+        this.style.fillOpacity = '1';
+        this.style.strokeWidth = '1';
+      });
+    });
+  });
+
+  // Share and Download Functions
+  function shareWhatsApp() {
+    const url = encodeURIComponent(window.location.href);
+    const text = encodeURIComponent("Schau dir diese wunderschöne Ferienwohnung in Hambach an!");
+    window.open(`https://wa.me/?text=${text}%20${url}`, '_blank');
+  }
+
+  function shareEmail() {
+    const url = window.location.href;
+    const subject = encodeURIComponent("Ferienwohnung Hambach - Unterm Schloss");
+    const body = encodeURIComponent(`Hallo!\n\nIch habe diese wunderschöne Ferienwohnung in Hambach gefunden:\n\n${url}\n\nDie Wohnung liegt direkt unter dem Hambacher Schloss und ist perfekt für einen Urlaub in der Pfalz!\n\nViele Grüße`);
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      // Show temporary feedback
+      const btn = document.querySelector('.share-btn.copy');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '✓';
+      btn.style.background = '#4ecdc4';
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+      }, 2000);
+    });
+  }
+
+  function downloadInfosheet() {
+    // Create a simple text-based infosheet
+    const content = `
+FERIENWOHNUNG HAMBACH - UNTERM SCHLOSS
+=====================================
+
+📍 ADRESSE
+Schloßstraße, 67434 Hambach an der Weinstraße
+
+🏠 WOHNUNGSDETAILS
+• 85m² Wohnfläche
+• 2 Schlafzimmer (Doppelbetten)
+• 1 Badezimmer mit Luxusbad
+• Voll ausgestattete Küche
+• Holzofen & Fußbodenheizung
+• Max. 4 Personen
+
+⭐ BESONDERHEITEN
+• Direkt unter dem Hambacher Schloss
+• Historisches Fachwerkhaus
+• Familienfreundlich
+• Haustiere willkommen (€10/Tag)
+• Kostenfreier Parkplatz
+
+📞 KONTAKT
+Eva Dirion
+Tel: +49 172 8049269
+Email: eva.dirion@gmx.net
+
+🌐 WEBSITE
+${window.location.origin}
+
+Buchung: ${window.location.origin}/booking
+Kontakt: ${window.location.origin}/contact
+    `;
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Ferienwohnung-Hambach-Infosheet.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }
+
+  // Gallery functionality
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImage = document.getElementById('lightbox-image');
+  const lightboxCategory = document.getElementById('lightbox-category');
+  const lightboxCounter = document.getElementById('lightbox-counter');
+  const lightboxClose = document.getElementById('lightbox-close');
+  const lightboxPrev = document.getElementById('lightbox-prev');
+  const lightboxNext = document.getElementById('lightbox-next');
+
+  let currentIndex = 0;
+  let filteredImages = [];
+
+  // Initialize
+  function initGallery() {
+    filteredImages = Array.from(galleryItems);
+    bindGalleryEvents();
+    
+    // Ensure images are visible
+    galleryItems.forEach(item => {
+      const img = item.querySelector('img');
+      if (img) {
+        img.style.display = 'block';
+        img.style.opacity = '1';
+      }
+    });
+  }
+
+  // Bind events
+  function bindGalleryEvents() {
+    // Tab filtering
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const category = this.dataset.category;
+        filterImages(category);
+        updateTabButtons(category);
+      });
+    });
+
+    // Gallery item clicks
+    galleryItems.forEach((item, index) => {
+      item.addEventListener('click', function() {
+        openLightbox(index);
+      });
+    });
+
+    // Lightbox controls
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxPrev) lightboxPrev.addEventListener('click', previousImage);
+    if (lightboxNext) lightboxNext.addEventListener('click', nextImage);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('active')) return;
+      
+      switch(e.key) {
+        case 'Escape':
+          closeLightbox();
+          break;
+        case 'ArrowLeft':
+          previousImage();
+          break;
+        case 'ArrowRight':
+          nextImage();
+          break;
+      }
+    });
+
+    // Click outside to close
+    if (lightbox) {
+      lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+    }
+  }
+
+  // Filter images by category
+  function filterImages(category) {
+    galleryItems.forEach(item => {
+      const itemCategory = item.dataset.category;
+      const shouldShow = category === 'all' || itemCategory === category;
+      
+      if (shouldShow) {
+        item.style.display = 'block';
+        item.classList.remove('filtered');
+      } else {
+        item.style.display = 'none';
+        item.classList.add('filtered');
+      }
+    });
+
+    // Update filtered images array
+    filteredImages = Array.from(galleryItems).filter(item => 
+      item.style.display !== 'none'
+    );
+  }
+
+  // Update tab button states
+  function updateTabButtons(activeCategory) {
+    tabButtons.forEach(button => {
+      button.classList.toggle('active', button.dataset.category === activeCategory);
+    });
+  }
+
+  // Open lightbox
+  function openLightbox(index) {
+    const visibleItems = Array.from(galleryItems).filter(item => 
+      item.style.display !== 'none'
+    );
+    
+    currentIndex = visibleItems.indexOf(galleryItems[index]);
+    
+    if (currentIndex === -1) currentIndex = 0;
+    
+    const currentImage = visibleItems[currentIndex];
+    const img = currentImage.querySelector('img');
+    
+    lightboxImage.src = img.src;
+    lightboxImage.alt = img.alt;
+    lightboxCategory.textContent = currentImage.dataset.category;
+    lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+    
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close lightbox
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Previous image
+  function previousImage() {
+    const visibleItems = Array.from(galleryItems).filter(item => 
+      item.style.display !== 'none'
+    );
+    
+    currentIndex = currentIndex > 0 ? currentIndex - 1 : visibleItems.length - 1;
+    updateLightboxImage();
+  }
+
+  // Next image
+  function nextImage() {
+    const visibleItems = Array.from(galleryItems).filter(item => 
+      item.style.display !== 'none'
+    );
+    
+    currentIndex = currentIndex < visibleItems.length - 1 ? currentIndex + 1 : 0;
+    updateLightboxImage();
+  }
+
+  // Update lightbox image
+  function updateLightboxImage() {
+    const visibleItems = Array.from(galleryItems).filter(item => 
+      item.style.display !== 'none'
+    );
+    
+    const currentImage = visibleItems[currentIndex];
+    const img = currentImage.querySelector('img');
+    
+    lightboxImage.src = img.src;
+    lightboxImage.alt = img.alt;
+    lightboxCategory.textContent = currentImage.dataset.category;
+    lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+  }
+
+  // Initialize gallery
+  initGallery();
+
+  // Scroll to Top functionality
+  const scrollToTopBtn = document.getElementById('scroll-to-top');
+  const scrollToTop = document.querySelector('.scroll-to-top');
+
+  window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+      scrollToTop.classList.add('visible');
+    } else {
+      scrollToTop.classList.remove('visible');
+    }
+  });
+
+  if (scrollToTopBtn) {
+    scrollToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // Update gallery counter
+  function updateGalleryCounter() {
+    const counter = document.getElementById('gallery-counter');
+    const visibleItems = Array.from(galleryItems).filter(item => 
+      item.style.display !== 'none'
+    );
+    
+    if (counter) {
+      counter.textContent = `${visibleItems.length} Bilder verfügbar`;
+    }
+  }
+
+  // Update counter when filtering
+  const originalFilterImages = filterImages;
+  filterImages = function(category) {
+    originalFilterImages(category);
+    updateGalleryCounter();
+  };
+
+  // Initial counter update
+  updateGalleryCounter();
+
+  // Scroll Animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  // Observe all animated elements
+  document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right, .scale-in');
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>
+
