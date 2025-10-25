@@ -11,18 +11,24 @@ export interface Props {
   imageAlt: string;
   ctaText: string;
   ctaHref: string;
+  ctaSecondaryText?: string;
+  ctaSecondaryHref?: string;
+  features?: string[];
   hasRealReviews?: boolean;
   reviewCount?: number;
   reviewRating?: number;
 }
 
-const { 
-  title, 
-  subtitle, 
-  image, 
-  imageAlt, 
-  ctaText, 
+const {
+  title,
+  subtitle,
+  image,
+  imageAlt,
+  ctaText,
   ctaHref,
+  ctaSecondaryText,
+  ctaSecondaryHref,
+  features = [],
   hasRealReviews = false,
   reviewCount = 0,
   reviewRating = 0
@@ -76,6 +82,15 @@ const titleWords = title.split(' ');
         {subtitle}
       </p>
 
+      <!-- 🏷️ USP FEATURE BADGES -->
+      {features.length > 0 && (
+        <div class="hero-features">
+          {features.map((feature) => (
+            <span class="feature-badge">{feature}</span>
+          ))}
+        </div>
+      )}
+
       <!-- ⭐ TRUST SIGNAL -->
       {hasRealReviews && reviewCount > 0 && (
         <div class="hero-trust">
@@ -86,16 +101,28 @@ const titleWords = title.split(' ');
         </div>
       )}
 
-      <!-- 🎯 CTA BUTTON mit SHINE EFFECT -->
+      <!-- 🎯 CTA BUTTONS -->
       <div class="hero-cta">
-        <a 
-          href={ctaHref}
-          class="hero-button"
-          aria-label={`${ctaText} - Öffnet Buchungsanfrage`}
-        >
-          <span class="hero-button-text">{ctaText}</span>
-          <span class="hero-button-shine"></span>
-        </a>
+        <div class="hero-cta-buttons">
+          <a
+            href={ctaHref}
+            class="hero-button hero-button--primary"
+            aria-label={`${ctaText} - Öffnet Buchungsanfrage`}
+          >
+            <span class="hero-button-text">{ctaText}</span>
+            <span class="hero-button-shine"></span>
+          </a>
+
+          {ctaSecondaryText && ctaSecondaryHref && (
+            <a
+              href={ctaSecondaryHref}
+              class="hero-button hero-button--secondary"
+              aria-label={ctaSecondaryText}
+            >
+              <span class="hero-button-text">{ctaSecondaryText}</span>
+            </a>
+          )}
+        </div>
 
         <p class="hero-badge">
           <span class="hero-badge-icon">✓</span>
@@ -265,11 +292,46 @@ const titleWords = title.split(' ');
     line-height: 1.6;
     letter-spacing: 0.01em;
     color: rgba(255, 255, 255, 0.95);
-    margin: 0 auto 2.5rem auto;
+    margin: 0 auto 2rem auto;
     max-width: 50rem; /* Optimal line length */
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     opacity: 0;
     animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+  }
+
+  /* 🏷️ USP FEATURE BADGES */
+  .hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem; /* 12px - 8px Grid */
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 2rem auto;
+    max-width: 40rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
+  }
+
+  .feature-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem; /* 6px */
+    padding: 0.5rem 1rem; /* 8px 16px - 8px Grid */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1.5rem; /* 24px - 3 × 8px */
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .feature-badge:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
   }
 
   /* ⭐ TRUST */
@@ -299,6 +361,23 @@ const titleWords = title.split(' ');
     gap: 1rem;
     opacity: 0;
     animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
+  }
+
+  .hero-cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* 16px - 2 × 8px */
+    align-items: center;
+    width: 100%;
+    max-width: 28rem; /* 448px */
+  }
+
+  @media (min-width: 640px) {
+    .hero-cta-buttons {
+      flex-direction: row;
+      justify-content: center;
+      gap: 1rem;
+    }
   }
 
   .hero-button {
@@ -360,6 +439,33 @@ const titleWords = title.split(' ');
 
   .hero-button:hover .hero-button-shine {
     left: 100%;
+  }
+
+  /* SECONDARY BUTTON VARIANT */
+  .hero-button--secondary {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 4px 14px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .hero-button--secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .hero-button--secondary .hero-button-shine {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
   }
 
   /* ✓ BADGE */
