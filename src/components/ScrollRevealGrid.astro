@@ -69,23 +69,39 @@ const {
 </style>
 
 <script>
-  // Einfaches Scroll-Reveal für Grid-Elemente
+  // Intersection Observer für Grid mit Stagger
   document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.currentScript?.parentElement;
-    if (grid && grid.classList.contains('scroll-reveal-grid')) {
-      // Zeige Grid sofort an (Debug-Modus)
-      grid.classList.add('revealed');
-      grid.style.opacity = '1';
-      
-      // Zeige auch alle Child-Elemente
-      const children = grid.querySelectorAll('.scroll-reveal-child');
-      children.forEach(child => {
-        child.classList.add('revealed');
-        child.style.opacity = '1';
-        child.style.transform = 'none';
+    const grids = document.querySelectorAll('.scroll-reveal-grid');
+
+    if (!grids.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const grid = entry.target;
+          const stagger = parseInt(grid.getAttribute('data-stagger') || '100');
+
+          // Reveal grid
+          grid.classList.add('revealed');
+
+          // Reveal children with stagger
+          const children = grid.querySelectorAll('.scroll-reveal-child');
+          children.forEach((child, index) => {
+            setTimeout(() => {
+              child.classList.add('revealed');
+            }, index * stagger);
+          });
+
+          // Stop observing
+          observer.unobserve(grid);
+        }
       });
-      
-      console.log('🎯 Scroll-Reveal Grid aktiviert:', grid);
-    }
+    }, {
+      threshold: 0.15,
+      rootMargin: '50px'
+    });
+
+    // Observe all grids
+    grids.forEach(grid => observer.observe(grid));
   });
 </script>

@@ -97,15 +97,41 @@ const id = `scroll-reveal-${Math.random().toString(36).substr(2, 9)}`;
 </style>
 
 <script>
-  // Einfaches Scroll-Reveal für einzelne Elemente
+  // Intersection Observer für Scroll-Reveal
   document.addEventListener('DOMContentLoaded', () => {
-    const element = document.currentScript?.parentElement;
-    if (element && element.hasAttribute('data-scroll-reveal')) {
-      // Zeige Element sofort an (Debug-Modus)
-      element.classList.add('revealed');
-      element.style.opacity = '1';
-      element.style.transform = 'none';
-      console.log('🎯 Scroll-Reveal Element aktiviert:', element);
-    }
+    const elements = document.querySelectorAll('[data-scroll-reveal]');
+
+    if (!elements.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const element = entry.target;
+          const once = element.getAttribute('data-once') === 'true';
+
+          // Add revealed class
+          element.classList.add('revealed');
+
+          // Stop observing if once is true
+          if (once) {
+            observer.unobserve(element);
+          }
+        } else {
+          const element = entry.target;
+          const once = element.getAttribute('data-once') === 'true';
+
+          // Remove revealed class if not once
+          if (!once) {
+            element.classList.remove('revealed');
+          }
+        }
+      });
+    }, {
+      threshold: 0.15,
+      rootMargin: '50px'
+    });
+
+    // Observe all scroll-reveal elements
+    elements.forEach(el => observer.observe(el));
   });
 </script>
