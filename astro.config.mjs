@@ -12,7 +12,6 @@ export default defineConfig({
   build: {
     assets: 'assets',
     inlineStylesheets: 'auto', // Inline kritische CSS
-    assetsPrefix: '/assets/', // CDN-ready
   },
   
   // Vite-Optimierungen für bessere Performance
