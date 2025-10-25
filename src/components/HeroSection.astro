@@ -78,9 +78,9 @@ const titleWords = title.split(' ');
       </h1>
 
       <!-- 📖 SUBHEADLINE -->
-      <p class="hero-subtitle">
+      <h2 class="hero-subtitle">
         {subtitle}
-      </p>
+      </h2>
 
       <!-- 🏷️ USP FEATURE BADGES -->
       {features.length > 0 && (
@@ -250,15 +250,15 @@ const titleWords = title.split(' ');
     text-align: center;
   }
 
-  /* JOBS HEADLINE - 52px+ führt die Hierarchie */
+  /* JOBS HEADLINE - 64px+ führt die Hierarchie */
   .hero-title {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
-    font-size: 3.25rem; /* 52px - Jobs Standard */
+    font-size: clamp(2.5rem, 5vw, 4rem); /* 40px → 64px responsive */
     line-height: 1.1; /* Tighter leading for impact */
     letter-spacing: -0.03em; /* Tighter tracking */
     color: white;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem; /* 16px - 2 × 8px */
     text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
   }
 
@@ -288,11 +288,11 @@ const titleWords = title.split(' ');
   .hero-subtitle {
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
-    font-size: 1.25rem; /* 20px */
-    line-height: 1.6;
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem); /* 20px → 24px responsive */
+    line-height: 1.5;
     letter-spacing: 0.01em;
     color: rgba(255, 255, 255, 0.95);
-    margin: 0 auto 2rem auto;
+    margin: 0 auto 2rem auto; /* 32px - 4 × 8px */
     max-width: 50rem; /* Optimal line length */
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     opacity: 0;
