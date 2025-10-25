@@ -49,17 +49,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.url.origin);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
     <!-- Kritische Fonts preloaden - nur die wirklich benötigten -->
-    <link 
-      rel="preload" 
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=DM+Sans:wght@300;400;500&display=swap" 
-      as="style" 
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=DM+Sans:wght@300;400;500;600&display=swap"
+      as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
-    
+
     <!-- Fallback für JavaScript-deaktivierte Browser -->
     <noscript>
-      <link 
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=DM+Sans:wght@300;400;500&display=swap" 
+      <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400&family=DM+Sans:wght@300;400;500;600&display=swap"
         rel="stylesheet"
       />
     </noscript>
@@ -159,101 +159,5 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.url.origin);
         }
       }
     </style>
-    
-    <!-- Debug Scroll Reveal System -->
-    <script>
-      // Debug Scroll-Reveal System - Zeigt alle Sections sofort an
-      document.addEventListener('DOMContentLoaded', () => {
-        console.log('🔍 Debug: Scroll-Reveal System gestartet');
-        
-        // Finde alle Scroll-Reveal Elemente
-        const scrollRevealElements = document.querySelectorAll('[data-scroll-reveal]');
-        const scrollRevealGrids = document.querySelectorAll('.scroll-reveal-grid');
-        
-        console.log(`📊 Gefunden: ${scrollRevealElements.length} Scroll-Reveal Elemente`);
-        console.log(`📊 Gefunden: ${scrollRevealGrids.length} Scroll-Reveal Grids`);
-        
-        // Zeige alle Sections sofort an (ohne Animation)
-        scrollRevealElements.forEach((element, index) => {
-          console.log(`🎯 Element ${index + 1}:`, element);
-          element.classList.add('revealed');
-          element.style.opacity = '1';
-          element.style.transform = 'none';
-        });
-        
-        // Zeige alle Grid-Sections sofort an
-        scrollRevealGrids.forEach((grid, index) => {
-          console.log(`🎯 Grid ${index + 1}:`, grid);
-          grid.classList.add('revealed');
-          grid.style.opacity = '1';
-          
-          // Zeige auch alle Child-Elemente
-          const children = grid.querySelectorAll('.scroll-reveal-child');
-          children.forEach(child => {
-            child.classList.add('revealed');
-            child.style.opacity = '1';
-            child.style.transform = 'none';
-          });
-        });
-        
-        // Zusätzlich: Zeige alle Sections mit sichtbaren Borders
-        const sections = document.querySelectorAll('section');
-        sections.forEach((section, index) => {
-          console.log(`📦 Section ${index + 1}:`, section);
-          section.style.border = '2px solid red';
-          section.style.minHeight = '200px';
-        });
-        
-        console.log('✅ Debug: Alle Sections sollten jetzt sichtbar sein');
-      });
-    </script>
-    
-    <!-- Lazy Loading Script -->
-    <script>
-      // Lazy Loading Script for Images
-      document.addEventListener('DOMContentLoaded', () => {
-        console.log('🖼️ Lazy Loading Script gestartet');
-        
-        // Alle Bilder sofort sichtbar machen
-        const allImages = document.querySelectorAll('img');
-        allImages.forEach(img => {
-          console.log('🖼️ Bild gefunden:', img.src);
-          img.style.opacity = '1';
-          img.style.visibility = 'visible';
-          img.style.transform = 'translateY(0)';
-          img.style.display = 'block';
-        });
-        
-        // Check if Intersection Observer is supported
-        if ('IntersectionObserver' in window) {
-          const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const img = entry.target;
-                
-                // Add loaded class for smooth animation
-                img.addEventListener('load', () => {
-                  img.classList.add('loaded');
-                });
-                
-                // Stop observing this image
-                observer.unobserve(img);
-              }
-            });
-          }, {
-            rootMargin: '50px 0px',
-            threshold: 0.01
-          });
-
-          // Observe all lazy images
-          const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-          lazyImages.forEach(img => {
-            imageObserver.observe(img);
-          });
-        }
-        
-        console.log('✅ Alle Bilder sollten jetzt sichtbar sein');
-      });
-    </script>
   </body>
 </html>
