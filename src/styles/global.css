@@ -43,14 +43,11 @@ img {
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+/* Lazy loading wird durch JavaScript gehandhabt */
 img[loading="lazy"] {
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-img[loading="lazy"].loaded {
   opacity: 1;
   transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* === TYPOGRAPHY === */

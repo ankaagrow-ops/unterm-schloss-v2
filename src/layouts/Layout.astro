@@ -212,6 +212,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.url.origin);
     <script>
       // Lazy Loading Script for Images
       document.addEventListener('DOMContentLoaded', () => {
+        console.log('🖼️ Lazy Loading Script gestartet');
+        
+        // Alle Bilder sofort sichtbar machen
+        const allImages = document.querySelectorAll('img');
+        allImages.forEach(img => {
+          console.log('🖼️ Bild gefunden:', img.src);
+          img.style.opacity = '1';
+          img.style.visibility = 'visible';
+          img.style.transform = 'translateY(0)';
+          img.style.display = 'block';
+        });
+        
         // Check if Intersection Observer is supported
         if ('IntersectionObserver' in window) {
           const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -239,6 +251,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.url.origin);
             imageObserver.observe(img);
           });
         }
+        
+        console.log('✅ Alle Bilder sollten jetzt sichtbar sein');
       });
     </script>
   </body>

@@ -77,26 +77,68 @@ const navItems = [
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(245, 241, 232, 0.95);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    padding: 1rem 0;
-    border-bottom: 1px solid rgba(43, 36, 25, 0.1);
+    background: rgba(250, 250, 249, 0.85); /* Instructions: semi-transparent */
+    backdrop-filter: blur(8px); /* Instructions: 8px blur */
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 1rem 0; /* 16px - 2 × 8px */
+    border-bottom: 1px solid rgba(61, 40, 23, 0.1); /* Instructions: #3d2817 */
   }
 
   .navigation.scrolled {
-    padding: 0.75rem 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    background: rgba(245, 241, 232, 0.98);
+    padding: 0.75rem 0; /* 12px - 1.5 × 8px */
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    background: rgba(250, 250, 249, 0.98); /* Instructions: consistent background */
+  }
+
+  /* Kontrast-Style: Navigation passt sich an Section-Typ an */
+  .navigation.section--light {
+    background: rgba(250, 250, 249, 0.85); /* Warmes Hell */
+    border-bottom: 1px solid rgba(61, 40, 23, 0.1);
+  }
+
+  .navigation.section--light .logo-text,
+  .navigation.section--light .menu-link,
+  .navigation.section--light .hamburger-line,
+  .navigation.section--light .close-icon {
+    color: #3d2817; /* Instructions: primär dunkles Braun */
+  }
+
+  .navigation.section--dark {
+    background: rgba(28, 18, 11, 0.85); /* Warmes Dunkel: #1c120b */
+    border-bottom: 1px solid rgba(139, 115, 85, 0.2);
+  }
+
+  .navigation.section--dark .logo-text,
+  .navigation.section--dark .menu-link,
+  .navigation.section--dark .hamburger-line,
+  .navigation.section--dark .close-icon {
+    color: #fafaf9; /* Warmes Hell für Kontrast */
+  }
+
+  .navigation.section--dark .menu-link:hover {
+    color: #8b7355; /* Instructions: akzent */
   }
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1280px; /* 8px Grid: 160 × 8px */
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem; /* 16px - 2 × 8px */
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding: 0 1.5rem; /* 24px - 3 × 8px */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding: 0 2rem; /* 32px - 4 × 8px */
+    }
   }
 
   /* Logo */
@@ -111,17 +153,17 @@ const navItems = [
 
   .logo-text {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* 24px */
     font-weight: 400;
-    color: #2b2419;
+    color: #3d2817; /* Instructions: primär dunkles Braun */
     letter-spacing: -0.02em;
   }
 
-  /* Desktop Menu */
+  /* RAMS DESKTOP MENU - 8px Grid Alignment */
   .desktop-menu {
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 2rem; /* 32px - 4 × 8px */
     list-style: none;
     margin: 0;
     padding: 0;
@@ -133,38 +175,38 @@ const navItems = [
 
   .menu-link {
     font-family: 'DM Sans', sans-serif;
-    font-size: 0.875rem;
+    font-size: 0.875rem; /* 14px */
     font-weight: 500;
-    color: #2b2419;
+    color: #3d2817; /* Instructions: primär dunkles Braun */
     text-decoration: none;
-    padding: 0.5rem 0;
-    transition: all 0.3s ease;
+    padding: 0.5rem 0; /* 8px vertical */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
   }
 
   .menu-link:hover {
-    color: #8b7355;
+    color: #8b7355; /* Instructions: akzent */
   }
 
   .menu-link.active {
-    font-weight: 700;
-    color: #8b7355;
+    font-weight: 600;
+    color: #8b7355; /* Instructions: akzent */
     border-bottom: 2px solid #8b7355;
   }
 
   .menu-link.btn-primary {
-    background: #8b7355;
+    background: #8b7355; /* Instructions: akzent */
     color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
+    padding: 0.75rem 1.5rem; /* 12px 24px - 8px Grid */
+    border-radius: 0.5rem; /* 8px - 1 × 8px */
     font-weight: 600;
     border: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .menu-link.btn-primary:hover {
-    background: #7a6548;
-    transform: translateY(-1px);
+    background: #7a6548; /* Instructions: dunkler Hover */
+    transform: translateY(-1px); /* Subtle movement */
     box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
   }
 
@@ -192,11 +234,11 @@ const navItems = [
   }
 
   .hamburger-line {
-    width: 1.5rem;
+    width: 1.5rem; /* 24px */
     height: 2px;
-    background-color: #2b2419;
-    margin: 2px 0;
-    transition: all 0.3s ease;
+    background-color: #3d2817; /* Instructions: primär dunkles Braun */
+    margin: 2px 0; /* 2px - 0.25 × 8px */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 1px;
   }
 
@@ -212,7 +254,7 @@ const navItems = [
     transform: rotate(-45deg) translate(7px, -6px);
   }
 
-  /* Mobile Menu Overlay */
+  /* JOBS MOBILE MENU - Clean, functional */
   .mobile-menu-overlay {
     position: fixed;
     top: 0;
@@ -220,11 +262,13 @@ const navItems = [
     width: 100%;
     max-width: 400px;
     height: 100vh;
-    background: #f5f1e8;
+    background: rgba(255, 255, 255, 0.98); /* Clean white */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     z-index: 1001;
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08);
   }
 
   .mobile-menu-overlay.is-open {
@@ -237,7 +281,7 @@ const navItems = [
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem; /* 32px 24px - 8px Grid */
     position: relative;
   }
 
@@ -261,8 +305,8 @@ const navItems = [
   }
 
   .close-icon {
-    font-size: 2rem;
-    color: #2b2419;
+    font-size: 2rem; /* 32px */
+    color: #3d2817; /* Instructions: primär dunkles Braun */
     font-weight: 300;
   }
 
@@ -274,30 +318,30 @@ const navItems = [
   }
 
   .mobile-menu-item {
-    margin: 1.5rem 0;
+    margin: 1.5rem 0; /* 24px - 3 × 8px */
   }
 
   .mobile-menu-link {
     font-family: 'DM Sans', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* 24px */
     font-weight: 500;
-    color: #2b2419;
+    color: #3d2817; /* Instructions: primär dunkles Braun */
     text-decoration: none;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem; /* 12px 16px - 8px Grid */
     display: block;
-    transition: all 0.3s ease;
-    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 0.5rem; /* 8px - 1 × 8px */
   }
 
   .mobile-menu-link:hover {
-    color: #8b7355;
-    background: rgba(43, 36, 25, 0.05);
-    transform: translateX(10px);
+    color: #8b7355; /* Instructions: akzent */
+    background: rgba(139, 115, 85, 0.05);
+    transform: translateX(8px); /* Subtle movement - 8px Grid */
   }
 
   .mobile-menu-link.active {
     font-weight: 600;
-    color: #8b7355;
+    color: #8b7355; /* Instructions: akzent */
     background: rgba(139, 115, 85, 0.1);
   }
 
@@ -320,7 +364,7 @@ const navItems = [
     pointer-events: auto;
   }
 
-  /* Responsive Design */
+  /* RAMS RESPONSIVE DESIGN - 8px Grid */
   @media (max-width: 768px) {
     .desktop-menu {
       display: none;
@@ -331,25 +375,25 @@ const navItems = [
     }
 
     .container {
-      padding: 0 1.5rem;
+      padding: 0 1.5rem; /* 24px - 3 × 8px */
     }
 
     .logo-text {
-      font-size: 1.25rem;
+      font-size: 1.25rem; /* 20px */
     }
   }
 
   @media (max-width: 480px) {
     .container {
-      padding: 0 1rem;
+      padding: 0 1rem; /* 16px - 2 × 8px */
     }
 
     .logo-text {
-      font-size: 1.125rem;
+      font-size: 1.125rem; /* 18px */
     }
 
     .mobile-menu-link {
-      font-size: 1.25rem;
+      font-size: 1.25rem; /* 20px */
     }
   }
 </style>
@@ -419,6 +463,49 @@ const navItems = [
         closeMobileMenu();
       }
     });
+
+    // Kontrast-Style: Navigation passt sich an Section-Typ an
+    function updateNavigationForSection() {
+      const sections = document.querySelectorAll('section');
+      const currentSection = getCurrentSection(sections);
+      
+      if (currentSection) {
+        const isLightSection = currentSection.classList.contains('section--light') || 
+                              currentSection.classList.contains('story-section') ||
+                              currentSection.classList.contains('pillars-section');
+        
+        if (isLightSection) {
+          navigation.classList.remove('section--dark');
+          navigation.classList.add('section--light');
+        } else {
+          navigation.classList.remove('section--light');
+          navigation.classList.add('section--dark');
+        }
+      }
+    }
+
+    function getCurrentSection(sections) {
+      const scrollY = window.scrollY;
+      let currentSection = null;
+      
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom > 100) {
+          currentSection = section;
+        }
+      });
+      
+      return currentSection;
+    }
+
+    // Update navigation on scroll
+    window.addEventListener('scroll', () => {
+      handleScroll();
+      updateNavigationForSection();
+    }, { passive: true });
+
+    // Initial check
+    updateNavigationForSection();
   });
 </script>
 

@@ -18,8 +18,8 @@ const pageDescription = 'Charmante Ferienwohnung in historischer Schloßstraße 
 <Layout title={pageTitle} description={pageDescription}>
   <!-- Hero Section - Rams + Jobs Präzision -->
   <HeroSection
-    title="Wo Tradition auf Gemütlichkeit trifft"
-    subtitle="Liebevoll restaurierte Ferienwohnung in Hambachs historischer Schloßstraße"
+    title="Ferienwohnung Hambach – Wo Geschichte auf Gemütlichkeit trifft"
+    subtitle="Liebevoll restauriertes Fachwerkhaus an der Deutschen Weinstraße"
     image="/images/01_aussenansicht_fachwerkhaus_haupteingang.jpg"
     imageAlt="Ferienwohnung Unterm Schloss - Außenansicht in der historischen Schloßstraße Hambach"
     ctaText="Verfügbarkeit anfragen"
@@ -39,46 +39,121 @@ const pageDescription = 'Charmante Ferienwohnung in historischer Schloßstraße 
     />
   </ScrollReveal>
 
-  <!-- Features Grid -->
-  <ScrollRevealGrid stagger="100" trigger="0.3">
-    <FeaturesGrid
-      heading="Ausstattung & Highlights"
-      features={[
-      {
-        title: "Küche",
-        image: "/images/10_kueche_wohnkueche_roter_kuehlschrank.jpg",
-        imageAlt: "Moderne Wohnküche mit rotem Retro-Kühlschrank"
-      },
-      {
-        title: "Bad",
-        image: "/images/20_badezimmer_1_luxusbad_badewanne_podest.jpg",
-        imageAlt: "Luxuriöses Badezimmer mit freistehender Badewanne"
-      },
-      {
-        title: "Kamin",
-        image: "/images/12_kamin_ofen_brennend_gemütlich.jpg",
-        imageAlt: "Gemütlicher Holzofen im Wohnzimmer"
-      }
-    ]}
-  />
-
-  <!-- Features Link -->
-  <section class="features-link">
+  <!-- Features Grid - Direkt eingebaut -->
+  <section class="features-section section--dark">
     <div class="container">
-      <a href="/apartment" class="link-button">
-        Mehr zur Ausstattung →
-      </a>
+      <div class="features-header">
+        <h2 class="heading">Ausstattung & Highlights</h2>
+        <p class="features-subtitle">
+          Jeder Raum wurde mit Liebe zum Detail gestaltet – für Ihren perfekten Aufenthalt in der Pfalz.
+        </p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-image">
+            <img 
+              src="/images/10_kueche_wohnkueche_roter_kuehlschrank.jpg" 
+              alt="Moderne Wohnküche mit rotem Retro-Kühlschrank"
+              loading="lazy"
+            />
+          </div>
+          <div class="feature-overlay"></div>
+          <div class="feature-badge">KÜCHE</div>
+          <div class="feature-content">
+            <h3 class="feature-title">Wohnküche</h3>
+            <p class="feature-description">Voll ausgestattete Küche mit Retro-Charme – hier kochen Sie wie zuhause.</p>
+            <div class="feature-highlights">
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span class="highlight-text">Roter Retro-Kühlschrank</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span class="highlight-text">Geschirrspüler & Kaffeemaschine</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span class="highlight-text">Regionale Produkte in der Nähe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-image">
+            <img 
+              src="/images/20_badezimmer_1_luxusbad_badewanne_podest.jpg" 
+              alt="Luxuriöses Badezimmer mit freistehender Badewanne"
+              loading="lazy"
+            />
+          </div>
+          <div class="feature-overlay"></div>
+          <div class="feature-badge">BAD</div>
+          <div class="feature-content">
+            <h3 class="feature-title">Luxusbad</h3>
+            <p class="feature-description">Entspannen Sie in unserem luxuriösen Bad mit freistehender Badewanne.</p>
+            <div class="feature-highlights">
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span class="highlight-text">Freistehende Badewanne</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span class="highlight-text">Fußbodenheizung</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span class="highlight-text">Großzügige Fläche</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-image">
+            <img 
+              src="/images/12_kamin_ofen_brennend_gemütlich.jpg" 
+              alt="Gemütlicher Holzofen im Wohnzimmer"
+              loading="lazy"
+            />
+          </div>
+          <div class="feature-overlay"></div>
+          <div class="feature-badge">KAMIN</div>
+          <div class="feature-content">
+            <h3 class="feature-title">Gemütlicher Kamin</h3>
+            <p class="feature-description">Kuscheln Sie sich vor dem warmen Kamin – perfekt für gemütliche Abende.</p>
+            <div class="feature-highlights">
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span class="highlight-text">Holzofen mit Brennholz</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span class="highlight-text">Gemütliche Sitzecke</span>
+              </div>
+              <div class="highlight-item">
+                <span class="highlight-icon">✓</span>
+                <span class="highlight-text">Romantische Atmosphäre</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CTA Section -->
+      <div class="features-cta">
+        <a href="/apartment" class="btn-primary">
+          Alle Räume entdecken
+        </a>
+        <a href="/booking" class="btn-secondary">
+          Verfügbarkeit prüfen
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Story 2 -->
-  <ScrollReveal animation="fade-in" trigger="0.5">
-    <StorySection
-      heading="Mehr als eine Unterkunft – ein Stück Pfalz zum Erleben"
-      content="<p>Seit vielen Jahren ist es uns eine Freude, Gäste in unserem Haus in der historischen Schloßstraße willkommen zu heißen. Mit viel Liebe zum Detail haben wir die Ferienwohnung Unterm Schloss gestaltet – als Ort der Ruhe, Gemütlichkeit und Begegnung. Jeder Raum erzählt ein Stück Geschichte, jedes Detail ist bewusst gewählt, um Ihren Aufenthalt angenehm zu machen.</p><p>Ob für ein Wochenende im Pfälzer Wald, eine Weinreise oder einfach zum Abschalten – hier erleben Sie die Pfalz von ihrer schönsten Seite: ehrlich, herzlich und unverstellt.</p>"
-      backgroundImage="/images/05_innenhof_pfalz_schild_weingarten.jpg"
-    />
-  </ScrollReveal>
+
 
   <!-- Pillars -->
   <ScrollReveal animation="fade-up" trigger="0.4">
@@ -173,7 +248,7 @@ const pageDescription = 'Charmante Ferienwohnung in historischer Schloßstraße 
       backgroundImage="/images/02_innenhof_fachwerk_kopfsteinpflaster.jpg"
       address={{
         street: "Schloßstraße 18",
-        city: "67434 Hambach an der Weinstraße"
+        city: "67434 Neustadt an der Weinstraße"
       }}
       email="eva.dirion@gmx.net"
       phone={["+49 172 804 9269"]}
@@ -195,6 +270,223 @@ const pageDescription = 'Charmante Ferienwohnung in historischer Schloßstraße 
 </Layout>
 
 <style>
+  /* RAMS FEATURES SECTION - 8px Grid */
+  .features-section {
+    padding: 5rem 0; /* 80px - 10 × 8px - Instructions: Sections ≥ 80px */
+    background: #1c120b; /* Instructions: warmes Dunkel - keine harte Schwarz/Weiß-Optik */
+  }
+
+  .features-header {
+    text-align: center;
+    margin-bottom: 4rem; /* 64px - 8 × 8px */
+  }
+
+  .features-header .heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.25rem; /* 52px - Jobs Standard */
+    font-weight: 400; /* Instructions: Regular 400 */
+    color: #ffffff; /* WHITE - Kontrast-Style */
+    margin-bottom: 1.5rem; /* 24px - 3 × 8px */
+    letter-spacing: -0.02em; /* Instructions: letter-spacing */
+    line-height: 1.1; /* Tighter leading for impact */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+  }
+
+  .features-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.25rem; /* 20px - Instructions: 1rem–1.25rem */
+    color: #e5e5e5; /* Light gray for contrast */
+    max-width: 65ch; /* Optimal line length */
+    margin: 0 auto;
+    line-height: 1.6; /* Instructions: 150–180% Zeilenhöhe */
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem; /* 40px - 5 × 8px */
+    margin-bottom: 4rem; /* 64px - 8 × 8px */
+  }
+
+  .feature-card {
+    position: relative;
+    min-height: 400px; /* Better proportion */
+    border-radius: 12px; /* Instructions: Border-Radius 12px */
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* Better shadow */
+  }
+
+  .feature-card:hover {
+    transform: translateY(-2px); /* Subtle movement - max 20px */
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+  }
+
+  .feature-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .feature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+
+  .feature-card:hover .feature-image img {
+    transform: scale(1.05);
+  }
+
+  .feature-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 20%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.8) 100%
+    );
+    z-index: 2;
+  }
+
+  .feature-badge {
+    position: absolute;
+    top: 1rem; /* 16px - 2 × 8px */
+    left: 1rem; /* 16px - 2 × 8px */
+    background: rgba(255, 255, 255, 0.98); /* Maximum contrast */
+    color: #3d2817; /* Instructions: primär dunkles Braun */
+    padding: 0.5rem 0.75rem; /* 8px 12px - 8px Grid */
+    border-radius: 6px;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 700; /* Bolder for better readability */
+    text-transform: uppercase;
+    letter-spacing: 0.2em; /* Instructions: Badge letter-spacing */
+    z-index: 3;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .feature-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem; /* 24px - 3 × 8px */
+    z-index: 3;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  .feature-title {
+    font-family: 'Playfair Display', serif;
+    color: white;
+    font-size: 1.25rem; /* 20px - Better for cards */
+    font-weight: 400; /* Instructions: Regular 400 */
+    margin: 0 0 0.5rem 0; /* 8px - 1 × 8px */
+    line-height: 1.4;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.8), 0 1px 4px rgba(0, 0, 0, 0.9);
+    letter-spacing: -0.01em; /* Subtle letter-spacing */
+  }
+
+  .feature-description {
+    font-family: 'DM Sans', sans-serif;
+    color: white;
+    font-size: 0.875rem; /* 14px - Better for cards */
+    line-height: 1.5; /* Better readability */
+    margin: 0 0 1rem 0; /* 16px - 2 × 8px */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
+  }
+
+  .feature-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* 12px - 1.5 × 8px */
+  }
+
+  .highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem; /* 12px - 1.5 × 8px */
+  }
+
+  .highlight-icon {
+    color: white; /* White for contrast */
+    font-weight: 600;
+    font-size: 0.875rem; /* 14px */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
+  }
+
+  .highlight-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; /* 14px */
+    color: white; /* White for contrast */
+    line-height: 1.5;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.9);
+  }
+
+  .features-cta {
+    display: flex;
+    gap: 1.5rem; /* 24px - 3 × 8px */
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    display: inline-block;
+    padding: 1rem 2rem; /* 16px 32px - 8px Grid */
+    border-radius: 0.5rem; /* 8px - 1 × 8px */
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem; /* 16px */
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    min-height: 48px; /* Touch target */
+  }
+
+  .btn-primary {
+    background: #8b7355;
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: #7a6548; /* Instructions: dunkler Hover */
+    transform: translateY(-2px); /* Subtle movement */
+    box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #8b7355; /* Instructions: akzent */
+    border: 2px solid #8b7355;
+  }
+
+  .btn-secondary:hover {
+    background: #8b7355; /* Instructions: akzent */
+    color: white;
+    transform: translateY(-2px); /* Subtle movement */
+  }
+
+  /* Other sections */
   .features-link,
   .activities-link,
   .contact-link {
@@ -229,14 +521,40 @@ const pageDescription = 'Charmante Ferienwohnung in historischer Schloßstraße 
   }
 
   @media (max-width: 768px) {
+    .features-section {
+      padding: 3rem 0; /* 48px - Instructions: mobil 48px */
+    }
+
+    .features-header .heading {
+      font-size: 2.5rem; /* 40px - Still prominent on mobile */
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem; /* 32px - 4 × 8px */
+    }
+
+    .features-cta {
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem; /* 16px - 2 × 8px */
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+
     .features-link,
     .activities-link,
     .contact-link {
-      padding: 1.5rem 0;
+      padding: 2rem 0; /* 32px - 4 × 8px */
     }
 
     .container {
-      padding: 0 1rem;
+      padding: 0 1rem; /* 16px - 2 × 8px */
     }
   }
 </style>

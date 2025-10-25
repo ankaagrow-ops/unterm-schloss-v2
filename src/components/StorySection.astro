@@ -8,7 +8,7 @@ export interface Props {
 const { heading, content, backgroundImage } = Astro.props;
 ---
 
-<section class="story-section" id="story">
+<section class="story-section section--light" id="story">
   <!-- Background Layer with Parallax -->
   <div class="story-background">
     <img 
@@ -16,6 +16,7 @@ const { heading, content, backgroundImage } = Astro.props;
       alt="Historisches Fachwerkhaus Innenhof" 
       class="story-image"
       loading="lazy"
+      style="opacity: 1 !important; visibility: visible !important;"
     />
     <!-- Enhanced Overlay -->
     <div class="story-overlay"></div>
@@ -25,46 +26,136 @@ const { heading, content, backgroundImage } = Astro.props;
   <div class="story-content">
     <div class="story-container">
       
-      <!-- Heading -->
-      <h2 class="story-heading" set:html={heading} />
-      
-      <!-- Content - Split into paragraphs for stagger -->
-      <div class="story-text">
-        {content.split('</p>').filter(p => p.trim()).map((paragraph, index) => (
-          <div 
-            class="story-paragraph"
-            style={`animation-delay: ${0.2 + (index * 0.15)}s`}
-            set:html={paragraph + '</p>'}
-          />
-        ))}
+      <!-- Two Column Layout -->
+      <div class="story-grid">
+        
+        <!-- Left Column: Text Content -->
+        <div class="story-text-column">
+          <!-- Heading -->
+          <h2 class="story-heading" set:html={heading} />
+          
+          <!-- Topic Chips -->
+          <div class="topic-chips">
+            <div class="chip">
+              <span class="chip-icon">🍷</span>
+              <span class="chip-text">Wein & Kultur</span>
+            </div>
+            <div class="chip">
+              <span class="chip-icon">🥾</span>
+              <span class="chip-text">Wandern vor der Tür</span>
+            </div>
+            <div class="chip">
+              <span class="chip-icon">❤️</span>
+              <span class="chip-text">Gastgeber mit Herz</span>
+            </div>
+          </div>
+          
+          <!-- Content - Split into paragraphs for stagger -->
+          <div class="story-text">
+            {content.split('</p>').filter(p => p.trim()).map((paragraph, index) => (
+              <div 
+                class="story-paragraph"
+                style={`animation-delay: ${0.2 + (index * 0.15)}s`}
+                set:html={paragraph + '</p>'}
+              />
+            ))}
+          </div>
+          
+          <!-- CTA Buttons -->
+          <div class="story-ctas">
+            <a href="/apartment" class="btn-primary">
+              Mehr zur Wohnung
+            </a>
+            <a href="/booking" class="btn-secondary">
+              Direkt anfragen
+            </a>
+          </div>
+        </div>
+        
+        <!-- Right Column: Facts Card -->
+        <div class="story-facts-column">
+          <div class="facts-card">
+            <div class="facts-header">
+              <h3 class="facts-title">Unterm Schloss</h3>
+              <p class="facts-subtitle">Ihre Ferienwohnung in Hambach</p>
+            </div>
+            
+            <div class="facts-list">
+              <div class="fact-item">
+                <div class="fact-icon">🏠</div>
+                <div class="fact-content">
+                  <div class="fact-label">Baujahr</div>
+                  <div class="fact-value">18. Jahrhundert</div>
+                </div>
+              </div>
+              
+              <div class="fact-item">
+                <div class="fact-icon">📐</div>
+                <div class="fact-content">
+                  <div class="fact-label">Wohnfläche</div>
+                  <div class="fact-value">85 m²</div>
+                </div>
+              </div>
+              
+              <div class="fact-item">
+                <div class="fact-icon">👥</div>
+                <div class="fact-content">
+                  <div class="fact-label">Gäste</div>
+                  <div class="fact-value">Bis zu 6 Personen</div>
+                </div>
+              </div>
+              
+              <div class="fact-item">
+                <div class="fact-icon">📍</div>
+                <div class="fact-content">
+                  <div class="fact-label">Lage</div>
+                  <div class="fact-value">Schloßstraße 18</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Mini Quote -->
+            <div class="facts-quote">
+              <p>"Wir öffnen unser Fachwerkhaus wie für Freunde."</p>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* STORY SECTION - PREMIUM DESIGN */
-  /* Dieter Rams + Steve Jobs Prinzipien: Perfekte Proportionen */
+  /* STORY SECTION - RAMS × JOBS PRÄZISION */
+  /* Less, but better - Massive Whitespace + Obsessive Details */
 
   .story-section {
     position: relative;
-    padding: 8rem 2rem; /* More generous vertical spacing */
-    min-height: 60vh;
+    padding: 6rem 1.5rem; /* Massive Whitespace - min 80px sections */
+    min-height: 80vh; /* Generous vertical space */
     display: flex;
     align-items: center;
     overflow: hidden;
+    background: #fafaf9; /* Instructions: warmes Hell - keine harte Schwarz/Weiß-Optik */
+  }
+
+  @media (min-width: 640px) {
+    .story-section {
+      padding: 8rem 2rem; /* 128px vertical spacing */
+    }
   }
 
   @media (min-width: 768px) {
     .story-section {
-      padding: 10rem 2rem; /* Even more on tablet+ */
+      padding: 10rem 2rem; /* 160px vertical spacing */
     }
   }
 
   @media (min-width: 1024px) {
     .story-section {
-      padding: 12rem 2rem; /* Maximum breathing room */
-      min-height: 70vh;
+      padding: 12rem 2rem; /* 192px vertical spacing - Maximum breathing room */
+      min-height: 85vh;
     }
   }
 
@@ -82,6 +173,9 @@ const { heading, content, backgroundImage } = Astro.props;
     height: 120%; /* Taller for parallax movement */
     object-fit: cover;
     object-position: center;
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
     /* Subtle Ken Burns on background too */
     animation: subtleZoom 30s cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
   }
@@ -95,28 +189,18 @@ const { heading, content, backgroundImage } = Astro.props;
     }
   }
 
-  /* Enhanced Overlay */
+  /* Minimal Overlay for Light Sections */
   .story-overlay {
     position: absolute;
     inset: 0;
-    /* Multi-layer gradient for depth */
-    background: 
-      /* Vignette effect */
-      radial-gradient(
-        ellipse at center,
-        transparent 0%,
-        rgba(0, 0, 0, 0.1) 70%,
-        rgba(0, 0, 0, 0.2) 100%
-      ),
-      /* Base gradient for readability */
-      linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.92) 0%,
-        rgba(250, 250, 249, 0.88) 50%,
-        rgba(245, 245, 244, 0.85) 100%
-      );
-    backdrop-filter: blur(2px); /* Subtle blur for premium feel */
-    -webkit-backdrop-filter: blur(2px);
+    /* Minimal overlay for light sections */
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(255, 255, 255, 0.85) 100%
+    );
+    backdrop-filter: blur(1px); /* Minimal blur */
+    -webkit-backdrop-filter: blur(1px);
   }
 
   /* Content Layer */
@@ -124,26 +208,66 @@ const { heading, content, backgroundImage } = Astro.props;
     position: relative;
     z-index: 10;
     width: 100%;
-    text-align: center;
   }
 
   .story-container {
-    max-width: 48rem; /* 768px - optimal reading width */
+    max-width: 1280px; /* 8px Grid: 160 × 8px */
     margin: 0 auto;
+    padding: 0 1rem; /* 8px base unit */
   }
 
-  /* Enhanced Typography */
+  @media (min-width: 640px) {
+    .story-container {
+      padding: 0 1.5rem; /* 12px */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .story-container {
+      padding: 0 2rem; /* 16px */
+    }
+  }
+
+  /* 8px GRID SYSTEM - Perfect Alignment */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem; /* 48px - 6 × 8px */
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .story-grid {
+      grid-template-columns: 1fr 400px; /* Fixed sidebar width */
+      gap: 4rem; /* 64px - 8 × 8px */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .story-grid {
+      gap: 5rem; /* 80px - 10 × 8px */
+    }
+  }
+
+  /* Left Column: Text Content */
+  .story-text-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* JOBS TYPOGRAPHY - 52px+ Headlines führen */
   .story-heading {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem; /* 40px */
+    font-size: 3.25rem; /* 52px - Jobs Standard */
     font-weight: 400;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    color: #3d2817; /* Warmer dark brown */
-    text-align: center;
-    margin-bottom: 3rem; /* Golden ratio spacing */
+    line-height: 1.1; /* Tighter leading for impact */
+    letter-spacing: -0.03em; /* Tighter tracking */
+    color: #3d2817; /* Instructions: primär dunkles Braun */
+    text-align: left;
+    margin-bottom: 0;
     
-    /* Subtle animation */
+    /* Subtle animation - max 20px translateY */
     opacity: 0;
     transform: translateY(20px);
     animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
@@ -151,53 +275,90 @@ const { heading, content, backgroundImage } = Astro.props;
 
   @media (min-width: 768px) {
     .story-heading {
-      font-size: 3rem; /* 48px */
-      margin-bottom: 4rem; /* More space on desktop */
+      font-size: 4rem; /* 64px */
     }
   }
 
   @media (min-width: 1024px) {
     .story-heading {
-      font-size: 3.5rem; /* 56px */
+      font-size: 4.5rem; /* 72px - Premium scale */
     }
   }
 
-  /* Paragraph Stagger Animation */
+  /* RAMS CHIPS - Minimal, functional */
+  .topic-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem; /* 12px - 1.5 × 8px */
+    margin-bottom: 1.5rem; /* 24px - 3 × 8px */
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem; /* 8px */
+    padding: 0.5rem 1rem; /* 8px 16px - 8px Grid */
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(139, 115, 85, 0.15); /* Subtle border */
+    border-radius: 1.5rem; /* 24px - 3 × 8px */
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    color: #3d2817; /* Instructions: primär dunkles Braun */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .chip:hover {
+    background: rgba(139, 115, 85, 0.08); /* Subtle hover */
+    transform: translateY(-1px); /* Minimal movement */
+    box-shadow: 0 2px 8px rgba(139, 115, 85, 0.1);
+  }
+
+  .chip-icon {
+    font-size: 1rem;
+  }
+
+  .chip-text {
+    white-space: nowrap;
+  }
+
+  /* JOBS BODY TEXT - Perfect readability */
   .story-text {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.125rem; /* 18px */
-    line-height: 1.8; /* More generous line-height */
-    color: #57534e; /* Warm gray */
-    max-width: 48rem; /* 768px - optimal reading width */
-    margin: 0 auto;
-    text-align: center;
+    line-height: 1.7; /* Optimal reading line-height */
+    color: #374151; /* High contrast gray */
+    text-align: left;
+    max-width: 65ch; /* Optimal line length */
   }
 
   .story-text p {
-    margin-bottom: 1.5rem; /* Golden ratio spacing */
+    margin-bottom: 1.5rem; /* 24px - 3 × 8px */
   }
 
   @media (min-width: 768px) {
     .story-text {
       font-size: 1.25rem; /* 20px */
-      line-height: 1.9;
+      line-height: 1.8;
     }
     
     .story-text p {
-      margin-bottom: 2rem;
+      margin-bottom: 2rem; /* 32px - 4 × 8px */
     }
   }
 
   .story-paragraph {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px); /* Max 20px movement */
     animation: paragraphReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes paragraphReveal {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px); /* Max 20px movement */
     }
     to {
       opacity: 1;
@@ -210,11 +371,181 @@ const { heading, content, backgroundImage } = Astro.props;
     margin-bottom: 0;
   }
 
-  /* Animations */
+  /* RAMS CTA - 1 Primary CTA pro Section */
+  .story-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* 16px - 2 × 8px */
+    margin-top: 2.5rem; /* 40px - 5 × 8px */
+  }
+
+  @media (min-width: 480px) {
+    .story-ctas {
+      flex-direction: row;
+      gap: 1.5rem; /* 24px - 3 × 8px */
+    }
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem; /* 16px 40px - 8px Grid */
+    background: #8b7355; /* Instructions: akzent */
+    color: white;
+    text-decoration: none;
+    border-radius: 0.5rem; /* 8px - 1 × 8px */
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(139, 115, 85, 0.2);
+    min-height: 48px; /* Touch target */
+  }
+
+  .btn-primary:hover {
+    background: #7a6548; /* Instructions: dunkler Hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 115, 85, 0.3);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2.5rem; /* 16px 40px - 8px Grid */
+    background: transparent;
+    color: #8b1538; /* Primary wine red */
+    text-decoration: none;
+    border: 2px solid #8b1538;
+    border-radius: 0.5rem; /* 8px - 1 × 8px */
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 48px; /* Touch target */
+  }
+
+  .btn-secondary:hover {
+    background: #8b1538;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 21, 56, 0.2);
+  }
+
+  /* Right Column: Facts Card */
+  .story-facts-column {
+    display: flex;
+    justify-content: center;
+  }
+
+  .facts-card {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 1rem; /* 16px - 2 × 8px */
+    padding: 2rem; /* 32px - 4 × 8px */
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(139, 21, 56, 0.1); /* Subtle wine red border */
+    width: 100%;
+    max-width: 400px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .facts-card:hover {
+    transform: translateY(-2px); /* Subtle movement */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  .facts-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(139, 115, 85, 0.1);
+  }
+
+  .facts-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; /* 24px */
+    font-weight: 600;
+    color: #3d2817; /* Instructions: primär dunkles Braun */
+    margin: 0 0 0.5rem 0;
+  }
+
+  .facts-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem; /* 14px */
+    color: #8b7355; /* Instructions: akzent */
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .facts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .fact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .fact-icon {
+    font-size: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 115, 85, 0.1);
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .fact-content {
+    flex: 1;
+  }
+
+  .fact-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 500;
+    color: #8b7355; /* Instructions: akzent */
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem; /* 4px - 0.5 × 8px */
+  }
+
+  .fact-value {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem; /* 16px */
+    font-weight: 600;
+    color: #3d2817; /* Instructions: primär dunkles Braun */
+  }
+
+  .facts-quote {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(139, 115, 85, 0.1);
+  }
+
+  .facts-quote p {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.875rem; /* 14px */
+    font-style: italic;
+    color: #8b7355; /* Instructions: akzent */
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* JOBS ANIMATIONS - Subtle, max 20px movement */
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px); /* Max 20px movement */
     }
     to {
       opacity: 1;

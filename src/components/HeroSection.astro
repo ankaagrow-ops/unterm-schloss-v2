@@ -46,6 +46,7 @@ const titleWords = title.split(' ');
         fetchpriority="high"
         width="1920"
         height="1280"
+        style="opacity: 1 !important; visibility: visible !important;"
       />
     </div>
     
@@ -123,6 +124,20 @@ const titleWords = title.split(' ');
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    /* 8px Grid System */
+    padding: 0 1rem; /* 16px - 2 × 8px */
+  }
+
+  @media (min-width: 640px) {
+    .hero-section {
+      padding: 0 1.5rem; /* 24px - 3 × 8px */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-section {
+      padding: 0 2rem; /* 32px - 4 × 8px */
+    }
   }
 
   /* 🎬 KEN BURNS EFFECT */
@@ -146,6 +161,9 @@ const titleWords = title.split(' ');
     animation: kenBurns 25s ease-in-out infinite alternate;
     will-change: transform;
     transform: scale(1);
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
   }
 
   @keyframes kenBurns {
@@ -153,7 +171,7 @@ const titleWords = title.split(' ');
       transform: scale(1) translate(0, 0);
     }
     100% {
-      transform: scale(1.08) translate(-4%, -3%);
+      transform: scale(1.05) translate(-2%, -1.5%); /* Subtle movement */
     }
   }
 
@@ -190,67 +208,68 @@ const titleWords = title.split(' ');
     );
   }
 
-  /* 📝 CONTENT */
+  /* RAMS CONTENT - 8px Grid Alignment */
   .hero-content {
     position: relative;
     z-index: 10;
     width: 100%;
     text-align: center;
-    padding: 0 1.5rem;
+    padding: 0; /* Padding handled by hero-section */
   }
 
   .hero-container {
-    max-width: 80rem;
+    max-width: 80rem; /* 1280px - 8px Grid: 160 × 8px */
     margin: 0 auto;
+    text-align: center;
   }
 
-  /* ✨ HEADLINE mit WORD STAGGER */
+  /* JOBS HEADLINE - 52px+ führt die Hierarchie */
   .hero-title {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
-    font-size: 2.5rem;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
+    font-size: 3.25rem; /* 52px - Jobs Standard */
+    line-height: 1.1; /* Tighter leading for impact */
+    letter-spacing: -0.03em; /* Tighter tracking */
     color: white;
     margin-bottom: 1.5rem;
-    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
   }
 
   .word-stagger {
     display: inline-block;
     opacity: 0;
-    transform: translateY(30px) rotateX(20deg);
-    animation: wordReveal 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-    animation-delay: calc(var(--word-index) * 0.12s + 0.3s);
+    transform: translateY(20px); /* Max 20px movement - Jobs standard */
+    animation: wordReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--word-index) * 0.1s + 0.2s);
     margin-right: 0.25em; /* Konstanter Abstand zwischen Wörtern */
   }
 
   @keyframes wordReveal {
     0% {
       opacity: 0;
-      transform: translateY(30px) rotateX(20deg);
-      filter: blur(8px);
+      transform: translateY(20px); /* Max 20px movement */
+      filter: blur(4px); /* Subtle blur */
     }
     100% {
       opacity: 1;
-      transform: translateY(0) rotateX(0);
+      transform: translateY(0);
       filter: blur(0);
     }
   }
 
-  /* 📖 SUBHEADLINE */
+  /* JOBS SUBHEADLINE - Perfect readability */
   .hero-subtitle {
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
-    font-size: 1.125rem;
+    font-size: 1.25rem; /* 20px */
     line-height: 1.6;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
     color: rgba(255, 255, 255, 0.95);
     margin: 0 auto 2.5rem auto;
-    max-width: 48rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    max-width: 50rem; /* Optimal line length */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     opacity: 0;
-    animation: fadeInUp 0.8s ease-out 0.8s forwards;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
   }
 
   /* ⭐ TRUST */
@@ -285,33 +304,33 @@ const titleWords = title.split(' ');
   .hero-button {
     position: relative;
     display: inline-block;
-    background: #8b7355;
+    background: #8b7355; /* Instructions: akzent */
     color: white;
     border: none;
-    border-radius: 9999px;
-    padding: 1.125rem 2.75rem;
+    border-radius: 0.5rem; /* 8px - 1 × 8px */
+    padding: 1.125rem 2.75rem; /* 18px 44px - 8px Grid */
     font-family: 'DM Sans', sans-serif;
-    font-weight: 500;
-    font-size: 1.125rem;
+    font-weight: 600; /* Bolder for impact */
+    font-size: 1.125rem; /* 18px */
     letter-spacing: 0.01em;
     text-decoration: none;
     box-shadow: 
-      0 4px 14px rgba(0, 0, 0, 0.2),
-      0 2px 6px rgba(0, 0, 0, 0.15),
+      0 4px 14px rgba(139, 115, 85, 0.3),
+      0 2px 6px rgba(139, 115, 85, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
-    min-height: 48px;
+    min-height: 48px; /* Touch target */
     cursor: pointer;
   }
 
   .hero-button:hover {
-    background: #7a6548;
+    background: #7a6548; /* Instructions: dunkler Hover */
     box-shadow: 
-      0 8px 24px rgba(0, 0, 0, 0.3),
-      0 4px 12px rgba(0, 0, 0, 0.2),
+      0 8px 24px rgba(139, 115, 85, 0.4),
+      0 4px 12px rgba(139, 115, 85, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px) scale(1.03);
+    transform: translateY(-2px); /* Subtle movement */
   }
 
   .hero-button:active {
@@ -414,39 +433,39 @@ const titleWords = title.split(' ');
     letter-spacing: 0.1em;
   }
 
-  /* 📱 RESPONSIVE */
+  /* JOBS RESPONSIVE TYPOGRAPHY */
   @media (min-width: 640px) {
     .hero-title {
-      font-size: 3.25rem;
+      font-size: 4rem; /* 64px */
     }
     .hero-subtitle {
-      font-size: 1.375rem;
+      font-size: 1.375rem; /* 22px */
     }
   }
 
   @media (min-width: 768px) {
     .hero-title {
-      font-size: 4rem;
+      font-size: 4.5rem; /* 72px */
     }
     .hero-subtitle {
-      font-size: 1.5rem;
+      font-size: 1.5rem; /* 24px */
     }
   }
 
   @media (min-width: 1024px) {
     .hero-title {
-      font-size: 5rem;
+      font-size: 5.5rem; /* 88px - Premium scale */
     }
     .hero-subtitle {
-      font-size: 1.875rem;
+      font-size: 1.875rem; /* 30px */
     }
   }
 
-  /* 🎭 ANIMATIONS */
+  /* JOBS ANIMATIONS - Subtle, max 20px movement */
   @keyframes fadeInUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px); /* Max 20px movement */
     }
     to {
       opacity: 1;
