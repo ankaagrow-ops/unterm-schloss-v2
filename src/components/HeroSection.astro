@@ -1,6 +1,6 @@
 ---
-// Hero Section - Dieter Rams + Steve Jobs Präzision
-// Reine Astro-Komponente für maximale Performance
+// 🎨 HERO SECTION PREMIUM UPGRADE
+// Ken Burns + Word Stagger + Premium Animations
 
 import { Image } from 'astro:assets';
 
@@ -28,44 +28,54 @@ const {
   reviewRating = 0
 } = Astro.props;
 
-// Hero-Bild direkt verwenden - Astro Image Component
+const titleWords = title.split(' ');
 ---
 
 <section 
   class="hero-section"
   aria-label="Hero Section"
 >
-  <!-- Background Image Layer - GPU-optimiert mit Ken Burns Effect -->
+  <!-- 🎬 KEN BURNS BACKGROUND -->
   <div class="hero-background">
-    <img
-      src="/images/01_aussenansicht_fachwerkhaus_haupteingang.jpg"
-      alt={imageAlt}
-      class="hero-image ken-burns"
-      loading="eager"
-      fetchpriority="high"
-      width="1920"
-      height="1280"
-    />
-    <!-- Ehrliches Overlay - nur für Lesbarkeit -->
+    <div class="ken-burns-wrapper">
+      <img
+        src={image}
+        alt={imageAlt}
+        class="hero-image"
+        loading="eager"
+        fetchpriority="high"
+        width="1920"
+        height="1280"
+      />
+    </div>
+    
+    <!-- 🌈 ANIMATED GRADIENT OVERLAY -->
+    <div class="hero-overlay-gradient"></div>
     <div class="hero-overlay"></div>
   </div>
 
-  <!-- Content Layer - Perfekte Zentrierung -->
+  <!-- 📝 CONTENT LAYER -->
   <div class="hero-content">
     <div class="hero-container">
       
-      <!-- 1. HEADLINE - Maximum Impact mit Animation -->
-      <h1 class="hero-title fade-in-up">
-        <span class="word-animate">{title.split(' ').slice(0, 2).join(' ')}</span>
-        <span class="word-animate delay-1">{title.split(' ').slice(2).join(' ')}</span>
+      <!-- ✨ HEADLINE mit WORD-BY-WORD STAGGER -->
+      <h1 class="hero-title">
+        {titleWords.map((word, index) => (
+          <span 
+            class="word-stagger" 
+            style={`--word-index: ${index}`}
+          >
+            {word}{' '}
+          </span>
+        ))}
       </h1>
 
-      <!-- 2. SUBHEADLINE - Fibonacci Spacing mit verzögerter Animation -->
-      <p class="hero-subtitle fade-in-up delay-2">
+      <!-- 📖 SUBHEADLINE -->
+      <p class="hero-subtitle">
         {subtitle}
       </p>
 
-      <!-- 3. TRUST-SIGNAL - Nur bei echten Bewertungen -->
+      <!-- ⭐ TRUST SIGNAL -->
       {hasRealReviews && reviewCount > 0 && (
         <div class="hero-trust">
           <span class="hero-trust-stars">★★★★★</span>
@@ -75,21 +85,18 @@ const {
         </div>
       )}
 
-      <!-- 4. CTA-BUTTON - Pixel-perfect -->
+      <!-- 🎯 CTA BUTTON mit SHINE EFFECT -->
       <div class="hero-cta">
-        <!-- Primary CTA - Rams-Prinzip: Klar und funktional mit Animation -->
         <a 
           href={ctaHref}
-          class="hero-button fade-in-up delay-3 scale-in"
+          class="hero-button"
           aria-label={`${ctaText} - Öffnet Buchungsanfrage`}
         >
           <span class="hero-button-text">{ctaText}</span>
-          <!-- Subtle hover glow - Jobs-Prinzip: Details matter -->
-          <div class="hero-button-glow"></div>
+          <span class="hero-button-shine"></span>
         </a>
 
-        <!-- Badge unter Button - 16px Abstand (Fibonacci) mit Animation -->
-        <p class="hero-badge fade-in delay-4">
+        <p class="hero-badge">
           <span class="hero-badge-icon">✓</span>
           Antwort innerhalb von 24 Stunden
         </p>
@@ -97,18 +104,16 @@ const {
     </div>
   </div>
 
-  <!-- Scroll Indicator - Jobs-Prinzip: Perfekte Animation -->
-  <div class="hero-scroll fade-in delay-5" aria-label="Scroll nach unten">
-    <div class="hero-scroll-container bounce">
-      <div class="hero-scroll-dot"></div>
+  <!-- 🖱️ PREMIUM SCROLL INDICATOR -->
+  <div class="hero-scroll" aria-label="Scroll nach unten">
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
     </div>
+    <span class="scroll-text">Entdecken</span>
   </div>
 </section>
 
 <style>
-  /* HERO-SECTION PRECISION STYLES */
-  /* Dieter Rams + Steve Jobs Prinzipien: Jedes Pixel zählt */
-
   .hero-section {
     position: relative;
     height: 100vh;
@@ -120,188 +125,229 @@ const {
     overflow: hidden;
   }
 
-  /* Background Image Layer */
+  /* 🎬 KEN BURNS EFFECT */
   .hero-background {
     position: absolute;
     inset: 0;
     z-index: 0;
   }
 
-  .hero-image {
+  .ken-burns-wrapper {
     width: 100%;
     height: 100%;
+    overflow: hidden;
+  }
+
+  .hero-image {
+    width: 110%;
+    height: 110%;
     object-fit: cover;
     object-position: center;
-    /* Ken Burns Effect - subtil und ehrlich */
-    animation: kenBurns 20s linear infinite;
+    animation: kenBurns 25s ease-in-out infinite alternate;
     will-change: transform;
-    backface-visibility: hidden;
-    transform: translateZ(0); /* GPU-Layer */
+    transform: scale(1);
+  }
+
+  @keyframes kenBurns {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+    100% {
+      transform: scale(1.08) translate(-4%, -3%);
+    }
+  }
+
+  /* 🌈 ANIMATED GRADIENT */
+  .hero-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(139, 115, 85, 0.15) 0%,
+      transparent 50%,
+      rgba(139, 115, 85, 0.1) 100%
+    );
+    animation: gradientPulse 8s ease-in-out infinite;
+  }
+
+  @keyframes gradientPulse {
+    0%, 100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.6;
+    }
   }
 
   .hero-overlay {
     position: absolute;
     inset: 0;
-    /* Ehrliches Overlay - nur für bessere Lesbarkeit */
     background: linear-gradient(
       180deg,
-      rgba(0, 0, 0, 0.1) 0%,
-      rgba(0, 0, 0, 0.2) 50%,
-      rgba(0, 0, 0, 0.3) 100%
+      rgba(0, 0, 0, 0.15) 0%,
+      rgba(0, 0, 0, 0.25) 50%,
+      rgba(0, 0, 0, 0.4) 100%
     );
   }
 
-  /* Content Layer */
+  /* 📝 CONTENT */
   .hero-content {
     position: relative;
     z-index: 10;
     width: 100%;
     text-align: center;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
   }
 
   .hero-container {
-    max-width: 80rem; /* 1280px */
+    max-width: 80rem;
     margin: 0 auto;
   }
 
-  /* Typografie - Mathematisch präzise */
+  /* ✨ HEADLINE mit WORD STAGGER */
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-weight: 400; /* Rams: Nicht Bold, sondern elegant */
-    font-size: 2.25rem; /* 36px */
-    line-height: 1.1;
+    font-weight: 400;
+    font-size: 2.5rem;
+    line-height: 1.15;
     letter-spacing: -0.02em;
     color: white;
-    margin-bottom: 1.5rem; /* 24px */
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    /* Animation */
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
   }
 
+  .word-stagger {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(30px) rotateX(20deg);
+    animation: wordReveal 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    animation-delay: calc(var(--word-index) * 0.12s + 0.3s);
+    margin-right: 0.25em; /* Konstanter Abstand zwischen Wörtern */
+  }
+
+  @keyframes wordReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) rotateX(20deg);
+      filter: blur(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotateX(0);
+      filter: blur(0);
+    }
+  }
+
+  /* 📖 SUBHEADLINE */
   .hero-subtitle {
     font-family: 'DM Sans', sans-serif;
     font-weight: 300;
-    font-size: 1.125rem; /* 18px */
+    font-size: 1.125rem;
     line-height: 1.6;
     letter-spacing: 0.02em;
     color: rgba(255, 255, 255, 0.95);
-    margin: 0 auto 2.5rem auto; /* 40px - Zentriert mit auto margins */
-    max-width: 48rem; /* Optimal für Lesbarkeit: 60-75 Zeichen */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    text-align: center; /* Explizite Zentrierung */
-    /* Animation */
+    margin: 0 auto 2.5rem auto;
+    max-width: 48rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+    animation: fadeInUp 0.8s ease-out 0.8s forwards;
   }
 
-  /* Trust Signal - Nur bei echten Bewertungen */
+  /* ⭐ TRUST */
   .hero-trust {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    margin-bottom: 3rem; /* 48px */
+    margin-bottom: 2.5rem;
     color: rgba(255, 255, 255, 0.9);
     font-size: 1rem;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    /* Animation */
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
     opacity: 0;
-    animation: fadeIn 0.8s ease-out 0.6s forwards;
+    animation: fadeIn 0.6s ease-out 1.2s forwards;
   }
 
   .hero-trust-stars {
-    color: #fbbf24; /* Gold */
+    color: #fbbf24;
     font-size: 1.125rem;
   }
 
-  .hero-trust-rating {
-    font-weight: 500;
-  }
-
-  .hero-trust-separator {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .hero-trust-count {
-    color: rgba(255, 255, 255, 0.8);
-  }
-
-  /* CTA-Button - Pixel-perfect */
+  /* 🎯 CTA BUTTON */
   .hero-cta {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem; /* 16px */
-    /* Animation */
+    gap: 1rem;
     opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.8s ease-out 0.8s forwards;
+    animation: scaleIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s forwards;
   }
 
   .hero-button {
     position: relative;
     display: inline-block;
-    background: #8b7355; /* Warme, ehrliche Farbe */
+    background: #8b7355;
     color: white;
     border: none;
-    border-radius: 9999px; /* Perfect circle */
-    padding: 1rem 2.5rem; /* 16px × 40px */
+    border-radius: 9999px;
+    padding: 1.125rem 2.75rem;
     font-family: 'DM Sans', sans-serif;
     font-weight: 500;
-    font-size: 1.125rem; /* 18px */
+    font-size: 1.125rem;
     letter-spacing: 0.01em;
-    line-height: 1.4;
     text-decoration: none;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: pointer;
+    box-shadow: 
+      0 4px 14px rgba(0, 0, 0, 0.2),
+      0 2px 6px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow: hidden;
-    min-height: 44px; /* Touch-friendly */
-    min-width: 44px;
+    min-height: 48px;
+    cursor: pointer;
   }
 
   .hero-button:hover {
     background: #7a6548;
-    box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.3);
-    transform: scale(1.05);
+    box-shadow: 
+      0 8px 24px rgba(0, 0, 0, 0.3),
+      0 4px 12px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px) scale(1.03);
   }
 
   .hero-button:active {
-    transform: scale(1.0);
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  }
-
-  .hero-button:focus {
-    outline: none;
-    box-shadow: 0 0 0 4px rgba(139, 115, 85, 0.5);
+    transform: translateY(0) scale(0.98);
   }
 
   .hero-button-text {
     position: relative;
-    z-index: 10;
+    z-index: 2;
   }
 
-  .hero-button-glow {
+  /* ✨ SHINE EFFECT */
+  .hero-button-shine {
     position: absolute;
-    inset: 0;
-    background: rgba(255, 255, 255, 0);
-    border-radius: inherit;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.6s;
   }
 
-  .hero-button:hover .hero-button-glow {
-    background: rgba(255, 255, 255, 0.1);
+  .hero-button:hover .hero-button-shine {
+    left: 100%;
   }
 
+  /* ✓ BADGE */
   .hero-badge {
     color: rgba(255, 255, 255, 0.85);
-    font-size: 0.875rem; /* 14px */
+    font-size: 0.875rem;
     font-weight: 300;
-    letter-spacing: 0.01em;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -309,162 +355,94 @@ const {
   }
 
   .hero-badge-icon {
-    color: #10b981; /* Green */
-    font-size: 1rem;
+    color: #10b981;
+    font-weight: 600;
   }
 
-  /* Scroll Indicator */
+  /* 🖱️ SCROLL INDICATOR */
   .hero-scroll {
     position: absolute;
-    bottom: 2rem;
+    bottom: 2.5rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-    animation: bounce 2s ease-in-out infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out 2s forwards;
   }
 
-  .hero-scroll-container {
-    width: 1.75rem; /* 28px */
-    height: 2.75rem; /* 44px */
+  .scroll-mouse {
+    width: 2rem;
+    height: 3rem;
     border: 2px solid rgba(255, 255, 255, 0.7);
-    border-radius: 9999px;
+    border-radius: 1rem;
+    position: relative;
     display: flex;
     align-items: flex-start;
     justify-content: center;
     padding-top: 0.5rem;
   }
 
-  .hero-scroll-dot {
-    width: 0.375rem; /* 6px */
-    height: 0.375rem; /* 6px */
+  .scroll-wheel {
+    width: 0.25rem;
+    height: 0.5rem;
     background: white;
-    border-radius: 50%;
-    animation: pulse 2s ease-in-out infinite;
+    border-radius: 0.25rem;
+    animation: scrollWheel 2s ease-in-out infinite;
   }
 
-  /* Responsive Design */
+  @keyframes scrollWheel {
+    0%, 100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(0.75rem);
+      opacity: 0.3;
+    }
+  }
+
+  .scroll-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* 📱 RESPONSIVE */
   @media (min-width: 640px) {
     .hero-title {
-      font-size: 3rem; /* 48px */
+      font-size: 3.25rem;
     }
-    
     .hero-subtitle {
-      font-size: 1.25rem; /* 20px */
-      margin: 0 auto 2.5rem auto; /* Zentriert auf allen Größen */
+      font-size: 1.375rem;
     }
   }
 
   @media (min-width: 768px) {
     .hero-title {
-      font-size: 3.75rem; /* 60px */
+      font-size: 4rem;
     }
-    
     .hero-subtitle {
-      font-size: 1.5rem; /* 24px */
-      margin: 0 auto 2.5rem auto; /* Zentriert auf allen Größen */
+      font-size: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .hero-title {
-      font-size: 4.5rem; /* 72px */
+      font-size: 5rem;
     }
-    
     .hero-subtitle {
-      font-size: 1.875rem; /* 30px */
-      margin: 0 auto 2.5rem auto; /* Zentriert auf allen Größen */
+      font-size: 1.875rem;
     }
   }
 
-  /* Animations */
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes kenBurns {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.02); /* Sehr subtiler Zoom - nicht übertrieben */
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateX(-50%) translateY(0);
-    }
-    40% {
-      transform: translateX(-50%) translateY(-10px);
-    }
-    60% {
-      transform: translateX(-50%) translateY(-5px);
-    }
-  }
-
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.3;
-    }
-  }
-
-  /* Accessibility - Reduced Motion */
-  @media (prefers-reduced-motion: reduce) {
-    .hero-image,
-    .hero-scroll,
-    .hero-scroll-dot {
-      animation: none !important;
-    }
-    
-    .hero-button:hover {
-      transform: none;
-    }
-    
-    .hero-title,
-    .hero-subtitle,
-    .hero-trust,
-    .hero-cta {
-      animation: none !important;
-      opacity: 1 !important;
-      transform: none !important;
-    }
-  }
-
-  /* High Contrast Mode Support */
-  @media (prefers-contrast: high) {
-    .hero-title,
-    .hero-subtitle {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-    }
-    
-    .hero-button {
-      border: 2px solid white;
-    }
-  }
-
-  /* ANIMATION KEYFRAMES - GPU-accelerated */
+  /* 🎭 ANIMATIONS */
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -487,89 +465,44 @@ const {
 
   @keyframes scaleIn {
     from {
-      transform: scale(0.95);
       opacity: 0;
+      transform: scale(0.9);
     }
     to {
+      opacity: 1;
       transform: scale(1);
-      opacity: 1;
     }
   }
 
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateY(0);
-    }
-    40% {
-      transform: translateY(-10px);
-    }
-    60% {
-      transform: translateY(-5px);
-    }
-  }
-
-  @keyframes wordFadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* ANIMATION CLASSES - GPU-accelerated */
-  .fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s ease-out forwards;
-  }
-
-  .fade-in {
-    opacity: 0;
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  .scale-in {
-    transform: scale(0.95);
-    animation: scaleIn 0.5s ease-out forwards;
-  }
-
-  .bounce {
-    animation: bounce 2s ease-in-out infinite;
-  }
-
-  /* Word Animation - Staggered Effect */
-  .word-animate {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: wordFadeIn 0.6s ease-out forwards;
-  }
-
-  .word-animate.delay-1 {
-    animation-delay: 0.2s;
-  }
-
-  /* Animation Delays */
-  .delay-1 { animation-delay: 0.1s; }
-  .delay-2 { animation-delay: 0.3s; }
-  .delay-3 { animation-delay: 0.5s; }
-  .delay-4 { animation-delay: 0.7s; }
-  .delay-5 { animation-delay: 0.9s; }
-
-  /* Reduced Motion Support */
+  /* ♿ ACCESSIBILITY */
   @media (prefers-reduced-motion: reduce) {
-    .ken-burns,
-    .fade-in-up,
-    .fade-in,
-    .scale-in,
-    .bounce,
-    .word-animate {
+    .hero-image,
+    .hero-overlay-gradient,
+    .word-stagger,
+    .hero-subtitle,
+    .hero-trust,
+    .hero-cta,
+    .hero-scroll,
+    .scroll-wheel,
+    .hero-button-shine {
       animation: none !important;
       opacity: 1 !important;
       transform: none !important;
+    }
+    
+    .hero-button:hover {
+      transform: none;
+    }
+  }
+
+  @media (prefers-contrast: high) {
+    .hero-title,
+    .hero-subtitle {
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    }
+    
+    .hero-button {
+      border: 2px solid white;
     }
   }
 </style>
